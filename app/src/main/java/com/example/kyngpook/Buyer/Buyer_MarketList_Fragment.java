@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -37,7 +39,7 @@ public class Buyer_MarketList_Fragment extends Fragment {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    private ImageView AddressBtn;
+    private LinearLayout AddressBtn;
 
     private String address1 = "";
     private String address2 = "";
@@ -75,6 +77,8 @@ public class Buyer_MarketList_Fragment extends Fragment {
                 activity.startAddressRegistActivity();
             }
         });
+
+
 
         //카테고리 선택 스피너
         RecyclerView recyclerView = rootView.findViewById(R.id.Buyer_MarketListAcvitity_RecyclerView);

@@ -8,48 +8,41 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
+        android:id="@+id/Buyer_MarketListAcvitity_AddressBtn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:orientation="horizontal"
+        android:paddingLeft="110dp"
+        android:layout_height="50dp">
+        <ImageView
+            android:id="@+id/Buyer_Address_ImgView"
+            android:layout_gravity="center"
+            android:layout_width="44dp"
+            android:layout_height="47dp"
+            app:srcCompat="@drawable/buyer_gps" />
         <TextView
             android:id="@+id/Buyer_Address_TextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:gravity="center"
+            android:layout_gravity="center"
             android:text="지역을 입력해주세요"
             android:textColor="#000"
             android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="@+id/Buyer_MarketListAcvitity_AddressBtn"
-            app:layout_constraintEnd_toEndOf="@+id/Buyer_MarketListAcvitity_AddressBtn"
-            app:layout_constraintHorizontal_bias="0.557"
-            app:layout_constraintStart_toStartOf="@+id/Buyer_MarketListAcvitity_AddressBtn"
-            app:layout_constraintTop_toTopOf="@+id/Buyer_MarketListAcvitity_AddressBtn"
-            app:layout_constraintVertical_bias="0.515" />
+            />
 
-        <ImageView
-            android:id="@+id/Buyer_Address_ImgView"
-            android:layout_width="44dp"
-            android:layout_height="47dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.305"
-            app:layout_constraintStart_toStartOf="@+id/Buyer_MarketListAcvitity_AddressBtn"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
-            app:srcCompat="@drawable/buyer_gps" />
+<!--        <ImageView-->
+<!--            android:id="@+id/Buyer_MarketListAcvitity_AddressBtn"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:background="@null"-->
+<!--            android:text="이곳을 눌러 주소를 등록하세요."-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+</LinearLayout>
 
-        <ImageView
-            android:id="@+id/Buyer_MarketListAcvitity_AddressBtn"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@null"
-            android:text="이곳을 눌러 주소를 등록하세요."
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -69,7 +69,7 @@ public class LogInActivity extends AppCompatActivity {
                                  Log.d("LoginActivity.java", document.getId() + " => " + document.getData());
                                  if(document.getId().equals(idtext)==true){
                                     if(document.getData().get("PASSWORD").toString().equals(pwtext)==true){
-                                        login_success(who,idtext,pwtext,document.getData().get("닉네임").toString(),document.getData().get("이름").toString(),document.getData().get("전화번호").toString());
+                                        login_success(who,idtext,pwtext,(String) document.getData().get("닉네임"), (String) document.getData().get("이름"),(String)document.getData().get("전화번호"));
                                     }
                                  };
                              }
