@@ -97,7 +97,7 @@ public class Buyer_ShoppingActivity extends AppCompatActivity {
                                 adapter1.notifyDataSetChanged();
                             }
                         } else {
-                            Log.w("Buyer_MarketListActiviry", "Error getting documents.", task.getException());
+                            //Log.w("Buyer_MarketListActiviry", "Error getting documents.", task.getException());
                         }
                     }
                 });
@@ -109,7 +109,6 @@ public class Buyer_ShoppingActivity extends AppCompatActivity {
         adapter2 = new Buyer_Shopping_Adapter2(this);
         BusketRecyclerView.setAdapter(adapter2);
 
-        //장바구니 담기 버튼 구현
         findViewById(R.id.Buyer_Shopping_Btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

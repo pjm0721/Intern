@@ -123,6 +123,12 @@
         android:layout_marginBottom="10dp" />
 
     <TextView
+        android:text="※ 배달료 1,000원입니다. ※"
+        android:textSize="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
         android:id="@+id/Buyer_PaymentActivity_totText"
         android:gravity="right"
         android:text="총 결제금액 : 100000원"

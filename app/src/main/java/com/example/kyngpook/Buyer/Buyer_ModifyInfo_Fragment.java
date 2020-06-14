@@ -49,13 +49,13 @@ public class Buyer_ModifyInfo_Fragment  extends Fragment {
         util = new SharedPreferenceUtil(activity);
 
         TextView idText = rootView.findViewById(R.id.Buyer_ModifyInfoActivity_idText);
-        idText.setText(util.getStringData("ID", "id1"));
+        idText.setText(util.getStringData("ID", "id1.default"));
         final EditText nameEdit = rootView.findViewById(R.id.Buyer_ModifyInfoActivity_nameEdit);
-        nameEdit.setText(util.getStringData("이름", "이름"));
+        nameEdit.setText(util.getStringData("이름", "이름.default"));
         final EditText nicknameEdit = rootView.findViewById(R.id.Buyer_ModifyInfoActivity_nicknameEdit);
-        nicknameEdit.setText(util.getStringData("닉네임", "닉네임"));
+        nicknameEdit.setText(util.getStringData("닉네임", "닉네임.default"));
         final EditText callEdit = rootView.findViewById(R.id.Buyer_ModifyInfoActivity_callEdit);
-        callEdit.setText(util.getStringData("전화번호", "01072083305"));
+        callEdit.setText(util.getStringData("전화번호", "01012341234.default"));
 
         final CheckBox checkBox = rootView.findViewById(R.id.Buyer_ModifyInfoActivity_checkBox);
         final EditText pwEdit = rootView.findViewById(R.id.Buyer_ModifyInfoActivity_pwEdit);
