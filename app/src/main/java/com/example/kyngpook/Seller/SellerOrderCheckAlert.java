@@ -6,12 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -36,6 +38,7 @@ public class SellerOrderCheckAlert extends AppCompatActivity {
     TextView seller_order_state;
 
     String doc_name;
+    String order_state;
 
     RecyclerView recyclerView;
     SellerOrderAlertListAdapter adapter;
@@ -81,6 +84,7 @@ public class SellerOrderCheckAlert extends AppCompatActivity {
                                 seller_order_time.setText("주문 시간 : "+doc.getData().get("주문시간").toString());
                                 seller_order_sum.setText("총 금액 : "+doc.getData().get("금액").toString());
                                 seller_order_state.setText("주문상태 : "+doc.getData().get("주문상태").toString());
+                                order_state=doc.getData().get("주문상태").toString();
                                 doc_name=doc.getData().get("문서이름").toString();
                                 Map orderMap =(Map)doc.getData().get("주문내역");
 
@@ -103,7 +107,12 @@ public class SellerOrderCheckAlert extends AppCompatActivity {
             public void onClick(View view) {
 
                 DocumentReference d= db.collection("주문내역").document(doc_name);
-                d.update("주문상태","주문수락");
+                if(!order_state.equals("주문완료")) {
+                    d.update("주문상태", "주문수락");
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"이미 완료된 주문입니다.",Toast.LENGTH_LONG).show();
+                }
                 finish();
 
             }
