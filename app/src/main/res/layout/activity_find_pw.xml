@@ -70,6 +70,7 @@
         android:layout_marginTop="48dp"
         app:cardElevation="1dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/findPw_rgp">
 
@@ -81,8 +82,9 @@
             <EditText
                 android:id="@+id/findPw_realname"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="45dp"
                 android:hint="성명"
+                android:background="@null"
                 android:layout_marginTop="5dp"
                 android:inputType="textPersonName"
                 android:textSize="15sp" />
@@ -108,8 +110,9 @@
             <EditText
                 android:id="@+id/findPw_Id"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="45dp"
                 android:layout_marginTop="5dp"
+                android:background="@null"
                 android:hint="아이디"
                 android:inputType="textPersonName"
                 android:textSize="15sp" />
@@ -135,8 +138,9 @@
             <EditText
                 android:id="@+id/findPw_phone"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="45dp"
                 android:layout_marginTop="5dp"
+                android:background="@null"
                 android:hint="전화번호 ( ' - ' 제외 )"
                 android:inputType="number"
                 android:textSize="15sp" />

@@ -71,6 +71,7 @@
         app:cardElevation="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintTop_toBottomOf="@+id/findId_rgp">
 
         <LinearLayout
@@ -81,9 +82,10 @@
             <EditText
                 android:id="@+id/findId_realname"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="45dp"
                 android:hint="성명"
                 android:layout_marginTop="5dp"
+                android:background="@null"
                 android:inputType="textPersonName"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -108,8 +110,9 @@
             <EditText
                 android:id="@+id/findId_phone"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="45dp"
                 android:layout_marginTop="5dp"
+                android:background="@null"
                 android:hint="전화번호 ( ' - ' 제외 )"
                 android:inputType="number"
                 android:textSize="15sp" />
