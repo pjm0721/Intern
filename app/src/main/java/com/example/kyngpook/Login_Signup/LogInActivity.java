@@ -26,7 +26,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import static maes.tech.intentanim.CustomIntent.customType;
-
+// 깃헙테스트
 public class LogInActivity extends AppCompatActivity {
     private TextView id;
     private TextView password;
