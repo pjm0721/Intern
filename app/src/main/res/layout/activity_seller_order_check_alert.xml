@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SellerOrderCheckAlert">
+
+    <TextView
+        android:id="@+id/seller_order_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="요청지 : 대구 북구 경북대학교 IT 1호관" />
+
+    <TextView
+        android:id="@+id/seller_order_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="주문자 : 정현석" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="요청 상품" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/seller_order_list"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+ />
+
+    <TextView
+        android:id="@+id/seller_order_sum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="가격 합계 : 30000원" />
+
+    <TextView
+        android:id="@+id/seller_order_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="주문 시간" />
+
+    <TextView
+        android:id="@+id/seller_order_state"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="요청 상태 : 배달 요청" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <Button
+        android:id="@+id/seller_order_accept"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="요청 수락" />
+
+    <Button
+        android:id="@+id/seller_order_deny"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="요청 거부" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

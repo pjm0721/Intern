@@ -1,0 +1,78 @@
+package com.example.kyngpook.Deliver;
+
+import com.example.kyngpook.Login_Signup.LogInActivity;
+import com.example.kyngpook.Login_Signup.StartActivity;
+import com.example.kyngpook.R;
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+
+import static maes.tech.intentanim.CustomIntent.customType;
+
+public class Deliver_Item_Information extends AppCompatActivity {
+    private Button deliver_item_information_complete_button;
+    private ListView deliver_item_information_listview;
+    private ArrayAdapter deliver_item_information_adapter = null;
+    private ArrayList<String> deliver_item_information_arraylist = null;
+    private ImageView bike;
+    private Animation anim;
+    private final int RESULT_ACCEPT = 1001;
+
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(getApplicationContext(), "배달완료 후 완료버튼을 누르셔야합니다.", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_deliver_item_information);
+        bike=(ImageView)findViewById(R.id.Deliver_item_bike);
+        anim= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.anim_bike_2);
+        anim.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+        });
+        bike.startAnimation(anim);
+        deliver_item_information_arraylist = new ArrayList<String>();
+        deliver_item_information_arraylist.add("주문자 이름 : " + getIntent().getExtras().getString("SELLER_NAME"));
+        deliver_item_information_arraylist.add("주문자 주소 : " + getIntent().getExtras().getString("SELLER_ADDRESS"));
+        deliver_item_information_arraylist.add("구매자 이름 : " + getIntent().getExtras().getString("BUYER_NAME"));
+        deliver_item_information_arraylist.add("구매자 주소 : " + getIntent().getExtras().getString("BUYER_ADDRESS"));
+        deliver_item_information_arraylist.add("총 결제금액 : " + getIntent().getExtras().getInt("PRICE"));
+        deliver_item_information_arraylist.add("주문요청시간 : " + getIntent().getExtras().getString("ORDER_TIME"));
+        deliver_item_information_adapter = new ArrayAdapter(Deliver_Item_Information.this, android.R.layout.simple_list_item_1, deliver_item_information_arraylist);
+        deliver_item_information_listview = (ListView) findViewById(R.id.adii_listview);
+        deliver_item_information_listview.setAdapter(deliver_item_information_adapter);
+
+        deliver_item_information_complete_button = (Button) findViewById(R.id.adii_complete_button);
+        deliver_item_information_complete_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setResult(RESULT_ACCEPT, new Intent());
+                finish();
+            }
+        });
+    }
+}

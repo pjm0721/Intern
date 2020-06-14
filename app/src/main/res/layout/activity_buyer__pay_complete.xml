@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="Buyer.Buyer_PayCompleteActivity">
+
+    <TextView
+        android:layout_marginTop="90dp"
+        android:text="결 제 완 료"
+        android:gravity="center"
+        android:textSize="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_marginTop="25dp"
+        android:text="판매자에게 연락을 보냈습니다."
+        android:gravity="center"
+        android:textSize="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+    <Button
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="100dp"
+        android:id="@+id/Buyer_PayCompleteActivity_mainBtn"
+        android:textSize="25dp"
+        android:text="메 인 화 면 으 로   가 기"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"/>
+
+</LinearLayout>

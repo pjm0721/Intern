@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/Buyer_Shopping_item2_nameText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:gravity="center"
+        android:text="드라이버"
+        android:textSize="17dp" />
+
+    <Button
+        android:id="@+id/Buyer_Shopping_item2_upBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:background="@android:color/transparent"
+        android:text="▲" />
+
+    <TextView
+        android:id="@+id/Buyer_Shopping_item2_numText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="5"
+
+        android:textSize="17dp" />
+
+    <Button
+        android:id="@+id/Buyer_Shopping_item2_downBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:background="@android:color/transparent"
+        android:text="▼" />
+
+    <TextView
+        android:id="@+id/Buyer_Shopping_item2_priceText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:text="5,000"
+
+        android:textSize="17dp" />
+    <Button
+        android:id="@+id/Buyer_Shopping_item2_removeBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:background="@android:color/transparent"
+        android:text="x" />
+</LinearLayout>

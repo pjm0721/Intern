@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/Buyer_Review_item_nicknameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="닉네임"
+        android:textSize="23dp" />
+    <TextView
+        android:id="@+id/Buyer_Review_item_timeText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2020년 05월 10일"
+        android:layout_marginVertical="7dp"
+        android:textSize="15dp" />
+    <TextView
+        android:id="@+id/Buyer_Review_item_scoreText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="평점 : 0.0 / 5.0"
+        android:layout_marginVertical="7dp"
+        android:textSize="15dp" />
+    <TextView
+        android:id="@+id/Buyer_Review_item_contentText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="내용내용내용내용"
+        android:textSize="20dp" />
+</LinearLayout>

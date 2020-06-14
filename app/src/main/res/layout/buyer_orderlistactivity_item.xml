@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:orientation="vertical"
+    android:background="@drawable/border_below">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="100"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Buyer_OrderList_item_storeNameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="업소명입니다."
+            android:layout_marginBottom="5dp"
+            android:textSize="20dp"
+            android:textColor="#000"/>
+
+        <TextView
+            android:id="@+id/Buyer_OrderList_item_timeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="주문시간 : 2020년 05월 01일 18:36"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/Buyer_OrderList_item_orderStateText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="주문상태 : 배달 완료"
+            android:textSize="15dp" />
+
+
+
+        <TextView
+            android:id="@+id/Buyer_OrderList_item_addressText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="주문주소 : 대구광역시 수성구 당당동 당다라당당당다라아파트"
+            android:textSize="15dp" />
+
+
+        <TextView
+            android:id="@+id/Buyer_OrderList_item_orderListText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="주문내역 : 연필 3개 필통 1개 지우개 5개"
+            android:textSize="15dp" />
+
+        <TextView
+            android:gravity="right"
+            android:id="@+id/Buyer_OrderList_item_priceText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="금액 : 50,000원"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/Buyer_OrderList_item_reviewBtn"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_gravity="bottom|right"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:textColor="#ffffff"
+        android:background="@drawable/login_focus_btn_selector"
+        android:text="리뷰쓰기" />
+</LinearLayout>

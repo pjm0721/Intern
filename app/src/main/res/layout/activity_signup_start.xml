@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#233CF9">
+
+    <ImageView
+        android:id="@+id/signup_buyerbtn"
+        android:layout_width="364dp"
+        android:layout_height="121dp"
+        android:layout_marginTop="212dp"
+        android:clickable="true"
+        android:onClick="on_signup_start_buyer"
+        android:background="@drawable/signup_focus_btn_selector"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/signup_sellerbtn"
+        android:layout_width="364dp"
+        android:layout_height="121dp"
+        android:layout_marginTop="12dp"
+        android:clickable="true"
+        android:onClick="on_signup_start_seller"
+        android:background="@drawable/signup_focus_btn_selector"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_buyerbtn" />
+
+    <ImageView
+        android:id="@+id/signup_deliverbtn"
+        android:layout_width="364dp"
+        android:layout_height="121dp"
+        android:layout_marginTop="12dp"
+        android:clickable="true"
+        android:onClick="on_signup_start_deliver"
+        android:background="@drawable/signup_focus_btn_selector"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_sellerbtn" />
+
+    <ImageView
+        android:id="@+id/signup_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="144dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.88"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/signup_img" />
+
+    <TextView
+        android:id="@+id/signup_1"
+        android:layout_width="207dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="60dp"
+        android:text="어떤 회원가입을"
+        android:textColor="#FFF"
+        android:textSize="30sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/signup_2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/signup_2"
+        android:layout_width="134dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="100dp"
+        android:text="원하세요?"
+        android:textColor="#FFF"
+        android:textSize="30sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/signup_b_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="@+id/signup_buyerbtn"
+        app:layout_constraintTop_toTopOf="@+id/signup_buyerbtn"
+        app:srcCompat="@drawable/signup_b_icon" />
+
+    <TextView
+        android:id="@+id/signup_b_text_1"
+        android:layout_width="92dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="50dp"
+        android:text="일반 회원"
+        android:textColor="#000"
+        android:textSize="22sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="@+id/signup_buyerbtn"
+        app:layout_constraintTop_toTopOf="@+id/signup_buyerbtn" />
+
+    <TextView
+        android:id="@+id/signup_b_text_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="88dp"
+        android:text="일반 회원 가입입니다."
+        android:textSize="10sp"
+        android:textColor="#888888"
+        app:layout_constraintStart_toStartOf="@+id/signup_buyerbtn"
+        app:layout_constraintTop_toTopOf="@+id/signup_buyerbtn" />
+
+    <TextView
+        android:id="@+id/signup_s_text_1"
+        android:layout_width="69dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="50dp"
+        android:text="판매자"
+        android:textColor="#000"
+        android:textSize="22sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="@+id/signup_sellerbtn"
+        app:layout_constraintTop_toTopOf="@+id/signup_sellerbtn" />
+
+    <TextView
+        android:id="@+id/signup_s_text_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="88dp"
+        android:text="일반 회원 가입입니다."
+        android:textSize="10sp"
+        android:textColor="#888888"
+        app:layout_constraintStart_toStartOf="@+id/signup_sellerbtn"
+        app:layout_constraintTop_toTopOf="@+id/signup_sellerbtn" />
+
+    <TextView
+        android:id="@+id/signup_d_text_1"
+        android:layout_width="70dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="50dp"
+        android:text="배달원"
+        android:textColor="#000"
+        android:textSize="22sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="@+id/signup_deliverbtn"
+        app:layout_constraintTop_toTopOf="@+id/signup_deliverbtn" />
+
+    <TextView
+        android:id="@+id/signup_d_text_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="88dp"
+        android:text="일반 회원 가입입니다."
+        android:textSize="10sp"
+        android:textColor="#888888"
+        app:layout_constraintStart_toStartOf="@+id/signup_deliverbtn"
+        app:layout_constraintTop_toTopOf="@+id/signup_deliverbtn" />
+
+    <ImageView
+        android:id="@+id/signup_d_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@+id/signup_deliverbtn"
+        app:layout_constraintTop_toTopOf="@+id/signup_deliverbtn"
+        app:srcCompat="@drawable/signup_d_icon" />
+
+    <ImageView
+        android:id="@+id/signup_s_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@+id/signup_sellerbtn"
+        app:layout_constraintTop_toTopOf="@+id/signup_sellerbtn"
+        app:srcCompat="@drawable/signup_s_icon" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/Buyer_Address_TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="지역을 입력해주세요"
+            android:textColor="#000"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/Buyer_MarketListAcvitity_AddressBtn"
+            app:layout_constraintEnd_toEndOf="@+id/Buyer_MarketListAcvitity_AddressBtn"
+            app:layout_constraintHorizontal_bias="0.557"
+            app:layout_constraintStart_toStartOf="@+id/Buyer_MarketListAcvitity_AddressBtn"
+            app:layout_constraintTop_toTopOf="@+id/Buyer_MarketListAcvitity_AddressBtn"
+            app:layout_constraintVertical_bias="0.515" />
+
+        <ImageView
+            android:id="@+id/Buyer_Address_ImgView"
+            android:layout_width="44dp"
+            android:layout_height="47dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.305"
+            app:layout_constraintStart_toStartOf="@+id/Buyer_MarketListAcvitity_AddressBtn"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/buyer_gps" />
+
+        <ImageView
+            android:id="@+id/Buyer_MarketListAcvitity_AddressBtn"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@null"
+            android:text="이곳을 눌러 주소를 등록하세요."
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:paddingHorizontal="10dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="카테고리 선택"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:textSize="15dp"
+            android:layout_height="match_parent"/>
+
+        <Spinner
+            android:layout_marginLeft="20dp"
+            android:id="@+id/Buyer_MarketListAcvitity_Spinner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginVertical="10dp"
+        android:id="@+id/Buyer_MarketListAcvitity_RecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="650dp"/>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
