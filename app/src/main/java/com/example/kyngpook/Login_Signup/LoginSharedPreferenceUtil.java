@@ -3,7 +3,7 @@ package com.example.kyngpook.Login_Signup;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-public class LoginSharedPreferenceUtil {
+public class LoginSharedPreferenceUtil { // 자동 로그인
     private Context context;
     private SharedPreferences prefs = null;
 

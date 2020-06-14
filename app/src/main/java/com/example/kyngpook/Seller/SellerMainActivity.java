@@ -67,7 +67,4 @@ public class SellerMainActivity extends AppCompatActivity {
             toast.cancel();
         }
     }
-
-
-
 }
