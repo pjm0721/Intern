@@ -58,9 +58,9 @@ public class Buyer_MainActivity extends AppCompatActivity {
     private Buyer_ModifyInfo_Fragment fragment3;
     private long backKeyPressedTime = 0;
     private FragmentManager fragmentManager = getSupportFragmentManager();
-    ImageView order_img_v;
-    ImageView history_img_v;
-    ImageView modify_img_v;
+    private ImageView order_img_v;
+    private ImageView history_img_v;
+    private ImageView modify_img_v;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +78,6 @@ public class Buyer_MainActivity extends AppCompatActivity {
         fragment1 = new Buyer_MarketList_Fragment();
         fragment2 = new Buyer_OrderList_Fragment();
         fragment3 = new Buyer_ModifyInfo_Fragment();
-
 
         fragmentManager.beginTransaction().add(R.id.Buyer_MainActivity_Frame, fragment1).replace(R.id.Buyer_MainActivity_Frame, fragment1).commit();
         fragmentManager.beginTransaction().add(R.id.Buyer_MainActivity_Frame, fragment2).hide(fragment2).commit();

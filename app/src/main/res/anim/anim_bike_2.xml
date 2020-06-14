@@ -5,5 +5,7 @@
         android:fromXDelta="0%"
         android:toXDelta="150%"
         android:fromYDelta="0%"
+        android:repeatCount="infinite"
+        android:repeatMode="restart"
         ></translate>
 </set>

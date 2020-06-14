@@ -58,10 +58,6 @@ public class Buyer_PaymentActivity extends AppCompatActivity {
         TextView idText = (TextView) findViewById(R.id.Buyer_PaymentActivity_idText);
         TextView callText = (TextView) findViewById(R.id.Buyer_PaymentActivity_callText);
         TextView addressText = (TextView) findViewById(R.id.Buyer_PaymentActivity_addressText);
-        //github
-        //
-        //
-        //
         final String id1 = util.getStringData("ID", "id1");
         final String call = util.getStringData("전화번호", "01012341234");
         final String address = util.getStringData("주소", "null");
@@ -104,7 +100,7 @@ public class Buyer_PaymentActivity extends AppCompatActivity {
         textView.setText(formatter.format(total) + " 원");
 
         //결제 방식
-        String[] items = new String[]{"카드 결제", "현금 결제", "카카오페이", "네이버 페이", "휴대폰 결제", "삼성 페이"};
+        String[] items = new String[]{"만나서 결제","카드 결제", "현금 결제", "카카오페이", "네이버 페이", "휴대폰 결제", "삼성 페이"};
         final ArrayAdapter<String> adapter1111 = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, items);
         final Spinner spinner = (Spinner) findViewById(R.id.Buyer_PaymentActivity_Spinner);
         spinner.setAdapter(adapter1111);

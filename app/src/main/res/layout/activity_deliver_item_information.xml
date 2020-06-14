@@ -14,11 +14,11 @@
         android:id="@+id/Deliver_item_bike"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/cononoimg"
         android:layout_marginBottom="50dp"
+        android:src="@drawable/cononoimg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.064"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />

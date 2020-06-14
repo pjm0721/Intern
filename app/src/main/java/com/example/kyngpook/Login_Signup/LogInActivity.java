@@ -69,7 +69,7 @@ public class LogInActivity extends AppCompatActivity {
                                  Log.d("LoginActivity.java", document.getId() + " => " + document.getData());
                                  if(document.getId().equals(idtext)==true){
                                     if(document.getData().get("PASSWORD").toString().equals(pwtext)==true){
-                                        login_success(who);
+                                        login_success(who,idtext,pwtext,document.getData().get("닉네임").toString(),document.getData().get("이름").toString(),document.getData().get("전화번호").toString());
                                     }
                                  };
                              }
@@ -86,21 +86,28 @@ public class LogInActivity extends AppCompatActivity {
         startActivity(intent);
         customType(this, "left-to-right");
     }
-    private void login_success(String who){
+    private void login_success(String who,String ID,String PASSWORD,String NICK,String NAME,String PHONE){
         scs=1;
         if(who.equals("일반 이용자")==true) {
-            toast = Toast.makeText(this, "일반 이용자 로그인에 성공하였습니다.", Toast.LENGTH_SHORT);
+            toast = Toast.makeText(this, ID+"님 로그인에 성공하였습니다.", Toast.LENGTH_SHORT);
             Intent intent=new Intent(getApplicationContext(), Buyer_MainActivity.class);
+            intent.putExtra("ID",ID);
+            intent.putExtra("PASSWORD",PASSWORD);
+            intent.putExtra("닉네임",NICK);
+            intent.putExtra("이름",NAME);
+            intent.putExtra("전화번호",PHONE);
             startActivity(intent);
         }
         else if(who.equals("판매자")==true) {
-            toast = Toast.makeText(this, "판매자 로그인에 성공하였습니다.", Toast.LENGTH_SHORT);
+            toast = Toast.makeText(this, ID+"님 로그인에 성공하였습니다.", Toast.LENGTH_SHORT);
             Intent intent=new Intent(getApplicationContext(), SellerMainActivity.class);
+            intent.putExtra("ID",ID);
             startActivity(intent);
         }
         else if(who.equals("배달원")==true) {
-            toast = Toast.makeText(this, "배달원 로그인에 성공하였습니다.", Toast.LENGTH_SHORT);
+            toast = Toast.makeText(this, ID+"님 로그인에 성공하였습니다.", Toast.LENGTH_SHORT);
             Intent intent=new Intent(getApplicationContext(), Deliver_MainActivity.class);
+            intent.putExtra("ID",ID);
             startActivity(intent);
         }
         else toast= Toast.makeText(this, "로그인에 실패하였습니다.", Toast.LENGTH_SHORT);
