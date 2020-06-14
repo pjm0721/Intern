@@ -53,30 +53,30 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONS_REQUEST_CODE = 100;
     String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
-//    private Button[] BtnArray = new Button[7];
+    private Button[] BtnArray = new Button[7];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buyer__address_regist);
-//        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
-//        BtnArray[0] = (Button) findViewById(R.id.Buyer_AddressRegistActivity_mBtn1);
-//        BtnArray[1] = (Button) findViewById(R.id.Buyer_AddressRegistActivity_mBtn2);
-//        BtnArray[2] = (Button) findViewById(R.id.Buyer_AddressRegistActivity_mBtn3);
-//        BtnArray[3] = (Button) findViewById(R.id.Buyer_AddressRegistActivity_mBtn4);
-//        BtnArray[4] = (Button) findViewById(R.id.Buyer_AddressRegistActivity_mBtn5);
-//        BtnArray[5] = (Button) findViewById(R.id.Buyer_AddressRegistActivity_mBtn6);
-//        BtnArray[6] = (Button) findViewById(R.id.Buyer_AddressRegistActivity_mBtn7);
-//
-//        for(int i = 0; i < 7; i++) {
-//            final int finalI = i;
-//            BtnArray[i].setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    address2 = selectPrivince(finalI);
-//                }
-//            });
-//        }
+        BtnArray[0] = (Button) findViewById(R.id.Buyer_AddressRegistActivity_mBtn1);
+        BtnArray[1] = (Button) findViewById(R.id.Buyer_AddressRegistActivity_mBtn2);
+        BtnArray[2] = (Button) findViewById(R.id.Buyer_AddressRegistActivity_mBtn3);
+        BtnArray[3] = (Button) findViewById(R.id.Buyer_AddressRegistActivity_mBtn4);
+        BtnArray[4] = (Button) findViewById(R.id.Buyer_AddressRegistActivity_mBtn5);
+        BtnArray[5] = (Button) findViewById(R.id.Buyer_AddressRegistActivity_mBtn6);
+        BtnArray[6] = (Button) findViewById(R.id.Buyer_AddressRegistActivity_mBtn7);
+
+        for(int i = 0; i < 7; i++) {
+            final int finalI = i;
+            BtnArray[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    address2 = selectPrivince(finalI);
+                }
+            });
+        }
         if (!checkLocationServicesStatus()) {
 
             showDialogForLocationServiceSetting();
@@ -84,6 +84,7 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
 
             checkRunTimePermission();
         }
+        final EditText editText = (EditText) findViewById(R.id.Buyer_AddressRegistActivity_EditText);
 
         gps_btn=(ViewGroup)findViewById(R.id.Buyer_gps_btn_layout);
         gps_address=(TextView)findViewById(R.id.Buyer_gps_address);
@@ -100,9 +101,21 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
                 gps_address.setText(address);
                 gps_address.setTextColor(Color.parseColor("#000000"));
                 gps_img.setImageDrawable(null);
+
+                String[] tmp = address.split(" ");
+                //tmp[0] : 대한민국, tmp[1] : 대구광역시
+                address1 = tmp[1];
+                //tmp[2] : XX구, tmp[3~] : 상세주소
+                address2 = tmp[2];
+
+                String tt = "";
+                for(int i = 3; i < tmp.length; i++) {
+                    Log.d("ADDRESS11", tmp[i]);
+                    tt += tmp[i] + " ";
+                }
+                editText.setText(tt);
             }
         });
-        final EditText editText = (EditText) findViewById(R.id.Buyer_AddressRegistActivity_EditText);
         findViewById(R.id.Buyer_AddressRegistActivity_Btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,14 +142,9 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
                                            @NonNull int[] grandResults) {
 
         if ( permsRequestCode == PERMISSIONS_REQUEST_CODE && grandResults.length == REQUIRED_PERMISSIONS.length) {
-
             // 요청 코드가 PERMISSIONS_REQUEST_CODE 이고, 요청한 퍼미션 개수만큼 수신되었다면
-
             boolean check_result = true;
-
-
             // 모든 퍼미션을 허용했는지 체크합니다.
-
             for (int result : grandResults) {
                 if (result != PackageManager.PERMISSION_GRANTED) {
                     check_result = false;
@@ -144,33 +152,23 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
                 }
             }
 
-
             if ( check_result ) {
-
                 //위치 값을 가져올 수 있음
                 ;
             }
             else {
                 // 거부한 퍼미션이 있다면 앱을 사용할 수 없는 이유를 설명해주고 앱을 종료합니다.2 가지 경우가 있습니다.
-
                 if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[0])
                         || ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[1])) {
-
                     Toast.makeText(Buyer_AddressRegistActivity.this, "퍼미션이 거부되었습니다. 앱을 다시 실행하여 퍼미션을 허용해주세요.", Toast.LENGTH_LONG).show();
                     finish();
-
-
                 }else {
-
                     Toast.makeText(Buyer_AddressRegistActivity.this, "퍼미션이 거부되었습니다. 설정(앱 정보)에서 퍼미션을 허용해야 합니다. ", Toast.LENGTH_LONG).show();
-
                 }
             }
-
         }
     }
     void checkRunTimePermission(){
-
         //런타임 퍼미션 처리
         // 1. 위치 퍼미션을 가지고 있는지 체크합니다.
         int hasFineLocationPermission = ContextCompat.checkSelfPermission(Buyer_AddressRegistActivity.this,
@@ -178,17 +176,11 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
         int hasCoarseLocationPermission = ContextCompat.checkSelfPermission(Buyer_AddressRegistActivity.this,
                 Manifest.permission.ACCESS_COARSE_LOCATION);
 
-
         if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED &&
                 hasCoarseLocationPermission == PackageManager.PERMISSION_GRANTED) {
-
             // 2. 이미 퍼미션을 가지고 있다면
             // ( 안드로이드 6.0 이하 버전은 런타임 퍼미션이 필요없기 때문에 이미 허용된 걸로 인식합니다.)
-
-
             // 3.  위치 값을 가져올 수 있음
-
-
 
         } else {  //2. 퍼미션 요청을 허용한 적이 없다면 퍼미션 요청이 필요합니다. 2가지 경우(3-1, 4-1)가 있습니다.
 
@@ -201,26 +193,20 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
                 ActivityCompat.requestPermissions(Buyer_AddressRegistActivity.this, REQUIRED_PERMISSIONS,
                         PERMISSIONS_REQUEST_CODE);
 
-
             } else {
                 // 4-1. 사용자가 퍼미션 거부를 한 적이 없는 경우에는 퍼미션 요청을 바로 합니다.
                 // 요청 결과는 onRequestPermissionResult에서 수신됩니다.
                 ActivityCompat.requestPermissions(Buyer_AddressRegistActivity.this, REQUIRED_PERMISSIONS,
                         PERMISSIONS_REQUEST_CODE);
             }
-
         }
-
     }
     public String getCurrentAddress( double latitude, double longitude) {
 
         //지오코더... GPS를 주소로 변환
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-
         List<Address> addresses;
-
         try {
-
             addresses = geocoder.getFromLocation(
                     latitude,
                     longitude,
@@ -232,17 +218,12 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
         } catch (IllegalArgumentException illegalArgumentException) {
             Toast.makeText(this, "잘못된 GPS 좌표", Toast.LENGTH_LONG).show();
             return "잘못된 GPS 좌표";
-
         }
-
-
 
         if (addresses == null || addresses.size() == 0) {
             Toast.makeText(this, "주소 미발견", Toast.LENGTH_LONG).show();
             return "주소 미발견";
-
         }
-
         Address address = addresses.get(0);
         return address.getAddressLine(0).toString()+"\n";
 
@@ -298,29 +279,29 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                 || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
     }
+    private String selectPrivince(int i) {
+        for(int j = 0; j < 7; j++) {
+            BtnArray[j].setBackgroundResource(R.drawable.buyer_button_shape);
+        }
+        BtnArray[i].setBackgroundResource(R.drawable.buyer_button_shape2);
+        switch (i) {
+            case 0:
+                return "남구";
+            case 1:
+                return "달서구";
+            case 2:
+                return "동구";
+            case 3:
+                return "북구";
+            case 4:
+                return "서구";
+            case 5:
+                return "수성구";
+            case 6:
+                return "중구";
+        }
+        return null;
+    }
 
 }
 
-//    private String selectPrivince(int i) {
-//        for(int j = 0; j < 7; j++) {
-//            BtnArray[j].setBackgroundResource(R.drawable.buyer_button_shape);
-//        }
-//        BtnArray[i].setBackgroundResource(R.drawable.buyer_button_shape2);
-//        switch (i) {
-//            case 0:
-//                return "남구";
-//            case 1:
-//                return "달서구";
-//            case 2:
-//                return "동구";
-//            case 3:
-//                return "북구";
-//            case 4:
-//                return "서구";
-//            case 5:
-//                return "수성구";
-//            case 6:
-//                return "중구";
-//        }
-//        return null;
-//    }

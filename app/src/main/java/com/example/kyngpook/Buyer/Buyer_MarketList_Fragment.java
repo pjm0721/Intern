@@ -39,8 +39,8 @@ public class Buyer_MarketList_Fragment extends Fragment {
 
     private ImageView AddressBtn;
 
-    private String address1 = "";
-    private String address2 = "";
+    private String address1 = "대구광역시";
+    private String address2 = "남구";
     private String Category = "가구";
     LoadingDialog l;
 

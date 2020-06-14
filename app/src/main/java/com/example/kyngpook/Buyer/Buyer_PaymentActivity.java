@@ -92,7 +92,7 @@ public class Buyer_PaymentActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
 
         TextView textView = (TextView) findViewById(R.id.Buyer_PaymentActivity_totText);
-        int total = 0;
+        int total = 1000;
         for (int i = 0; i < list.size(); i++) {
             total += list.get(i).nownum * Integer.valueOf(list.get(i).price);
         }
@@ -164,6 +164,7 @@ public class Buyer_PaymentActivity extends AppCompatActivity {
                             order.put("판매자아이디", sellerID);
                             order.put("판매자주소", storeAddress);
                             order.put("배달현황", false);
+                            order.put("결제방식", spinner.getSelectedItem().toString());
 
                             Map<String, Object> orderInfo = new HashMap<>();
                             ArrayList<ITEM> listData = adapter.getListData();

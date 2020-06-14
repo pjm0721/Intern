@@ -65,13 +65,16 @@ public class Buyer_MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buyer_main);
-        //SharedPreference 초기화 하기 ★
+
+        Intent intent = getIntent();
         util = new SharedPreferenceUtil(this);
-        //util.setStringData("PASSWORD", );
-//        util.setStringData("ID", );
-//        util.setStringData("전화번호", );
-//        util.setStringData("닉네임", );
-//        util.setStringData("이름", );
+
+        util.setStringData("PASSWORD", intent.getStringExtra("PASSWORD"));
+        util.setStringData("ID", intent.getStringExtra("ID"));
+        util.setStringData("전화번호", intent.getStringExtra("전화번호"));
+        util.setStringData("닉네임", intent.getStringExtra("닉네임"));
+        util.setStringData("이름", intent.getStringExtra("이름"));
+
         order_img_v=(ImageView)findViewById(R.id.Buyer_MainActivity_OrderImageView);
         modify_img_v=(ImageView)findViewById(R.id.Buyer_MainActivity_ModifyImageView);
         history_img_v=(ImageView)findViewById(R.id.Buyer_MainActivity_HistoryImageView);
