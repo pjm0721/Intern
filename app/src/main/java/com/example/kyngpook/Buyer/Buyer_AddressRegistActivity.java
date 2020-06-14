@@ -107,10 +107,34 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
                 address1 = tmp[1];
                 //tmp[2] : XX구, tmp[3~] : 상세주소
                 address2 = tmp[2];
+                switch(address2) {
+                    case "남구" :
+                        selectPrivince(0);
+                        break;
+                    case "달서구" :
+                        selectPrivince(1);
+                        break;
+                    case "동구":
+                        selectPrivince(2);
+                        break;
+                    case "북구":
+                        selectPrivince(3);
+                        break;
+                    case "서구":
+                        selectPrivince(4);
+                        break;
+                    case "수성구":
+                        selectPrivince(5);
+                        break;
+                    case "중구":
+                        selectPrivince(6);
+                        break;
+                    default:
+                        break;
+                }
 
                 String tt = "";
                 for(int i = 3; i < tmp.length; i++) {
-                    Log.d("ADDRESS11", tmp[i]);
                     tt += tmp[i] + " ";
                 }
                 editText.setText(tt);
