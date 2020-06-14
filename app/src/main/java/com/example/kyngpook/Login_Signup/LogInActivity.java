@@ -130,7 +130,7 @@ public class LogInActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
             backKeyPressedTime = System.currentTimeMillis();
-            toast = Toast.makeText(this, "로그아웃 하시겠습니까?", Toast.LENGTH_SHORT);
+            toast = Toast.makeText(this, "종료 하시겠습니까?", Toast.LENGTH_SHORT);
             toast.show();
             return;
         }
