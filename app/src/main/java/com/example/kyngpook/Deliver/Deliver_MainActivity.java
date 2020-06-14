@@ -1,5 +1,4 @@
 package com.example.kyngpook.Deliver;
-//깃헙
 import com.example.kyngpook.R;
 
 import androidx.annotation.NonNull;

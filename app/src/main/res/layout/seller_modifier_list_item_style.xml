@@ -6,10 +6,18 @@
     android:id="@+id/seller_modifiy_list_layout"
     >
 
+    <ImageView
+        android:id="@+id/seller_modify_list_image"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:layout_weight="1"
+        android:scaleType="fitXY"
+        />
+
     <TextView
         android:id="@+id/seller_modify_list_name"
         android:layout_width="0dp"
-        android:layout_weight="6"
+        android:layout_weight="5"
         android:layout_height="wrap_content"
         android:textSize="13dp"
         android:text="물건 이름 : 방망이"
