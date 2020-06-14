@@ -36,7 +36,8 @@
             <EditText
                 android:id="@+id/userSignUp_realname"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="45dp"
+                android:background="@null"
                 android:hint="성명"
                 android:textSize="15sp"
                 android:inputType="textPersonName" />
@@ -56,11 +57,13 @@
                 android:id="@+id/userSignUp_cardView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
                 app:cardElevation="1dp">
             <EditText
                 android:id="@+id/userSignUp_ID"
                 android:layout_width="275dp"
-                android:layout_height="match_parent"
+                android:layout_height="45dp"
+                android:background="@null"
                 android:hint="아이디 (6~10자리)"
                 android:layout_marginLeft="10dp"
                 android:textSize="15sp"
@@ -78,27 +81,26 @@
         </LinearLayout>
 
 
-
-
         <LinearLayout
             android:id="@+id/userSignUp_nickname_layout"
             android:layout_width="380dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/userSignUp_Id_layout">
             <androidx.cardview.widget.CardView
                 android:id="@+id/userSignUp_cardView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:paddingLeft="10dp"
                 app:cardElevation="1dp">
             <EditText
                 android:id="@+id/userSignUp_name"
                 android:layout_width="275dp"
-                android:layout_height="match_parent"
+                android:layout_height="45dp"
+                android:background="@null"
+                android:layout_marginLeft="10dp"
                 android:hint="닉네임 (6~10자리)"
                 android:textSize="15sp"
                 android:inputType="textPersonName" />
@@ -132,7 +134,8 @@
             <EditText
                 android:id="@+id/userSignUp_password"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="45dp"
+                android:background="@null"
                 android:hint="비밀번호 (8~12자리, 특수문자 가능)"
                 android:textSize="15sp"
                 android:inputType="textPassword" />
@@ -156,7 +159,8 @@
             <EditText
                 android:id="@+id/userSignUp_pCheck"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="45dp"
+                android:background="@null"
                 android:textSize="15sp"
                 android:hint="비밀번호 확인"
                 android:inputType="textPassword" />
@@ -180,7 +184,8 @@
             <EditText
                 android:id="@+id/userSignUp_phone"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="45dp"
+                android:background="@null"
                 android:textSize="15sp"
                 android:hint="전화번호 ( ' - ' 제외 )"
                 android:inputType="number" />

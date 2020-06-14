@@ -20,41 +20,44 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/sellerSignUp_cardView1"
-        android:layout_width="380dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        app:cardElevation="1dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sellerSignUp_textView">
+
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/seller_id_layout"
+            android:layout_width="380dp"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp">
-
+            android:layout_marginTop="68dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sellerSignUp_textView">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/sellerSignUp_cardView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardElevation="1dp">
             <EditText
                 android:id="@+id/sellerSignUp_id"
                 android:layout_width="275dp"
-                android:layout_height="match_parent"
+                android:layout_height="45dp"
+                android:background="@null"
                 android:hint="아이디 (6~10자리)"
+                android:layout_marginLeft="10dp"
                 android:textSize="15sp"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"  />
+            </androidx.cardview.widget.CardView>
 
             <Button
                 android:id="@+id/sellerSignUp_btn1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
+                android:layout_width="74dp"
+                android:layout_height="31dp"
+                android:layout_gravity="right|center"
                 android:layout_marginLeft="10dp"
-                android:onClick="on_seller_idchk"
                 android:background="@drawable/buttonbackground"
+                android:onClick="on_seller_idchk"
                 android:text="중복확인"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/sellerSignUp_cardView3"
@@ -65,7 +68,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sellerSignUp_cardView1">
+        app:layout_constraintTop_toBottomOf="@+id/seller_id_layout">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -75,7 +78,8 @@
             <EditText
                 android:id="@+id/sellerSignUp_pwd"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="45dp"
+                android:background="@null"
                 android:hint="비밀번호 (8~12자리, 특수문자 가능)"
                 android:inputType="textPassword"
                 android:textSize="15sp" />
@@ -101,7 +105,8 @@
             <EditText
                 android:id="@+id/sellerSignUp_pwdck"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="45dp"
+                android:background="@null"
                 android:hint="비밀번호 확인"
                 android:inputType="textPassword"
                 android:textSize="15sp" />
@@ -126,7 +131,8 @@
         <EditText
             android:id="@+id/sellerSignUp_name"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="45dp"
+            android:background="@null"
             android:hint="대표자명"
             android:inputType="textPersonName"
             android:textSize="15sp" />
@@ -151,7 +157,8 @@
         <EditText
             android:id="@+id/sellerSignUp_store_name"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="45dp"
+            android:background="@null"
             android:hint="업소명"
             android:inputType="textPersonName"
             android:textSize="15sp" />
@@ -176,7 +183,8 @@
             <EditText
                 android:id="@+id/sellerSignUp_store_num"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="45dp"
+                android:background="@null"
                 android:hint="사업자 번호 ( ' - ' 제외하고 10자리 )"
                 android:inputType="number"
                 android:textSize="15sp" />
@@ -201,7 +209,8 @@
             <EditText
                 android:id="@+id/sellerSignUp_phone"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="45dp"
+                android:background="@null"
                 android:hint="전화번호 ( ' - ' 제외 )"
                 android:inputType="number"
                 android:textSize="15sp" />

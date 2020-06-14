@@ -18,48 +18,50 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/deliverSignUp_cardView1"
-        android:layout_width="380dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="68dp"
-        app:cardElevation="1dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deliverSignUp_textView">
-
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp">
-
+            android:id="@+id/signup_deliver_id_layout"
+            android:layout_width="375dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="68dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/deliverSignUp_textView">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/deliverSignUp_cardView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
             <EditText
                 android:id="@+id/deliverSignUp_id"
                 android:layout_width="275dp"
-                android:layout_height="match_parent"
+                android:layout_height="45dp"
+                android:background="@null"
+                android:layout_marginLeft="10dp"
+                android:textSize="15sp"
                 android:hint="아이디 (6~10자리)"
                 android:inputType="textPersonName" />
-
+    </androidx.cardview.widget.CardView>
             <Button
                 android:id="@+id/deliverSignUp_check_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="74dp"
+                android:layout_height="31dp"
+                android:layout_gravity="right|center"
                 android:background="@drawable/button_back"
                 android:text="중복확인"
                 android:textColor="#FFFFFF"
                 android:layout_marginLeft="10dp"/>
+
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/deliverSignUp_cardView2"
         android:layout_width="380dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deliverSignUp_cardView1"
-        app:cardElevation="1dp">
+        app:layout_constraintTop_toBottomOf="@+id/signup_deliver_id_layout">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -68,7 +70,9 @@
             <EditText
                 android:id="@+id/deliverSignUp_password"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="45dp"
+                android:background="@null"
+                android:textSize="15sp"
                 android:hint="비밀번호 (8~12자리, 특수문자 가능)"
                 android:inputType="textPassword" />
         </LinearLayout>
@@ -76,22 +80,23 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/deliverSignUp_cardView3"
         android:layout_width="380dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deliverSignUp_cardView2"
-        app:cardElevation="1dp">
+        app:layout_constraintTop_toBottomOf="@+id/deliverSignUp_cardView2">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:paddingLeft="10dp">
             <EditText
                 android:id="@+id/deliverSignUp_passwordC"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="45dp"
+                android:background="@null"
+                android:textSize="15sp"
                 android:hint="비밀번호 확인"
                 android:inputType="textPassword" />
         </LinearLayout>
@@ -99,13 +104,13 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/deliverSignUp_cardView4"
         android:layout_width="380dp"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
+        android:background="@null"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deliverSignUp_cardView3"
-        app:cardElevation="1dp">
+        app:layout_constraintTop_toBottomOf="@+id/deliverSignUp_cardView3">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -114,7 +119,9 @@
             <EditText
                 android:id="@+id/deliverSignUp_phone"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="45dp"
+                android:background="@null"
+                android:textSize="15sp"
                 android:hint="전화번호 ( '-' 제외 )"
                 android:inputType="number" />
         </LinearLayout>
