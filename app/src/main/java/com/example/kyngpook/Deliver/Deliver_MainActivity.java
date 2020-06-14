@@ -60,6 +60,7 @@ public class Deliver_MainActivity extends AppCompatActivity {
     private TextView deliver_mainactivity_num;
     private Boolean deliver_process_check = true;
     private long backKeyPressedTime = 0;
+    private String seller_phone_number = "";
 
     @Override
     protected void onResume() {
@@ -117,6 +118,9 @@ public class Deliver_MainActivity extends AppCompatActivity {
         deliver_mainactivity_boardlistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                // 판매자의 ID를 통해서 전화번호를 얻어옴.
+                deliver_mainactivity_get_seller_phone(deliver_mainactivity_boardlist.get(position).getDMI_Seller_Id());
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(Deliver_MainActivity.this);
                 builder.setTitle("배달을 수락하시겠습니까?")
                         .setMessage("\n출발지 : " + deliver_mainactivity_boardlist.get(position).getDMI_Seller_Address() + "\n\n목적지 : "
@@ -129,6 +133,7 @@ public class Deliver_MainActivity extends AppCompatActivity {
                                     @Nullable
                                     @Override
                                     public Void apply(@NonNull Transaction transaction) throws FirebaseFirestoreException {
+                                        // 한번더 배달중임을 확인해준다.
                                         DocumentSnapshot snapshot = transaction.get(deliver_mainactivity_boardlist.get(position).getDMI_Document_Reference());
 
                                         if (snapshot.getBoolean("배달현황")) {
@@ -148,6 +153,7 @@ public class Deliver_MainActivity extends AppCompatActivity {
                                 });
 
                                 if (deliver_process_check) {
+                                    // 배달 상세 화면으로 넘어갈 때 그냥 Intent에 값을 넣어서 넘겨준다.
                                     Intent intent = new Intent(Deliver_MainActivity.this, Deliver_Item_Information.class);
                                     intent.putExtra("SELLER_NAME", deliver_mainactivity_boardlist.get(position).getDMI_Seller_Name());
                                     intent.putExtra("SELLER_ID", deliver_mainactivity_boardlist.get(position).getDMI_Seller_Id());
@@ -157,6 +163,13 @@ public class Deliver_MainActivity extends AppCompatActivity {
                                     intent.putExtra("BUYER_ADDRESS", deliver_mainactivity_boardlist.get(position).getDMI_Buyer_Address());
                                     intent.putExtra("PRICE", deliver_mainactivity_boardlist.get(position).getDMI_Price());
                                     intent.putExtra("ORDER_TIME", deliver_mainactivity_boardlist.get(position).getDMI_Order_Time());
+
+                                    // null일 때 전화번호가 없는 데 메시지 보내면 오류발생하니까 null이 아닐때만 처리.
+                                    if (seller_phone_number != "") {
+                                        Toast.makeText(getApplicationContext(), seller_phone_number, Toast.LENGTH_LONG).show();
+                                    }
+
+                                    // Activity 시작
                                     startActivityForResult(intent, DELIVER_REQUEST);
                                 }
 
@@ -166,6 +179,7 @@ public class Deliver_MainActivity extends AppCompatActivity {
                         .setNegativeButton("배달이 힘들꺼같아요", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                // 요청을 거절했을 때 그냥 다이얼로그만 사라지게 구현
                                 dialog.dismiss();
                             }
                         }).show();
@@ -173,7 +187,6 @@ public class Deliver_MainActivity extends AppCompatActivity {
         });
 
     }
-
 
     /*
     @Override
@@ -187,6 +200,8 @@ public class Deliver_MainActivity extends AppCompatActivity {
         }
     }
       */
+
+
     private void deliver_mainactivity_get_data(final String text) {
         deliver_mainactivity_progressbar.setVisibility(View.VISIBLE);
 
@@ -240,10 +255,33 @@ public class Deliver_MainActivity extends AppCompatActivity {
                 });
         deliver_mainactivity_progressbar.setVisibility(View.INVISIBLE);
     }
+
+    private void deliver_mainactivity_get_seller_phone(final String seller_id) {
+        seller_phone_number = "";
+        db = FirebaseFirestore.getInstance();
+        db.collection("USERS").document("Seller").collection("Seller")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String temp_seller_id = document.get("ID").toString();
+                                String temp_phone_number = document.get("전화번호").toString();
+
+                                if (temp_seller_id.equals(seller_id)) {
+                                    seller_phone_number += temp_phone_number;
+                                }
+                            }
+                        }
+                    }
+                });
+    }
+
     @Override
     public void onBackPressed() {
         Toast toast;
-        toast= Toast.makeText(this, "초기화", Toast.LENGTH_SHORT);
+        toast = Toast.makeText(this, "초기화", Toast.LENGTH_SHORT);
         if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
             backKeyPressedTime = System.currentTimeMillis();
             toast = Toast.makeText(this, "로그아웃 하시겠습니까?", Toast.LENGTH_SHORT);
