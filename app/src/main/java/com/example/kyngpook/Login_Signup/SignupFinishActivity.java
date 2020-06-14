@@ -1,6 +1,7 @@
 package com.example.kyngpook.Login_Signup;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ public class SignupFinishActivity extends AppCompatActivity {
     }
     public void on_signup_finish_btn(View v){
         Intent intent=new Intent(getApplicationContext(),LogInActivity.class);
+        ActivityCompat.finishAffinity(SignupFinishActivity.this);
         startActivity(intent);
         customType(SignupFinishActivity.this, "left-to-right");
         finish();
