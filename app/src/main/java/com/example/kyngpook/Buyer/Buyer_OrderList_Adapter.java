@@ -122,7 +122,7 @@ public class Buyer_OrderList_Adapter extends RecyclerView.Adapter<Buyer_OrderLis
                         display.getSize(size);
                         Window window = mCustomDialog.getWindow();
                         int x = (int)(size.x * 0.8f);
-                        int y = (int)(size.y * 0.5f);
+                        int y = (int)(size.y * 0.6f);
                         window.setLayout(x, y);
                     }
                     else
@@ -143,11 +143,12 @@ public class Buyer_OrderList_Adapter extends RecyclerView.Adapter<Buyer_OrderLis
 
     class CustomDialog extends Dialog {
 
-        private Button Btn1, Btn2, Btn3, Btn4, Btn5, okBtn;
+        private Button okBtn;
         private EditText contentEdit;
         private int score = 0;
         private orderInfo info;
-
+        private Button[] BtnArray = new Button[5];
+        private TextView title;
         public CustomDialog(@NonNull Context context, orderInfo info) {
             super(context);
             this.info = info;
@@ -163,16 +164,17 @@ public class Buyer_OrderList_Adapter extends RecyclerView.Adapter<Buyer_OrderLis
             getWindow().setAttributes(lpWindow);
 
             setContentView(R.layout.buyer_orderlist_dialog);
-
-            Btn1 = (Button) findViewById(R.id.Buyer_OrderList_dialog_Btn1);
-            Btn2 = (Button) findViewById(R.id.Buyer_OrderList_dialog_Btn2);
-            Btn3 = (Button) findViewById(R.id.Buyer_OrderList_dialog_Btn3);
-            Btn4 = (Button) findViewById(R.id.Buyer_OrderList_dialog_Btn4);
-            Btn5 = (Button) findViewById(R.id.Buyer_OrderList_dialog_Btn5);
+            title=(TextView)findViewById(R.id.Buyer_Review_store_name);
+            title.setText(info.store);
+            BtnArray[0] = (Button) findViewById(R.id.Buyer_OrderList_dialog_Btn1);
+            BtnArray[1] = (Button) findViewById(R.id.Buyer_OrderList_dialog_Btn2);
+            BtnArray[2] = (Button) findViewById(R.id.Buyer_OrderList_dialog_Btn3);
+            BtnArray[3] = (Button) findViewById(R.id.Buyer_OrderList_dialog_Btn4);
+            BtnArray[4] = (Button) findViewById(R.id.Buyer_OrderList_dialog_Btn5);
             okBtn = (Button) findViewById(R.id.Buyer_OrderList_dialog_okBtn);
             contentEdit = (EditText) findViewById(R.id.Buyer_OrderList_dialog_EditText);
 
-            btnInit();
+            btnInit(0);
 
             // 클릭 이벤트 셋팅
             okBtn.setOnClickListener(new View.OnClickListener() {
@@ -199,53 +201,48 @@ public class Buyer_OrderList_Adapter extends RecyclerView.Adapter<Buyer_OrderLis
                     }
                 }
             });
-            Btn1.setOnClickListener(new View.OnClickListener() {
+            BtnArray[0].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     score = 1;
-                    btnInit();
-                    Btn1.setBackgroundColor(Color.BLUE); Btn1.setTextColor(Color.YELLOW);
+                    btnInit(1);
                 }
             });
-            Btn2.setOnClickListener(new View.OnClickListener() {
+            BtnArray[1].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     score = 2;
-                    btnInit();
-                    Btn2.setBackgroundColor(Color.BLUE); Btn2.setTextColor(Color.YELLOW);
+                    btnInit(2);
                 }
             });
-            Btn3.setOnClickListener(new View.OnClickListener() {
+            BtnArray[2].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     score = 3;
-                    btnInit();
-                    Btn3.setBackgroundColor(Color.BLUE); Btn3.setTextColor(Color.YELLOW);
+                    btnInit(3);
                 }
             });
-            Btn4.setOnClickListener(new View.OnClickListener() {
+            BtnArray[3].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     score = 4;
-                    btnInit();
-                    Btn4.setBackgroundColor(Color.BLUE); Btn4.setTextColor(Color.YELLOW);
+                    btnInit(4);
                 }
             });
-            Btn5.setOnClickListener(new View.OnClickListener() {
+            BtnArray[4].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     score = 5;
-                    btnInit();
-                    Btn5.setBackgroundColor(Color.BLUE); Btn5.setTextColor(Color.YELLOW);
+                    btnInit(5);
                 }
             });
         }
-        private void btnInit() {
-            Btn1.setBackgroundColor(Color.YELLOW); Btn1.setTextColor(Color.BLUE);
-            Btn2.setBackgroundColor(Color.YELLOW); Btn2.setTextColor(Color.BLUE);
-            Btn3.setBackgroundColor(Color.YELLOW); Btn3.setTextColor(Color.BLUE);
-            Btn4.setBackgroundColor(Color.YELLOW); Btn4.setTextColor(Color.BLUE);
-            Btn5.setBackgroundColor(Color.YELLOW); Btn5.setTextColor(Color.BLUE);
+        private void btnInit(int index) {
+            for(int i=0;i<index;i++){
+                BtnArray[i].setBackgroundResource(R.drawable.review_star);
+            }
+            for(int i=index;i<=4;i++)
+                BtnArray[i].setBackgroundResource(R.drawable.review_star_2);
         }
     }
 }

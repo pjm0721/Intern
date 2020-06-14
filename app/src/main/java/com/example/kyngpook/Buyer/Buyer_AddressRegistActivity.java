@@ -59,7 +59,6 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buyer__address_regist);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-
         BtnArray[0] = (Button) findViewById(R.id.Buyer_AddressRegistActivity_mBtn1);
         BtnArray[1] = (Button) findViewById(R.id.Buyer_AddressRegistActivity_mBtn2);
         BtnArray[2] = (Button) findViewById(R.id.Buyer_AddressRegistActivity_mBtn3);
