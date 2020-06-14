@@ -21,7 +21,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/userSignUp_cardView"
         android:layout_width="380dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
         app:cardElevation="1dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,77 +45,82 @@
     </androidx.cardview.widget.CardView>
 
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/userSignUp_cardView1"
+        android:layout_width="285dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="95dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userSignUp_cardView"
+        app:cardElevation="1dp">
         <LinearLayout
-            android:id="@+id/userSignUp_Id_layout"
-            android:layout_width="380dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userSignUp_cardView">
-            <androidx.cardview.widget.CardView
-                android:id="@+id/userSignUp_cardView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                app:cardElevation="1dp">
+            android:paddingLeft="10dp">
             <EditText
                 android:id="@+id/userSignUp_ID"
                 android:layout_width="275dp"
                 android:layout_height="45dp"
                 android:background="@null"
                 android:hint="아이디 (6~10자리)"
-                android:layout_marginLeft="10dp"
                 android:textSize="15sp"
                 android:inputType="textPersonName" />
-            </androidx.cardview.widget.CardView>
-            <Button
-                android:id="@+id/userSignUpCheck_button1"
-                android:layout_width="74dp"
-                android:layout_height="31dp"
-                android:layout_gravity="right|center"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/buttonbackground"
-                android:text="중복확인"
-                android:textColor="#FFFFFF" />
         </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
+    <Button
+        android:id="@+id/userSignUpCheck_button1"
+        android:layout_width="74dp"
+        android:layout_height="31dp"
+        android:layout_gravity="right|center"
+        android:background="@drawable/buttonbackground"
+        android:text="중복확인"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/userSignUp_cardView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/userSignUp_cardView1"
+        app:layout_constraintTop_toBottomOf="@+id/userSignUp_cardView" />
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/userSignUp_cardView2"
+        android:layout_width="285dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="95dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userSignUp_cardView1"
+        app:cardElevation="1dp">
         <LinearLayout
-            android:id="@+id/userSignUp_nickname_layout"
-            android:layout_width="380dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userSignUp_Id_layout">
-            <androidx.cardview.widget.CardView
-                android:id="@+id/userSignUp_cardView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                app:cardElevation="1dp">
+            android:paddingLeft="10dp">
             <EditText
                 android:id="@+id/userSignUp_name"
                 android:layout_width="275dp"
                 android:layout_height="45dp"
                 android:background="@null"
-                android:layout_marginLeft="10dp"
                 android:hint="닉네임 (6~10자리)"
                 android:textSize="15sp"
                 android:inputType="textPersonName" />
-            </androidx.cardview.widget.CardView>
-
-            <Button
-                android:id="@+id/userSignUpCheck_button2"
-                android:layout_width="74dp"
-                android:layout_height="31dp"
-                android:layout_gravity="right|center"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/buttonbackground"
-                android:text="중복확인"
-                android:textColor="#FFFFFF" />
         </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/userSignUpCheck_button2"
+        android:layout_width="74dp"
+        android:layout_height="31dp"
+        android:layout_gravity="right|center"
+        android:background="@drawable/buttonbackground"
+        android:text="중복확인"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/userSignUp_cardView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/userSignUp_cardView2"
+        app:layout_constraintTop_toBottomOf="@+id/userSignUp_cardView1" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/userSignUp_cardView3"
         android:layout_width="380dp"
@@ -124,7 +129,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userSignUp_nickname_layout"
+        app:layout_constraintTop_toBottomOf="@+id/userSignUp_cardView2"
         app:cardElevation="1dp">
 
         <LinearLayout
