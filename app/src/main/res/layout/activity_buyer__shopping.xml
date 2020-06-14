@@ -68,33 +68,44 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1.4"
+            android:layout_height="match_parent"
+            android:layout_marginRight="2dp"
+            android:background="@android:color/transparent"
+            android:text="" />
+
         <TextView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="3"
             android:gravity="center"
             android:text="상품명"
-            android:textSize="25dp" />
+            android:textColor="@android:color/black"
+            android:textSize="20dp" />
 
         <TextView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:text="재고"
-            android:textSize="25dp" />
+            android:textColor="@android:color/black"
+            android:textSize="20dp" />
 
         <TextView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="2"
             android:gravity="center"
             android:text="가격"
-            android:textSize="25dp" />
+            android:textColor="@android:color/black"
+            android:textSize="20dp" />
 
         <Button
             android:layout_width="60dp"
-            android:layout_height="1dp"
+            android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:text="" />
     </LinearLayout>

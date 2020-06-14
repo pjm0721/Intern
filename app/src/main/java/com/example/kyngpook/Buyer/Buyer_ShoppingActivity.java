@@ -79,7 +79,7 @@ public class Buyer_ShoppingActivity extends AppCompatActivity {
         RecyclerView listRecyclerView = (RecyclerView) findViewById(R.id.Buyer_Shopping_productRecyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         listRecyclerView.setLayoutManager(linearLayoutManager);
-        final Buyer_Shopping_Adapter1 adapter1 = new Buyer_Shopping_Adapter1(this);
+        final Buyer_Shopping_Adapter1 adapter1 = new Buyer_Shopping_Adapter1(this, ID);
         listRecyclerView.setAdapter(adapter1);
         db.collection("PRODUCT").document(address1).collection(address2)
                 .document(ID).collection("판매상품")

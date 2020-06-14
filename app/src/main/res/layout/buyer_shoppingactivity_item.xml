@@ -5,11 +5,20 @@
     android:layout_marginHorizontal="10dp"
     android:layout_marginVertical="3dp"
     android:orientation="horizontal">
+    <ImageView
+        android:id="@+id/Buyer_Shopping_item_imgView"
+        android:layout_width="0dp"
+        android:layout_weight="1.4"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_marginRight="2dp"
+        android:textSize="17dp" />
+
     <TextView
         android:id="@+id/Buyer_Shopping_item_nameText"
         android:layout_width="0dp"
         android:layout_weight="3"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:text="드라이버"
         android:gravity="center"
         android:textSize="17dp" />
@@ -19,7 +28,7 @@
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:text="5"        android:gravity="center"
+        android:text="5"        android:gravity="left"
 
         android:textSize="17dp" />
     <TextView
@@ -27,7 +36,7 @@
         android:layout_width="0dp"
         android:layout_weight="2"
         android:layout_height="wrap_content"
-        android:text="5,000"        android:gravity="center"
+        android:text="5,000 원"        android:gravity="center"
 
         android:textSize="17dp" />
 

@@ -1,5 +1,8 @@
 package com.example.kyngpook.Seller;
 
+import com.example.kyngpook.Deliver.Deliver_MainActivity;
+import com.example.kyngpook.Login_Signup.LogInActivity;
+import com.example.kyngpook.Login_Signup.LoginSharedPreferenceUtil;
 import com.example.kyngpook.R;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -51,6 +54,15 @@ public class SellerMainActivity extends AppCompatActivity {
             return;
         }
         if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
+            LoginSharedPreferenceUtil util11 =  new LoginSharedPreferenceUtil(this);
+            Boolean goToLogin = util11.getBooleanData("AutoLogin", false);
+
+            util11.setBooleanData("AutoLogin", false);
+            util11.setStringData("ID", "");
+            util11.setStringData("권한", "null");
+            if(goToLogin) {
+                startActivity(new Intent(SellerMainActivity.this, LogInActivity.class));
+            }
             finish();
             toast.cancel();
         }

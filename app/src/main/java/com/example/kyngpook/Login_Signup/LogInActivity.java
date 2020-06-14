@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -41,6 +42,9 @@ public class LogInActivity extends AppCompatActivity {
     Button findId;
     Button findPw;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    CheckBox autoCheckBox;
+    private LoginSharedPreferenceUtil util;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +57,13 @@ public class LogInActivity extends AppCompatActivity {
         login_grp = (RadioGroup) findViewById(R.id.login_rgp);
         findId = findViewById(R.id.login_find_id);
         findPw = findViewById(R.id.login_find_password);
+
+        util = new LoginSharedPreferenceUtil(this);
+        util.setBooleanData("AutoLogin", false);
+        util.setStringData("ID", "");
+        util.setStringData("권한", "null");
+
+        autoCheckBox = (CheckBox) findViewById(R.id.login_autoCheckBox);
 
         findId.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,8 +128,10 @@ public class LogInActivity extends AppCompatActivity {
     }
     private void login_success(String who,String ID,String PASSWORD,String NICK,String NAME,String PHONE){
         scs=1;
+        Boolean autoLogin = autoCheckBox.isChecked();
+
         if(who.equals("일반 이용자")==true) {
-            toast = Toast.makeText(this, ID+"님 로그인에 성공하였습니다.", Toast.LENGTH_SHORT);
+            toast = Toast.makeText(this, ID+" 님 로그인에 성공하였습니다.", Toast.LENGTH_SHORT);
             Intent intent=new Intent(getApplicationContext(), Buyer_MainActivity.class);
             intent.putExtra("ID",ID);
             intent.putExtra("PASSWORD",PASSWORD);
@@ -126,18 +139,36 @@ public class LogInActivity extends AppCompatActivity {
             intent.putExtra("이름",NAME);
             intent.putExtra("전화번호",PHONE);
             startActivity(intent);
+
+            if(autoLogin) {
+                util.setBooleanData("AutoLogin", true);
+                util.setStringData("ID", ID);
+                util.setStringData("권한", "일반 이용자");
+            }
         }
         else if(who.equals("판매자")==true) {
-            toast = Toast.makeText(this, ID+"님 로그인에 성공하였습니다.", Toast.LENGTH_SHORT);
+            toast = Toast.makeText(this, ID+" 님 로그인에 성공하였습니다.", Toast.LENGTH_SHORT);
             Intent intent=new Intent(getApplicationContext(), SellerMainActivity.class);
             intent.putExtra("ID",ID);
             startActivity(intent);
+
+            if(autoLogin) {
+                util.setBooleanData("AutoLogin", true);
+                util.setStringData("ID", ID);
+                util.setStringData("권한", "판매자");
+            }
         }
         else if(who.equals("배달원")==true) {
-            toast = Toast.makeText(this, ID+"님 로그인에 성공하였습니다.", Toast.LENGTH_SHORT);
+            toast = Toast.makeText(this, ID+" 님 로그인에 성공하였습니다.", Toast.LENGTH_SHORT);
             Intent intent=new Intent(getApplicationContext(), Deliver_MainActivity.class);
             intent.putExtra("ID",ID);
             startActivity(intent);
+
+            if(autoLogin) {
+                util.setBooleanData("AutoLogin", true);
+                util.setStringData("ID", ID);
+                util.setStringData("권한", "배달원");
+            }
         }
         else toast= Toast.makeText(this, "로그인에 실패하였습니다.", Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER,0,1000);

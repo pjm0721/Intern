@@ -112,7 +112,10 @@ public class Buyer_MarketList_Fragment extends Fragment {
                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                     if (task.isSuccessful()) {
                                         for (QueryDocumentSnapshot document : task.getResult()) {
-                                            if (document.getData().get("주소").toString().equals(address)
+                                            String tmp1 = (String) document.getData().get("주소");
+                                            String[] tmp2 = tmp1.split(" ");
+                                            String tmp3 = tmp2[0] + " " + tmp2[1];
+                                            if (tmp3.equals(address)
                                                     && document.getData().get("카테고리").toString().equals(Category))
                                             {
                                                 String ID = (String) document.getData().get("ID");
@@ -166,7 +169,10 @@ public class Buyer_MarketList_Fragment extends Fragment {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                if (document.getData().get("주소").toString().equals(address1 + " " + address2)
+                                String tmp1 = (String) document.getData().get("주소");
+                                String[] tmp2 = tmp1.split(" ");
+                                String tmp3 = tmp2[0] + " " + tmp2[1];
+                                if (tmp3.equals(address1 + " " + address2)
                                         && document.getData().get("카테고리").toString().equals(Category)) {
                                     String ID = (String) document.getData().get("ID");
                                     String store = (String) document.getData().get("업소명");
@@ -176,7 +182,7 @@ public class Buyer_MarketList_Fragment extends Fragment {
                                     String name = (String) document.getData().get("대표자명");
                                     String call = (String) document.getData().get("전화번호");
                                     int review = Integer.valueOf(document.getData().get("리뷰고유값").toString());
-                                    ;
+
                                     Buyer_Seller bs = new Buyer_Seller(ID, store, storeaddress, ID + ".jpg", ot, h, address1, address2
                                             , name, call, review);
                                     RVadapter.addItem(bs);
