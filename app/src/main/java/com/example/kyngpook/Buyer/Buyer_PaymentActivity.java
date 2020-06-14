@@ -58,8 +58,10 @@ public class Buyer_PaymentActivity extends AppCompatActivity {
         TextView idText = (TextView) findViewById(R.id.Buyer_PaymentActivity_idText);
         TextView callText = (TextView) findViewById(R.id.Buyer_PaymentActivity_callText);
         TextView addressText = (TextView) findViewById(R.id.Buyer_PaymentActivity_addressText);
-
-
+        //github
+        //
+        //
+        //
         final String id1 = util.getStringData("ID", "id1");
         final String call = util.getStringData("전화번호", "01012341234");
         final String address = util.getStringData("주소", "null");
