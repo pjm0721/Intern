@@ -32,6 +32,10 @@
         <activity android:name=".Seller.SellerMainActivity"/>
         <activity android:name=".Deliver.Deliver_Item_Information"/>
         <activity android:name=".Deliver.Deliver_MainActivity"/>
+        <activity android:name=".Login_Signup.Find_Id_Activity"/>
+        <activity android:name=".Login_Signup.Find_Pw_Activity"/>
+        <activity android:name=".Login_Signup.Find_Id_Complete"/>
+        <activity android:name=".Login_Signup.Find_Pw_Complete"/>
         <activity android:name=".Login_Signup.SignupDeliverActivity"/>
         <activity android:name=".Login_Signup.SignupFinishActivity" />
         <activity android:name=".Login_Signup.SignupSellerActivity" />
