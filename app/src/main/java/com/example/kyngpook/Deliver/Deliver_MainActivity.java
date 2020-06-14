@@ -1,14 +1,21 @@
 package com.example.kyngpook.Deliver;
+
 import com.example.kyngpook.R;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -166,6 +173,18 @@ public class Deliver_MainActivity extends AppCompatActivity {
                                     // null일 때 전화번호가 없는 데 메시지 보내면 오류발생하니까 null이 아닐때만 처리.
                                     if (seller_phone_number != "") {
                                         Toast.makeText(getApplicationContext(), seller_phone_number, Toast.LENGTH_LONG).show();
+                                        /* SMS 전송 테스트
+                                        SmsManager smsManager = SmsManager.getDefault();
+                                        smsManager.sendTextMessage("01062817950", null, "test", null, null);
+                                        send_sms("01062817950", "test");
+                                         */
+
+                                        /* SMS 문자메시지 내용 변수 */
+                                        String contents = "";
+
+                                        /* 이거 주석 절대 풀지마세요.. 데이터베이스에 053112도 있던데 그리로 문자갑니다..
+                                        send_sms(seller_phone_number, contents);
+                                         */
                                     }
 
                                     // Activity 시작
@@ -198,7 +217,7 @@ public class Deliver_MainActivity extends AppCompatActivity {
             }
         }
     }
-      */
+     */
 
 
     private void deliver_mainactivity_get_data(final String text) {
@@ -290,6 +309,17 @@ public class Deliver_MainActivity extends AppCompatActivity {
         if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
             finish();
             toast.cancel();
+        }
+    }
+
+    private void send_sms(final String number, final String message) {
+        try {
+            SmsManager sms = SmsManager.getDefault();
+            sms.sendTextMessage(number, null, message,
+                    PendingIntent.getBroadcast(this, 0, new Intent("SMS_SENT"), 0),
+                    PendingIntent.getBroadcast(this, 0, new Intent("SMS_DELIVERED"), 0));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

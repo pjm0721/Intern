@@ -21,42 +21,45 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-
+    <androidx.cardview.widget.CardView
+        android:id="@+id/sellerSignUp_cardView1"
+        android:layout_width="285dp"
+        android:layout_height="wrap_content"
+        app:cardElevation="1dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginRight="95dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sellerSignUp_textView">
         <LinearLayout
-            android:id="@+id/seller_id_layout"
-            android:layout_width="380dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="68dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sellerSignUp_textView">
-            <androidx.cardview.widget.CardView
-                android:id="@+id/sellerSignUp_cardView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:cardElevation="1dp">
+            android:paddingLeft="10dp">
             <EditText
                 android:id="@+id/sellerSignUp_id"
                 android:layout_width="275dp"
                 android:layout_height="45dp"
                 android:background="@null"
                 android:hint="아이디 (6~10자리)"
-                android:layout_marginLeft="10dp"
                 android:textSize="15sp"
                 android:inputType="textPersonName"  />
-            </androidx.cardview.widget.CardView>
-
-            <Button
-                android:id="@+id/sellerSignUp_btn1"
-                android:layout_width="74dp"
-                android:layout_height="31dp"
-                android:layout_gravity="right|center"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/buttonbackground"
-                android:onClick="on_seller_idchk"
-                android:text="중복확인"
-                android:textColor="#FFFFFF" />
         </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/sellerSignUp_btn1"
+        android:layout_width="74dp"
+        android:layout_height="31dp"
+        android:layout_gravity="right|center"
+        android:background="@drawable/buttonbackground"
+        android:onClick="on_seller_idchk"
+        android:text="중복확인"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/sellerSignUp_cardView1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/sellerSignUp_cardView1"
+        app:layout_constraintTop_toTopOf="@+id/sellerSignUp_cardView1" />
 
 
     <androidx.cardview.widget.CardView
@@ -68,7 +71,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seller_id_layout">
+        app:layout_constraintTop_toBottomOf="@+id/sellerSignUp_cardView1">
 
         <LinearLayout
             android:layout_width="match_parent"

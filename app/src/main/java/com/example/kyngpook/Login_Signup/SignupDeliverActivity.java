@@ -29,6 +29,7 @@ public class SignupDeliverActivity extends AppCompatActivity {
 
     private Button button1;
     private  Button button2;
+    private  EditText editText;
     private  EditText editText1;
     private  EditText editText2;
     private EditText editText3;
@@ -43,6 +44,7 @@ public class SignupDeliverActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup__deliver);
         button1 = findViewById(R.id.deliverSignUp_button);
         button2 = findViewById(R.id.deliverSignUp_check_button);
+        editText = findViewById(R.id.deliverSignUp_realname);
         editText1 = findViewById(R.id.deliverSignUp_id);
         editText2 = findViewById(R.id.deliverSignUp_password);
         editText3 = findViewById(R.id.deliverSignUp_passwordC);
@@ -53,8 +55,17 @@ public class SignupDeliverActivity extends AppCompatActivity {
                 String dPassword = editText2.getText().toString();
                 String dPasswordC = editText3.getText().toString();
                 String dPhone = editText4.getText().toString();
+                String dRName = editText.getText().toString();
                 if(ufid == null || !ufid.equals(editText1.getText().toString())) state = 1;
-                if(state == 1 )
+
+                int checking = nameCheck(dRName);
+                if(checking==0)
+                    Toast.makeText(getApplicationContext(), "이름은 한글이나 영어 하나로만 구성되어야 합니다", Toast.LENGTH_SHORT).show();
+                else if(checking==2)
+                    Toast.makeText(getApplicationContext(), "한글 성명은 2자 이상 17자 이하로 입력해주세요", Toast.LENGTH_SHORT).show();
+                else if(checking==3)
+                    Toast.makeText(getApplicationContext(), "이름을 입력해주세요", Toast.LENGTH_SHORT).show();
+                else if(state == 1 )
                     Toast.makeText(getApplicationContext(), "ID 중복확인을 부탁드립니다", Toast.LENGTH_SHORT).show();
                 else if(dPassword.length()<8||dPassword.length()>12)
                     Toast.makeText(getApplicationContext(), "비밀번호는 8자 이상 12자 이하로 입력해주세요", Toast.LENGTH_SHORT).show();
@@ -63,6 +74,7 @@ public class SignupDeliverActivity extends AppCompatActivity {
                 else if(dPhone.length()<10||dPhone.length()>11)
                     Toast.makeText(getApplicationContext(), "전화번호를 제대로 입력해주세요", Toast.LENGTH_SHORT).show();
                 else{
+                    deliver.put("이름",editText.getText().toString());
                     deliver.put("ID", editText1.getText().toString());
                     deliver.put("PASSWORD", editText2.getText().toString());
                     deliver.put("전화번호", editText4.getText().toString());
@@ -170,6 +182,25 @@ public class SignupDeliverActivity extends AppCompatActivity {
         });
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+    private int nameCheck(String dr_name){
+        int check = 0;
+        if(dr_name == null||dr_name.equals("")) return 3;
+        for(int i=0;i<dr_name.length();i++) {
+            if ('가' <= dr_name.charAt(i) && dr_name.charAt(i) <= '힣')
+                continue;
+            else check = 1;
+        }
+        if(check == 0 && (dr_name.length()<2||dr_name.length()>17)) return 2;
+        else if(check == 0) return 1;
+        check = 0;
+        for(int i=0;i<dr_name.length();i++) {
+            if (('a' <= dr_name.charAt(i) && dr_name.charAt(i) <= 'z')||('A' <= dr_name.charAt(i) && dr_name.charAt(i) <= 'Z'))
+                continue;
+            else check = 1;
+        }
+        if(check == 0) return 1;
+        return 0;
     }
     @Override
     public void onBackPressed() {

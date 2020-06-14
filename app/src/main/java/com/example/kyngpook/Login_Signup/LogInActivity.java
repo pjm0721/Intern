@@ -3,13 +3,18 @@ package com.example.kyngpook.Login_Signup;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -26,21 +31,45 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import static maes.tech.intentanim.CustomIntent.customType;
-// 깃헙테스트 123
+
 public class LogInActivity extends AppCompatActivity {
     private TextView id;
     private TextView password;
     private RadioGroup login_grp;
     private  Toast toast;
     private long backKeyPressedTime = 0;
+    Button findId;
+    Button findPw;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, 1);
+        }
         id = (TextView) findViewById(R.id.login_id);
         password = (TextView) findViewById(R.id.login_password);
         login_grp = (RadioGroup) findViewById(R.id.login_rgp);
+        findId = findViewById(R.id.login_find_id);
+        findPw = findViewById(R.id.login_find_password);
+
+        findId.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(),Find_Id_Activity.class);
+                startActivity(intent);
+                customType(LogInActivity.this, "left-to-right");
+            }
+        });
+        findPw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(),Find_Pw_Activity.class);
+                startActivity(intent);
+                customType(LogInActivity.this, "left-to-right");
+            }
+        });
     }
     private int scs=0;
     public void on_login(View v){
