@@ -139,7 +139,7 @@ public class Buyer_MarketList_Fragment extends Fragment {
                         public void run() {
                             l.close();// 시간 지난 후 실행할 코딩
                         }
-                    }, 2000);
+                    }, 1700);
                 }
             }
             @Override

@@ -44,7 +44,7 @@ import java.util.Locale;
 
 public class Buyer_AddressRegistActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private String address1 = "";
+    private String address1 = "대구광역시";
     private String address2 = "";
     private GpsTracker gpsTracker;
     private ViewGroup gps_btn;
@@ -109,25 +109,25 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
                 address2 = tmp[2];
                 switch(address2) {
                     case "남구" :
-                        selectPrivince(0);
+                        address2 = selectPrivince(0);
                         break;
                     case "달서구" :
-                        selectPrivince(1);
+                        address2 = selectPrivince(1);
                         break;
                     case "동구":
-                        selectPrivince(2);
+                        address2 = selectPrivince(2);
                         break;
                     case "북구":
-                        selectPrivince(3);
+                        address2 = selectPrivince(3);
                         break;
                     case "서구":
-                        selectPrivince(4);
+                        address2 = selectPrivince(4);
                         break;
                     case "수성구":
-                        selectPrivince(5);
+                        address2 = selectPrivince(5);
                         break;
                     case "중구":
-                        selectPrivince(6);
+                        address2 = selectPrivince(6);
                         break;
                     default:
                         break;
