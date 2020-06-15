@@ -2,6 +2,7 @@ package com.example.kyngpook.Buyer;
 
 import com.example.kyngpook.R;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -39,8 +40,12 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 
 public class Buyer_AddressRegistActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -54,10 +59,26 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
     private static final int PERMISSIONS_REQUEST_CODE = 100;
     String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
     private Button[] BtnArray = new Button[7];
+
+    private SharedPreferenceUtil util;
+
+    private Map<String, Integer> provinceMap = new HashMap<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buyer__address_regist);
+        provinceMap.put("남구", 0);
+        provinceMap.put("달서구", 1);
+        provinceMap.put("동구", 2);
+        provinceMap.put("북구", 3);
+        provinceMap.put("서구", 4);
+        provinceMap.put("수성구", 5);
+        provinceMap.put("중구", 6);
+
+
+
+
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         BtnArray[0] = (Button) findViewById(R.id.Buyer_AddressRegistActivity_mBtn1);
         BtnArray[1] = (Button) findViewById(R.id.Buyer_AddressRegistActivity_mBtn2);
@@ -76,6 +97,20 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
                 }
             });
         }
+        final EditText editText = (EditText) findViewById(R.id.Buyer_AddressRegistActivity_EditText);
+
+        util = new SharedPreferenceUtil(this);
+        String preAddress = util.getStringData("주소", "null");
+        if(!(preAddress.equals("null"))) {
+            final String[] addressSplit = preAddress.split("\n");
+            final String[] addressSplit2 = addressSplit[0].split(" ");
+            address1 = addressSplit2[0];
+            address2 = addressSplit2[1];
+            Log.d("NONONO11", address2 + "/" + provinceMap.get(address2));
+            selectPrivince(provinceMap.get(address2));
+            editText.setText(addressSplit[1]);
+        }
+
         if (!checkLocationServicesStatus()) {
 
             showDialogForLocationServiceSetting();
@@ -83,7 +118,6 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
 
             checkRunTimePermission();
         }
-        final EditText editText = (EditText) findViewById(R.id.Buyer_AddressRegistActivity_EditText);
 
         gps_btn=(ViewGroup)findViewById(R.id.Buyer_gps_btn_layout);
         gps_address=(TextView)findViewById(R.id.Buyer_gps_address);
@@ -106,31 +140,7 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
                 address1 = tmp[1];
                 //tmp[2] : XX구, tmp[3~] : 상세주소
                 address2 = tmp[2];
-                switch(address2) {
-                    case "남구" :
-                        address2 = selectPrivince(0);
-                        break;
-                    case "달서구" :
-                        address2 = selectPrivince(1);
-                        break;
-                    case "동구":
-                        address2 = selectPrivince(2);
-                        break;
-                    case "북구":
-                        address2 = selectPrivince(3);
-                        break;
-                    case "서구":
-                        address2 = selectPrivince(4);
-                        break;
-                    case "수성구":
-                        address2 = selectPrivince(5);
-                        break;
-                    case "중구":
-                        address2 = selectPrivince(6);
-                        break;
-                    default:
-                        break;
-                }
+                address2 = selectPrivince(provinceMap.get(tmp[2]));
 
                 String tt = "";
                 for(int i = 3; i < tmp.length; i++) {
