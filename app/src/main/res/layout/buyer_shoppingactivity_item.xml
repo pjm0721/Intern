@@ -1,77 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="90dp"
     android:layout_marginHorizontal="10dp"
     android:layout_marginVertical="3dp"
     android:background="@drawable/border_below"
     android:orientation="horizontal">
 
+
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/Buyer_Shopping_item_addBtn1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:padding="10dp">
-        <LinearLayout
-            android:layout_width="wrap_content"
+        android:layout_height="90dp"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="0.8"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Buyer_Shopping_item_nameText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:layout_marginLeft="10dp"
-            android:orientation="vertical">
+            android:layout_marginBottom="5dp"
+            android:gravity="left"
+            android:text="드라이버드라이버드라"
+            android:textColor="#000"
+            android:textSize="17dp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/Buyer_Shopping_item_nameText"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="left"
-                android:text="드라이버"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:textSize="17dp" />
 
-            <TextView
-                android:id="@+id/Buyer_Shopping_item_numText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="left"
-                android:text="5"
+        <TextView
+            android:id="@+id/Buyer_Shopping_item_priceText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="5,000 원"
+            android:textColor="#000"
+            android:textSize="17dp" />
 
-                android:textSize="15dp" />
-
-            <TextView
-                android:id="@+id/Buyer_Shopping_item_priceText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:gravity="left"
-                android:text="5,000 원"
-                android:textColor="#000"
-                android:textSize="17dp" />
-        </LinearLayout>
-        <ImageView
-            android:id="@+id/Buyer_Shopping_item_imgView"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="2dp"
-            android:layout_weight="1.4"
-            android:gravity="center"
-            android:textSize="17dp"></ImageView>
     </LinearLayout>
 
     <Button
-        android:id="@+id/Buyer_Shopping_item_addBtn"
-        android:layout_width="388dp"
-        android:layout_height="65dp"
-        android:background="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:id="@+id/Buyer_Shopping_item_numText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:paddingRight="25dp"
+        android:gravity="center"
+        android:text="수량 : 5"
+        android:background="@android:color/transparent"
+        android:textSize="15dp" />
+
+    <ImageView
+        android:id="@+id/Buyer_Shopping_item_imgView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.1"
+        android:gravity="center"></ImageView>
+
+
+</LinearLayout>

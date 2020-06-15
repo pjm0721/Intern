@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -31,7 +32,7 @@ public class Buyer_Payment_Adapter extends RecyclerView.Adapter<Buyer_Payment_Ad
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // return ViewHolder
         //여기서 R.layout.item.xml 설정해주고
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.buyer_shoppingactivity_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.buyer_paymentactivity_item, parent, false);
         return new ItemViewHolder(view);
     }
 
@@ -55,25 +56,21 @@ public class Buyer_Payment_Adapter extends RecyclerView.Adapter<Buyer_Payment_Ad
         private TextView nameText;
         private TextView numberText;
         private TextView priceText;
-        private Button button;
+
         //ID다 찾아주고
         ItemViewHolder(View itemView) {
             super(itemView);
-            nameText = itemView.findViewById(R.id.Buyer_Shopping_item_nameText);
-            numberText = itemView.findViewById(R.id.Buyer_Shopping_item_numText);
-            priceText = itemView.findViewById(R.id.Buyer_Shopping_item_priceText);
-            button = itemView.findViewById(R.id.Buyer_Shopping_item_addBtn);
+            nameText = itemView.findViewById(R.id.Buyer_Payment_item_nameText);
+            numberText = itemView.findViewById(R.id.Buyer_Payment_item_numText);
+            priceText = itemView.findViewById(R.id.Buyer_Payment_item_priceText);
         }
         //처리하면 댐.
         void onBind(ITEM data) {
             nameText.setText(data.name);
-            numberText.setText(String.valueOf(data.nownum)+" 개");
+            numberText.setText("수량 : " + String.valueOf(data.nownum));
             DecimalFormat formatter = new DecimalFormat("###,###");
             int tot = Integer.valueOf(data.price) * data.nownum;
             priceText.setText(formatter.format(tot) + " 원");
-            button.setBackgroundColor(Color.TRANSPARENT);
-            button.setText("");
-            button.setClickable(false);
         }
     }
 
