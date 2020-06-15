@@ -47,7 +47,7 @@
         android:id="@+id/login_btn"
         android:layout_width="328dp"
         android:layout_height="37dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/login_focus_btn_selector"
         android:onClick="on_login"
         android:text="로그인"
@@ -75,8 +75,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="일반 이용자"
             android:checked="true"
+            android:text="일반 이용자"
             android:textColor="#1C65EC"
             android:textSize="12sp"
             android:textStyle="bold" />
@@ -102,26 +102,28 @@
             android:textStyle="bold" />
     </RadioGroup>
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="110dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/login_txtviw2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="130dp"
-        app:layout_constraintTop_toBottomOf="@+id/login_btn">
+        app:layout_constraintTop_toBottomOf="@+id/login_btn"
+        app:layout_constraintVertical_bias="1.0">
 
         <Button
-            android:paddingRight="8dp"
-            android:id="@+id/login_find_password"
+            android:id="@+id/login_find_id"
             android:layout_width="0dp"
             android:layout_height="32dp"
             android:layout_weight="7"
             android:background="@null"
             android:gravity="right"
-            android:text="비밀번호 찾기"
+            android:paddingRight="8dp"
+            android:text="아이디 찾기 "
             android:textColor="#888888"
             android:textSize="10sp" />
 
@@ -135,30 +137,13 @@
             android:textColor="#888888" />
 
         <Button
-            android:id="@+id/login_find_id"
+            android:id="@+id/login_find_password"
             android:layout_width="0dp"
             android:layout_height="32dp"
-            android:layout_weight="3"
-            android:background="@null"
-            android:text="아이디 찾기"
-            android:textColor="#888888"
-            android:textSize="10sp" />
-
-        <TextView
-            android:id="@+id/login_txtviw22"
-            android:layout_width="0dp"
-            android:layout_height="32dp"
-            android:layout_weight="0.5"
-            android:gravity="center"
-            android:text="|"
-            android:textColor="#888888" />
-
-        <CheckBox
-            android:id="@+id/login_autoCheckBox"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
             android:layout_weight="7"
-            android:text="자동 로그인"
+            android:background="@null"
+            android:gravity="left"
+            android:text="   비밀번호 찾기"
             android:textColor="#888888"
             android:textSize="10sp" />
     </LinearLayout>
@@ -179,7 +164,7 @@
         android:id="@+id/login_signup_btn"
         android:layout_width="64dp"
         android:layout_height="19dp"
-        android:layout_marginEnd="140dp"
+        android:layout_marginEnd="130dp"
         android:background="@null"
         android:onClick="on_login_signup"
         android:text="회원가입"
@@ -189,5 +174,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.828" />
 
-
+    <CheckBox
+        android:id="@+id/login_autoCheckBox"
+        android:layout_width="95dp"
+        android:layout_height="32dp"
+        android:layout_margin="10dp"
+        android:layout_weight="7"
+        android:text="자동 로그인"
+        android:textColor="#888888"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/login_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.085"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
