@@ -164,6 +164,7 @@ public class Buyer_PaymentActivity extends AppCompatActivity {
                             order.put("판매자아이디", sellerID);
                             order.put("판매자주소", storeAddress);
                             order.put("배달현황", false);
+                            order.put("배달자담당아이디", "");
                             order.put("결제방식", spinner.getSelectedItem().toString());
 
                             Map<String, Object> orderInfo = new HashMap<>();
