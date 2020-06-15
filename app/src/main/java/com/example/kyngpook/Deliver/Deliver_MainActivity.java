@@ -217,7 +217,7 @@ public class Deliver_MainActivity extends AppCompatActivity {
 
     }
 
-    /*
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -228,7 +228,7 @@ public class Deliver_MainActivity extends AppCompatActivity {
             }
         }
     }
-     */
+
 
 
     private void deliver_mainactivity_get_data(final String text) {
