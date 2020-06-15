@@ -32,25 +32,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-class SharedPreferenceUtil {
-    private Context context;
-    private SharedPreferences prefs = null;
 
-    public SharedPreferenceUtil(Context context) {
-        this.context = context;
-        prefs = context.getSharedPreferences("User Info", Context.MODE_PRIVATE);
-    }
-
-    //ID, 전화번호, 닉네임, 주소
-    public void setStringData(String key, String str) {
-        prefs.edit().putString(key, str).apply();
-    }
-
-    public String getStringData(String key, String defaultV) {
-        return prefs.getString(key, defaultV);
-    }
-
-}
 
 
 public class Buyer_MainActivity extends AppCompatActivity {
@@ -71,11 +53,11 @@ public class Buyer_MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         util = new SharedPreferenceUtil(this);
 
-        util.setStringData("PASSWORD", intent.getStringExtra("PASSWORD"));
-        util.setStringData("ID", intent.getStringExtra("ID"));
-        util.setStringData("전화번호", intent.getStringExtra("전화번호"));
-        util.setStringData("닉네임", intent.getStringExtra("닉네임"));
-        util.setStringData("이름", intent.getStringExtra("이름"));
+//        util.setStringData("PASSWORD", intent.getStringExtra("PASSWORD"));
+//        util.setStringData("ID", intent.getStringExtra("ID"));
+//        util.setStringData("전화번호", intent.getStringExtra("전화번호"));
+//        util.setStringData("닉네임", intent.getStringExtra("닉네임"));
+//        util.setStringData("이름", intent.getStringExtra("이름"));
 
         order_img_v=(ImageView)findViewById(R.id.Buyer_MainActivity_OrderImageView);
         modify_img_v=(ImageView)findViewById(R.id.Buyer_MainActivity_ModifyImageView);
