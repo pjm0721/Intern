@@ -100,9 +100,12 @@ public class Buyer_ReviewActivity extends AppCompatActivity {
 
                                 reviewNum++;
                             }
-                            reviewText.setText("최근 리뷰   " + reviewNum + " 개");
-                            scoreText.setText("평점 평균 : " + Math.round(scoresum*10)/reviewNum/10.0 + " / 5.0");
-                        } else {
+                            if(reviewNum > 0) {
+                                reviewText.setText("최근 리뷰   " + reviewNum + " 개");
+                                scoreText.setText("평점 평균 : " + Math.round(scoresum*10)/reviewNum/10.0 + " / 5.0");
+                            }
+                        }
+                        else {
                             Log.w("Buyer_MarketListActiviry", "Error getting documents.", task.getException());
                         }
                     }
