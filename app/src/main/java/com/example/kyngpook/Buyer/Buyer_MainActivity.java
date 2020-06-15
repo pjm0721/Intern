@@ -81,7 +81,7 @@ public class Buyer_MainActivity extends AppCompatActivity {
                 modify_img_v.setImageResource(R.drawable.buyer_modify_btn2);
             }
         });
-
+        //
         findViewById(R.id.Buyer_MainActivity_OrderListBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
