@@ -81,7 +81,7 @@ public class Buyer_Shopping_Adapter1 extends RecyclerView.Adapter<Buyer_Shopping
         //처리하면 댐.
         void onBind(final ITEM data) {
             nameText.setText(data.name);
-            numberText.setText(data.number);
+            numberText.setText(data.number+"개");
             DecimalFormat formatter = new DecimalFormat("###,###");
             priceText.setText(formatter.format(Integer.valueOf(data.price)) + " 원");
             addBtn.setOnClickListener(new View.OnClickListener() {
