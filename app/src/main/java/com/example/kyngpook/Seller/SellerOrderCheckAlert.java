@@ -6,9 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -40,6 +43,9 @@ public class SellerOrderCheckAlert extends AppCompatActivity {
     String doc_name;
     String order_state;
 
+    String buyer_id;
+    String buyer_num;
+
     RecyclerView recyclerView;
     SellerOrderAlertListAdapter adapter;
     LinearLayoutManager linearLayoutManager;
@@ -68,6 +74,10 @@ public class SellerOrderCheckAlert extends AppCompatActivity {
         seller_order_sum=findViewById(R.id.seller_order_sum);
         seller_order_state=findViewById(R.id.seller_order_state);
 
+        SharedPreferences pref = getSharedPreferences("seller", MODE_PRIVATE);
+
+        final String seller_ID = pref.getString("id","");
+
         CollectionReference order=db.collection("주문내역");
 
         order
@@ -77,7 +87,7 @@ public class SellerOrderCheckAlert extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         for(QueryDocumentSnapshot doc :task.getResult())
                         {
-                            if(doc.getData().get("판매자아이디").toString().equals("id1010") && doc.getData().get("구매자주소").toString().equals(intent.getStringExtra("구매자주소")))
+                            if(doc.getData().get("판매자아이디").toString().equals(seller_ID) && doc.getData().get("구매자주소").toString().equals(intent.getStringExtra("구매자주소")))
                             {
                                 seller_order_address.setText("구매자 주소 : "+doc.getData().get("구매자주소").toString());
                                 seller_order_name.setText("구매자 이름 : "+doc.getData().get("구매자이름").toString());
@@ -86,6 +96,7 @@ public class SellerOrderCheckAlert extends AppCompatActivity {
                                 seller_order_state.setText("주문상태 : "+doc.getData().get("주문상태").toString());
                                 order_state=doc.getData().get("주문상태").toString();
                                 doc_name=doc.getData().get("문서이름").toString();
+                                buyer_id=doc.getData().get("구매자아이디").toString();
                                 Map orderMap =(Map)doc.getData().get("주문내역");
 
                                 for(Object keyy : orderMap.keySet())
@@ -100,6 +111,27 @@ public class SellerOrderCheckAlert extends AppCompatActivity {
                     }
                 });
 
+
+        db.collection("USERS").document("Buyer").collection("Buyer")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String temp_seller_id = document.get("ID").toString();
+                                String temp_phone_number = document.get("전화번호").toString();
+
+                                if (temp_seller_id.equals(buyer_id)) {
+                                    buyer_num = temp_phone_number;
+                                }
+                            }
+                        }
+                    }
+                });
+
+
+
         //요청 수락 시 주문상태가 주문 수락으로 바뀐다
         seller_order_accept=findViewById(R.id.seller_order_accept);
         seller_order_accept.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +140,7 @@ public class SellerOrderCheckAlert extends AppCompatActivity {
 
                 DocumentReference d= db.collection("주문내역").document(doc_name);
                 if(!order_state.equals("주문완료")) {
+                    send_sms("01023207930",buyer_num+"주문이 완료되었습니다.");
                     d.update("주문상태", "주문수락");
                 }
                 else{
@@ -124,6 +157,7 @@ public class SellerOrderCheckAlert extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                send_sms("01023207930",buyer_num+"주문이 취소되었습니다.");
                 DocumentReference d=db.collection("주문내역").document(doc_name);
                 d.delete();
                 finish();
@@ -132,6 +166,16 @@ public class SellerOrderCheckAlert extends AppCompatActivity {
         });
 
 
+    }
 
+    private void send_sms(final String number, final String message) {
+        try {
+            SmsManager sms = SmsManager.getDefault();
+            sms.sendTextMessage(number, null, message,
+                    PendingIntent.getBroadcast(this, 0, new Intent("SMS_SENT"), 0),
+                    PendingIntent.getBroadcast(this, 0, new Intent("SMS_DELIVERED"), 0));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -53,6 +54,10 @@ public class SellerOrderManagement extends AppCompatActivity {
         db= FirebaseFirestore.getInstance();
         seller_total_order_text=findViewById(R.id.seller_total_order_text);
 
+        SharedPreferences pref = getSharedPreferences("seller", MODE_PRIVATE);
+
+        final String seller_ID = pref.getString("id","");
+
         CollectionReference order=db.collection("주문내역");
 
         order
@@ -62,7 +67,7 @@ public class SellerOrderManagement extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         for(QueryDocumentSnapshot doc :task.getResult())
                         {
-                            if(doc.getData().get("판매자아이디").toString().equals("id1010"))
+                            if(doc.getData().get("판매자아이디").toString().equals(seller_ID))
                             {
                                 adapter.addItem(new SellerOrderListData(doc.getData().get("금액").toString(),doc.getData().get("주문상태").toString(),doc.getData().get("구매자주소").toString()));
                                 adapter.notifyDataSetChanged();

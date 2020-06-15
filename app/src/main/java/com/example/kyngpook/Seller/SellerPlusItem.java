@@ -8,6 +8,7 @@ import com.google.firebase.storage.UploadTask;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -76,10 +77,14 @@ public class SellerPlusItem extends AppCompatActivity {
                     intent.putExtra("개수", num);
                     intent.putExtra("가격", price);
 
+                    SharedPreferences pref = getSharedPreferences("seller", MODE_PRIVATE);
+
+                    final String seller_ID = pref.getString("id","");
+
                     seller_add_image.setDrawingCacheEnabled(true);
                     seller_add_image.buildDrawingCache();
 
-                    storageRef = storage.getReferenceFromUrl("gs://internproject-2e699.appspot.com/seller/" + "id3" + "/" + name + ".jpg");
+                    storageRef = storage.getReferenceFromUrl("gs://internproject-2e699.appspot.com/seller/" + seller_ID + "/" + name + ".jpg");
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                     byte[] byte_data = baos.toByteArray();

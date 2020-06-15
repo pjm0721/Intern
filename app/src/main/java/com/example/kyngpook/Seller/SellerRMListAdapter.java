@@ -8,6 +8,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,12 +26,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import static android.content.Context.MODE_PRIVATE;
+
 /// 판매자 메뉴 관리 어뎁터
 public class SellerRMListAdapter extends RecyclerView.Adapter<SellerRMListAdapter.ItemViewHolder> {
     private Context context;
 
     FirebaseStorage storage;
     StorageReference storageRef;
+
+
 
     private ArrayList<SellerRMListData> listData = new ArrayList<>();
 
@@ -61,12 +66,15 @@ public class SellerRMListAdapter extends RecyclerView.Adapter<SellerRMListAdapte
     }
 
     public void checkRemoveAll(){
+
+        SharedPreferences pref = context.getSharedPreferences("seller", MODE_PRIVATE);
+        String seller_ID = pref.getString("id","");
         for(int i=listData.size()-1;i>=0;i--)
         {
             if(listData.get(i).check) {
 
                 storage = FirebaseStorage.getInstance();
-                storageRef = storage.getReferenceFromUrl("gs://internproject-2e699.appspot.com/seller/" + "id3" + "/" + listData.get(i).name + ".jpg");
+                storageRef = storage.getReferenceFromUrl("gs://internproject-2e699.appspot.com/seller/" + seller_ID + "/" + listData.get(i).name + ".jpg");
                 storageRef.delete();
 
                 listData.remove(i);
@@ -101,8 +109,11 @@ public class SellerRMListAdapter extends RecyclerView.Adapter<SellerRMListAdapte
             seller_modify_list_num.setText(" 개수 : "+data.num+" 개");
             seller_modify_list_price.setText(" 가격 : "+data.price+" 원");
 
+            SharedPreferences pref = context.getSharedPreferences("seller", MODE_PRIVATE);
+            String seller_ID = pref.getString("id","");
+
             storage = FirebaseStorage.getInstance();
-            storageRef = storage.getReferenceFromUrl("gs://internproject-2e699.appspot.com/seller/" + "id3" + "/" + data.name + ".jpg");
+            storageRef = storage.getReferenceFromUrl("gs://internproject-2e699.appspot.com/seller/" + seller_ID + "/" + data.name + ".jpg");
             storageRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                 @Override
                 public void onComplete(@NonNull Task<Uri> task) {

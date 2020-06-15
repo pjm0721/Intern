@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -112,11 +113,15 @@ public class SellerRegisterModifier extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
 
+        SharedPreferences pref = getSharedPreferences("seller", MODE_PRIVATE);
+
+        final String seller_ID = pref.getString("id","");
+
         db= FirebaseFirestore.getInstance();
 
         // 메뉴 리스트뷰 불러오기
 
-        final CollectionReference things =db.collection("PRODUCT").document("대구광역시").collection("남구").document("id3").collection("판매상품");
+        final CollectionReference things =db.collection("PRODUCT").document("대구광역시").collection("남구").document(seller_ID).collection("판매상품");
 
         things
                 .get()
@@ -155,7 +160,7 @@ public class SellerRegisterModifier extends AppCompatActivity {
         seller_business_category.setAdapter(sp_adapter);
 
 
-        final DocumentReference docRef=db.collection("USERS").document("Seller").collection("Seller").document("id3");//임시아이디
+        final DocumentReference docRef=db.collection("USERS").document("Seller").collection("Seller").document(seller_ID);
 
 
 
@@ -170,7 +175,7 @@ public class SellerRegisterModifier extends AppCompatActivity {
             }
         });
 
-        storageRef = storage.getReferenceFromUrl("gs://internproject-2e699.appspot.com/seller/" + "id3" + "/" + "id3" + ".jpg");
+        storageRef = storage.getReferenceFromUrl("gs://internproject-2e699.appspot.com/seller/" + seller_ID + "/" + seller_ID + ".jpg");
         storageRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
             @Override
             public void onComplete(@NonNull Task<Uri> task) {
@@ -300,9 +305,7 @@ public class SellerRegisterModifier extends AppCompatActivity {
 
 
 
-                Intent intent=new Intent(getApplicationContext(),SellerMainActivity.class);
-                startActivity(intent);
-
+                finish();
             }
         });
 
