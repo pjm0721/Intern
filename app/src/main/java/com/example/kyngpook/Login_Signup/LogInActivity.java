@@ -49,9 +49,7 @@ public class LogInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, 1);
-        }
+
         id = (TextView) findViewById(R.id.login_id);
         password = (TextView) findViewById(R.id.login_password);
         login_grp = (RadioGroup) findViewById(R.id.login_rgp);

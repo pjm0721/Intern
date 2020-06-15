@@ -59,6 +59,7 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
     private static final int PERMISSIONS_REQUEST_CODE = 100;
     String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
     private Button[] BtnArray = new Button[7];
+    private int BtnSelected = -1;
 
     private SharedPreferenceUtil util;
 
@@ -135,18 +136,28 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
                 gps_address.setTextColor(Color.parseColor("#000000"));
                 gps_img.setImageDrawable(null);
 
-                String[] tmp = address.split(" ");
-                //tmp[0] : 대한민국, tmp[1] : 대구광역시
-                address1 = tmp[1];
-                //tmp[2] : XX구, tmp[3~] : 상세주소
-                address2 = tmp[2];
-                address2 = selectPrivince(provinceMap.get(tmp[2]));
+                if (!checkLocationServicesStatus()) {
+                    showDialogForLocationServiceSetting();
+                }else {
+                    if(checkRunTimePermission()) {
+                        String[] tmp = address.split(" ");
+                        for(int i = 0; i < tmp.length; i++)
+                            Log.d("NONO123", tmp[i]);
+                        //tmp[0] : 대한민국, tmp[1] : 대구광역시
+                        address1 = tmp[1];
+                        //tmp[2] : XX구, tmp[3~] : 상세주소
+                        address2 = tmp[2];
 
-                String tt = "";
-                for(int i = 3; i < tmp.length; i++) {
-                    tt += tmp[i] + " ";
+                        if(provinceMap.get(tmp[2]) != null)
+                            selectPrivince(provinceMap.get(tmp[2]));
+
+                        String tt = "";
+                        for(int i = 3; i < tmp.length; i++) {
+                            tt += tmp[i] + " ";
+                        }
+                        editText.setText(tt);
+                    }
                 }
-                editText.setText(tt);
             }
         });
         findViewById(R.id.Buyer_AddressRegistActivity_Btn).setOnClickListener(new View.OnClickListener() {
@@ -157,6 +168,9 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
                 }
                 else if(address1.equals("") || address2.equals("")) {
                     Toast.makeText(getApplicationContext(), "주소를 클릭하여 설정하세요.", Toast.LENGTH_SHORT).show();
+                }
+                else if(!(0 <= BtnSelected && BtnSelected < 7)) {
+                    Toast.makeText(getApplicationContext(), "주소지가 대구가 아닙니다.\n대구 지역 내에서만 사용 가능합니다.", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Intent intent = new Intent();
@@ -201,7 +215,7 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
             }
         }
     }
-    void checkRunTimePermission(){
+    Boolean checkRunTimePermission(){
         //런타임 퍼미션 처리
         // 1. 위치 퍼미션을 가지고 있는지 체크합니다.
         int hasFineLocationPermission = ContextCompat.checkSelfPermission(Buyer_AddressRegistActivity.this,
@@ -214,7 +228,7 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
             // 2. 이미 퍼미션을 가지고 있다면
             // ( 안드로이드 6.0 이하 버전은 런타임 퍼미션이 필요없기 때문에 이미 허용된 걸로 인식합니다.)
             // 3.  위치 값을 가져올 수 있음
-
+            return true;
         } else {  //2. 퍼미션 요청을 허용한 적이 없다면 퍼미션 요청이 필요합니다. 2가지 경우(3-1, 4-1)가 있습니다.
 
             // 3-1. 사용자가 퍼미션 거부를 한 적이 있는 경우에는
@@ -232,6 +246,7 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
                 ActivityCompat.requestPermissions(Buyer_AddressRegistActivity.this, REQUIRED_PERMISSIONS,
                         PERMISSIONS_REQUEST_CODE);
             }
+            return false;
         }
     }
     public String getCurrentAddress( double latitude, double longitude) {
@@ -313,6 +328,7 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
                 || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
     }
     private String selectPrivince(int i) {
+        BtnSelected = i;
         for(int j = 0; j < 7; j++) {
             BtnArray[j].setBackgroundResource(R.drawable.buyer_button_shape);
         }
@@ -332,8 +348,10 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
                 return "수성구";
             case 6:
                 return "중구";
+            default:
+                break;
         }
-        return null;
+        return "null";
     }
 
 }
