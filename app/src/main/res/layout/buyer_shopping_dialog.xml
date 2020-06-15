@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/Buyer_Shopping_dialog_ImageView"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        />
+    <Button
+        android:id="@+id/Buyer_Shopping_dialog_okBtn"
+        android:background="@drawable/login_focus_btn_selector"
+        android:layout_marginTop="30dp"
+        android:layout_width="340dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="5dp"
+        android:layout_gravity="center"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        android:text="확 인"
+        android:textSize="20dp" />
+
+</LinearLayout>

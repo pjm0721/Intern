@@ -59,7 +59,6 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
     private static final int PERMISSIONS_REQUEST_CODE = 100;
     String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
     private Button[] BtnArray = new Button[7];
-    private int BtnSelected = -1;
 
     private SharedPreferenceUtil util;
 
@@ -102,7 +101,13 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
 
         util = new SharedPreferenceUtil(this);
         String preAddress = util.getStringData("주소", "null");
-        if(!(preAddress.equals("null"))) {
+        String[] preAddressArr = preAddress.split("\n");
+        String[] preAddressArr2 = preAddressArr[0].split(" ");
+
+        if(preAddressArr2.length>=1 &&  (preAddressArr2[1].equals("남구") || preAddressArr2[1].equals("달서구") || preAddressArr2[1].equals("동구")
+                || preAddressArr2[1].equals("중구") || preAddressArr2[1].equals("서구") || preAddressArr2[1].equals("수성구")
+                || preAddressArr2[1].equals("북구"))) {
+            Log.d("NONONO123", "true");
             final String[] addressSplit = preAddress.split("\n");
             final String[] addressSplit2 = addressSplit[0].split(" ");
             //address1 = addressSplit2[0];
@@ -150,6 +155,8 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
 
                         if(provinceMap.get(tmp[2]) != null)
                             selectPrivince(provinceMap.get(tmp[2]));
+                        else
+                            selectPrivince(-1);
 
                         String tt = "";
                         for(int i = 3; i < tmp.length; i++) {
@@ -169,7 +176,8 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
                 else if(address1.equals("") || address2.equals("")) {
                     Toast.makeText(getApplicationContext(), "주소를 클릭하여 설정하세요.", Toast.LENGTH_SHORT).show();
                 }
-                else if(!(0 <= BtnSelected && BtnSelected < 7)) {
+                else if(!( address2.equals("동구") ||  address2.equals("서구") ||  address2.equals("남구") ||  address2.equals("북구")
+                            ||  address2.equals("달서구") ||  address2.equals("수성구") ||  address2.equals("중구"))) {
                     Toast.makeText(getApplicationContext(), "주소지가 대구가 아닙니다.\n대구 지역 내에서만 사용 가능합니다.", Toast.LENGTH_SHORT).show();
                 }
                 else {
@@ -177,6 +185,7 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
                     intent.putExtra("주소1", address1);
                     intent.putExtra("주소2", address2);
                     intent.putExtra("주소3", editText.getText().toString());
+                    util.setStringData("주소", address1 + " " + address2 + "\n" + editText.getText().toString());
                     setResult(RESULT_OK, intent);
                     finish();
                 }
@@ -328,10 +337,10 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
                 || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
     }
     private String selectPrivince(int i) {
-        BtnSelected = i;
         for(int j = 0; j < 7; j++) {
             BtnArray[j].setBackgroundResource(R.drawable.buyer_button_shape);
         }
+        if(i == -1) return "null";
         BtnArray[i].setBackgroundResource(R.drawable.buyer_button_shape2);
         switch (i) {
             case 0:
