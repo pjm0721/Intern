@@ -73,7 +73,7 @@
     <TextView
         android:layout_marginTop="15dp"
         android:id="@+id/Buyer_ReviewActivity_scoreText"
-        android:text="평점 평균 : 3.5 / 5.0"
+        android:text="평점 평균 : 0.0 / 5.0"
         android:textSize="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
