@@ -43,13 +43,15 @@ public class Buyer_ReviewActivity extends AppCompatActivity {
         final String call = intent.getStringExtra("전화번호");
         final String time = intent.getStringExtra("영업시간");
         final int review = intent.getIntExtra("리뷰", 0);
-
+        final String holiday=intent.getStringExtra("휴무일");
+        TextView holidayText=(TextView)findViewById(R.id.Buyer_ReviewActivity_holidayText);
+        holidayText.setText("휴무일 : "+holiday);
         TextView nameText = (TextView) findViewById(R.id.Buyer_ReviewActivity_PresentativeText);
         nameText.setText("대표자명 : " + name);
         TextView storenameText = (TextView) findViewById(R.id.Buyer_ReviewActivity_StoreNameText);
         storenameText.setText(storename);
         TextView callText = (TextView) findViewById(R.id.Buyer_ReviewActivity_callText);
-        callText.setText("☎ : " + call);
+        callText.setText("전화번호 : " + call);
         TextView timeText = (TextView) findViewById(R.id.Buyer_ReviewActivity_timeText);
         timeText.setText(time);
         final TextView reviewText = (TextView) findViewById(R.id.Buyer_ReviewActivity_numText);

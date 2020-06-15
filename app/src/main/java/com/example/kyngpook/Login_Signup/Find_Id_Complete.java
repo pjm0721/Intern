@@ -16,8 +16,8 @@ import static maes.tech.intentanim.CustomIntent.customType;
 public class Find_Id_Complete extends AppCompatActivity {
 
     private String ID;
-    TextView fidText;
-    Button fidButton;
+    private TextView fidText;
+    private Button fidButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

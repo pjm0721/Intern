@@ -12,11 +12,48 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="59dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="10dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/Buyer_Shopping_item_nameText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="left"
+                android:text="드라이버"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:textSize="17dp" />
+
+            <TextView
+                android:id="@+id/Buyer_Shopping_item_numText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:text="5"
+
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/Buyer_Shopping_item_priceText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="left"
+                android:text="5,000 원"
+                android:textColor="#000"
+                android:textSize="17dp" />
+        </LinearLayout>
         <ImageView
             android:id="@+id/Buyer_Shopping_item_imgView"
             android:layout_width="0dp"
@@ -24,37 +61,7 @@
             android:layout_marginRight="2dp"
             android:layout_weight="1.4"
             android:gravity="center"
-            android:textSize="17dp" />
-
-        <TextView
-            android:id="@+id/Buyer_Shopping_item_nameText"
-            android:layout_width="20dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:gravity="center"
-            android:text="드라이버"
-            android:textSize="17dp" />
-
-        <TextView
-            android:id="@+id/Buyer_Shopping_item_numText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="left"
-            android:text="5"
-
-            android:textSize="17dp" />
-
-        <TextView
-            android:id="@+id/Buyer_Shopping_item_priceText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:gravity="center"
-            android:text="5,000 원"
-
-            android:textSize="17dp" />
-
+            android:textSize="17dp"></ImageView>
     </LinearLayout>
 
     <Button

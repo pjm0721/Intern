@@ -25,11 +25,11 @@ import static maes.tech.intentanim.CustomIntent.customType;
 public class Find_Id_Activity extends AppCompatActivity {
 
     private String find_Id;
-    Button find_id_btn;
-    RadioGroup find_id_rgp;
-    RadioButton find_id_rb;
-    EditText find_name;
-    EditText find_number;
+    private Button find_id_btn;
+    private RadioGroup find_id_rgp;
+    private RadioButton find_id_rb;
+    private EditText find_name;
+    private EditText find_number;
     private int state = 0;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override

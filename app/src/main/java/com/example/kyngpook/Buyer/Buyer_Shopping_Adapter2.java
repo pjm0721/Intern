@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class Buyer_Shopping_Adapter2 extends RecyclerView.Adapter<Buyer_Shopping_Adapter2.ItemViewHolder> {
     private Buyer_ShoppingActivity context;
     private ArrayList<ITEM> listData = new ArrayList<>();
-
+    private String str;
     public Buyer_Shopping_Adapter2(Context context) {
         this.context = (Buyer_ShoppingActivity) context;
     }

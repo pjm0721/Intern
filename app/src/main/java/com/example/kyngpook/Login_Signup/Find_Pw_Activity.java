@@ -25,14 +25,14 @@ import static maes.tech.intentanim.CustomIntent.customType;
 public class Find_Pw_Activity extends AppCompatActivity {
 
     private String pfind_Pw;
-    Button pfind_id_btn;
-    RadioGroup pfind_id_rgp;
-    RadioButton pfind_id_rb;
-    EditText pfind_name;
-    EditText pfind_number;
-    EditText pfind_id;
+    private Button pfind_id_btn;
+    private RadioGroup pfind_id_rgp;
+    private RadioButton pfind_id_rb;
+    private EditText pfind_name;
+    private EditText pfind_number;
+    private  EditText pfind_id;
     private int state = 0;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private  FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

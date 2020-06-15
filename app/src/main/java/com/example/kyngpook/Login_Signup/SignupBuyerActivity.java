@@ -28,19 +28,19 @@ import static maes.tech.intentanim.CustomIntent.customType;
 
 public class SignupBuyerActivity extends AppCompatActivity {
 
-    Button button1;
-    Button button2;
-    Button button3;
-    EditText editText;
-    EditText editText1;
-    EditText editText2;
-    EditText editText3;
-    EditText editText4;
-    EditText editText5;
-    String ufid;
-    String ufname;
-    Map<String, Object> user = new HashMap<>();
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private Button button1;
+    private Button button2;
+    private Button button3;
+    private EditText editText;
+    private EditText editText1;
+    private EditText editText2;
+    private EditText editText3;
+    private EditText editText4;
+    private EditText editText5;
+    private String ufid;
+    private String ufname;
+    private Map<String, Object> user = new HashMap<>();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private int state = 1;
     private int stateN = 1;
     @Override

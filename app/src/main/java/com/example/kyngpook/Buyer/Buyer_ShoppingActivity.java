@@ -45,10 +45,14 @@ public class Buyer_ShoppingActivity extends AppCompatActivity {
         final String call = intent.getStringExtra("전화번호");
         final String time = intent.getStringExtra("영업시간");
         final String StoreAddress = intent.getStringExtra("판매자주소");
+        final String holiday=intent.getStringExtra("휴무일");
 
         totalPriceText = (TextView) findViewById(R.id.Buyer_Shopping_totalPriceText);
         totalPriceText.setText("총 상품금액 : 0 원");
         //판매자 정보 로드
+        TextView holidayText=(TextView)findViewById(R.id.Buyer_Shopping_holidayText);
+        holidayText.setText("휴무일 : "+holiday);
+
         TextView storenameText = (TextView)findViewById(R.id.Buyer_Shopping_StoreNameText);
         storenameText.setText(storename);
 
@@ -56,7 +60,7 @@ public class Buyer_ShoppingActivity extends AppCompatActivity {
         timeText.setText(time);
 
         TextView callText = (TextView)findViewById(R.id.Buyer_Shopping_callText);
-        callText.setText("☎ : " + call);
+        callText.setText("전화번호 : " + call);
 
         TextView pText = (TextView)findViewById(R.id.Buyer_Shopping_PresentativeText);
         pText.setText("대표자명 : " +  name);
@@ -72,6 +76,7 @@ public class Buyer_ShoppingActivity extends AppCompatActivity {
                 intent1.putExtra("업소명", storename);
                 intent1.putExtra("영업시간", time);
                 intent1.putExtra("리뷰", review);
+                intent1.putExtra("휴무일",holiday);
                 startActivity(intent1);
             }
         });

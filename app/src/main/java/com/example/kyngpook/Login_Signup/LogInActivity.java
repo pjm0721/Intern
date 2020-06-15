@@ -39,8 +39,8 @@ public class LogInActivity extends AppCompatActivity {
     private RadioGroup login_grp;
     private  Toast toast;
     private long backKeyPressedTime = 0;
-    Button findId;
-    Button findPw;
+    private Button findId;
+    private Button findPw;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     CheckBox autoCheckBox;
