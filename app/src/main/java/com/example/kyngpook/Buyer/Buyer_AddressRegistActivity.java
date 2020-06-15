@@ -49,7 +49,7 @@ import java.util.Set;
 
 public class Buyer_AddressRegistActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private String address1 = "대구광역시";
+    private final String address1 = "대구광역시";
     private String address2 = "";
     private GpsTracker gpsTracker;
     private ViewGroup gps_btn;
@@ -105,7 +105,7 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
         if(!(preAddress.equals("null"))) {
             final String[] addressSplit = preAddress.split("\n");
             final String[] addressSplit2 = addressSplit[0].split(" ");
-            address1 = addressSplit2[0];
+            //address1 = addressSplit2[0];
             address2 = addressSplit2[1];
             Log.d("NONONO11", address2 + "/" + provinceMap.get(address2));
             selectPrivince(provinceMap.get(address2));
@@ -144,7 +144,7 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
                         for(int i = 0; i < tmp.length; i++)
                             Log.d("NONO123", tmp[i]);
                         //tmp[0] : 대한민국, tmp[1] : 대구광역시
-                        address1 = tmp[1];
+                        //address1 = tmp[1];
                         //tmp[2] : XX구, tmp[3~] : 상세주소
                         address2 = tmp[2];
 

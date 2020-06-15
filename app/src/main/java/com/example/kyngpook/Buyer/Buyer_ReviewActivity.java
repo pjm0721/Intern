@@ -67,7 +67,7 @@ public class Buyer_ReviewActivity extends AppCompatActivity {
                             .load(task.getResult())
                             .into(imageView);
                 } else {
-                    Log.d("Buyer_MarketList_Adapter", "Glide Error");
+                    //Log.d("Buyer_MarketList_Adapter", "Glide Error");
                 }
             }
         });
@@ -106,7 +106,7 @@ public class Buyer_ReviewActivity extends AppCompatActivity {
                             }
                         }
                         else {
-                            Log.w("Buyer_MarketListActiviry", "Error getting documents.", task.getException());
+                            //Log.w("Buyer_MarketListActiviry", "Error getting documents.", task.getException());
                         }
                     }
                 });
