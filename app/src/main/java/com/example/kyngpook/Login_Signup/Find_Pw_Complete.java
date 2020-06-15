@@ -16,8 +16,8 @@ import static maes.tech.intentanim.CustomIntent.customType;
 public class Find_Pw_Complete extends AppCompatActivity {
 
     private String PW;
-    TextView pfidText;
-    Button pfidButton;
+    private TextView pfidText;
+    private Button pfidButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

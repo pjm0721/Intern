@@ -36,7 +36,7 @@ public class SignupDeliverActivity extends AppCompatActivity {
     private EditText editText3;
     private EditText editText4;
     private String ufid;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private int state = 1;
     Map<String, Object> deliver = new HashMap<>();
     @Override
