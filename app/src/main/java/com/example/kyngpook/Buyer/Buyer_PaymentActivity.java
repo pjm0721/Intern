@@ -100,7 +100,7 @@ public class Buyer_PaymentActivity extends AppCompatActivity {
         textView.setText(formatter.format(total) + " 원");
 
         //결제 방식
-        String[] items = new String[]{"만나서 결제","카드 결제", "현금 결제", "카카오페이", "네이버 페이", "휴대폰 결제", "삼성 페이"};
+        String[] items = new String[]{"만나서 카드 결제", "만나서 현금 결제","카드 결제", "카카오페이", "네이버 페이", "휴대폰 결제", "삼성 페이"};
         final ArrayAdapter<String> adapter1111 = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, items);
         final Spinner spinner = (Spinner) findViewById(R.id.Buyer_PaymentActivity_Spinner);
         spinner.setAdapter(adapter1111);
