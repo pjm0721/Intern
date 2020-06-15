@@ -49,7 +49,6 @@ import java.util.List;
 import java.util.Map;
 
 
-
 public class Deliver_MainActivity extends AppCompatActivity {
     // ListView variables
     private ListView deliver_mainactivity_boardlistview;
@@ -71,19 +70,21 @@ public class Deliver_MainActivity extends AppCompatActivity {
     private Boolean deliver_process_check = true;
     private long backKeyPressedTime = 0;
     private String seller_phone_number = "";
+    private LoginSharedPreferenceUtil util12 = null;
 
     @Override
     protected void onResume() {
         // activity가 다시 시작할 때 구현부.
         // 검색내용을 그대로 두고 배달완료한 것만 삭제 후 다시 리스트뷰 생성.
         super.onResume();
-        deliver_mainactivity_get_data(deliver_mainactivity_searchview.getText().toString());
+        // deliver_mainactivity_get_data(deliver_mainactivity_searchview.getText().toString());
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.deliver_activity_main);
+        util12 = new LoginSharedPreferenceUtil(this);
         deliver_mainactivity_searchview = (EditText) findViewById(R.id.deliver_activity_main_searchview);
         deliver_mainactivity_progressbar = (ProgressBar) findViewById(R.id.deliver_activity_main_progressbar);
         deliver_mainactivity_boardlistview = (ListView) findViewById(R.id.deliver_activity_main_listview);
@@ -144,21 +145,26 @@ public class Deliver_MainActivity extends AppCompatActivity {
                                     @Override
                                     public Void apply(@NonNull Transaction transaction) throws FirebaseFirestoreException {
                                         // 한번더 배달중임을 확인해준다.
-                                        DocumentSnapshot snapshot = transaction.get(deliver_mainactivity_boardlist.get(position).getDMI_Document_Reference());
 
-                                        if (snapshot.getBoolean("배달현황")) {
+                                        /*
+                                        DocumentSnapshot snapshot = transaction.get(deliver_mainactivity_boardlist.get(position).getDMI_Document_Reference());
+                                        String temp_deliver_id = snapshot.get("배달담당자아이디").toString();
+
+                                        if (!temp_deliver_id.equals("")) {
                                             Toast.makeText(getApplicationContext(), "이미 배달이 진행중입니다..", Toast.LENGTH_LONG).show();
                                             deliver_process_check = false;
                                             return null;
                                         }
 
-                                        transaction.update(deliver_mainactivity_boardlist.get(position).getDMI_Document_Reference(), "배달현황", true);
+                                         */
+
+                                        transaction.update(deliver_mainactivity_boardlist.get(position).getDMI_Document_Reference(), "배달자담당아이디", util12.getStringData("ID", "default"));
                                         return null;
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(getApplicationContext(), "오류가 발생했습니다.. 다시 시도해주세요..", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), "오류가 발생했습니다.. 다시 시도해주세요.." + e, Toast.LENGTH_LONG).show();
                                     }
                                 });
 
@@ -173,13 +179,15 @@ public class Deliver_MainActivity extends AppCompatActivity {
                                     intent.putExtra("BUYER_ADDRESS", deliver_mainactivity_boardlist.get(position).getDMI_Buyer_Address());
                                     intent.putExtra("PRICE", deliver_mainactivity_boardlist.get(position).getDMI_Price());
                                     intent.putExtra("ORDER_TIME", deliver_mainactivity_boardlist.get(position).getDMI_Order_Time());
+                                    intent.putExtra("DELIVER_ID", util12.getStringData("ID", "default"));
+                                    intent.putExtra("DOCUMENT_NAME", deliver_mainactivity_boardlist.get(position).getDMI_document());
 
                                     // null일 때 전화번호가 없는 데 메시지 보내면 오류발생하니까 null이 아닐때만 처리.
                                     if (seller_phone_number != "") {
                                         /* SMS 문자메시지 내용 변수 */
                                         String contents = deliver_mainactivity_boardlist.get(position).getDMI_Buyer_Address();
                                         contents += "로 주문을 배달 배정받았습니다! 해당 가게로 이동 중입니다!";
-                                        send_sms("01062817950", contents);
+                                        // send_sms("01062817950", contents);
 
                                         /* 이거 주석 절대 풀지마세요.. 데이터베이스에 053112도 있던데 그리로 문자갑니다..
                                         위에 send_sms("01062817950", contents); 코드 없애고 아래 코드를 추가하면 정상 작동.
@@ -232,6 +240,7 @@ public class Deliver_MainActivity extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
                         if (task.isSuccessful()) {
                             deliver_mainactivity_boardlist.clear();
                             int deliver_count = 0;
@@ -248,23 +257,47 @@ public class Deliver_MainActivity extends AppCompatActivity {
                                 String dm_document_order_time = document.getData().get("주문시간").toString();
                                 Map dm_document_order_info = (Map) document.getData().get("주문내역");
                                 boolean dm_document_deliver_status = Boolean.parseBoolean(document.getData().get("배달현황").toString());
+                                String dm_document_deliver_id = document.getData().get("배달자담당아이디").toString();
+                                String dm_document_document_name = document.getData().get("문서이름").toString();
 
+                                // 담당자가 없고, 배달상태가 false 인 것
                                 if (!dm_document_deliver_status) {
-                                    if (text.length() == 0) {
-                                        deliver_count++;
-                                        deliver_mainactivity_boardlist.add(new Deliver_Main_Item(
-                                                dm_document_ref, dm_documnet_buyer_id, dm_document_buyer_address, dm_document_buyer_name,
-                                                dm_document_price, dm_document_review, dm_document_seller_name, dm_document_seller_id,
-                                                dm_document_seller_address, dm_document_order_time, dm_document_order_info
-                                        ));
-                                    } else {
-                                        if (dm_document_seller_address.toLowerCase().contains(text) || dm_document_seller_name.toLowerCase().contains(text)) {
+                                    if (dm_document_deliver_id == "") {
+                                        if (text.length() == 0) {
                                             deliver_count++;
                                             deliver_mainactivity_boardlist.add(new Deliver_Main_Item(
                                                     dm_document_ref, dm_documnet_buyer_id, dm_document_buyer_address, dm_document_buyer_name,
                                                     dm_document_price, dm_document_review, dm_document_seller_name, dm_document_seller_id,
-                                                    dm_document_seller_address, dm_document_order_time, dm_document_order_info
+                                                    dm_document_seller_address, dm_document_order_time, dm_document_order_info,
+                                                    dm_document_deliver_id, dm_document_document_name
                                             ));
+                                        } else {
+                                            if (dm_document_seller_address.toLowerCase().contains(text) || dm_document_seller_name.toLowerCase().contains(text)) {
+                                                deliver_count++;
+                                                deliver_mainactivity_boardlist.add(new Deliver_Main_Item(
+                                                        dm_document_ref, dm_documnet_buyer_id, dm_document_buyer_address, dm_document_buyer_name,
+                                                        dm_document_price, dm_document_review, dm_document_seller_name, dm_document_seller_id,
+                                                        dm_document_seller_address, dm_document_order_time, dm_document_order_info,
+                                                        dm_document_deliver_id, dm_document_document_name
+                                                ));
+                                            }
+                                        }
+                                    } else {
+                                        if (dm_document_deliver_id.equals(util12.getStringData("ID", ""))) {
+                                            Toast.makeText(getApplicationContext(), "아직 완료하지 않은 배달이 있습니다.", Toast.LENGTH_LONG).show();
+                                            Intent intent = new Intent(Deliver_MainActivity.this, Deliver_Item_Information.class);
+                                            intent.putExtra("SELLER_NAME", dm_document_seller_name);
+                                            intent.putExtra("SELLER_ID", dm_document_seller_id);
+                                            intent.putExtra("SELLER_ADDRESS", dm_document_seller_address);
+                                            intent.putExtra("BUYER_NAME", dm_document_buyer_name);
+                                            intent.putExtra("BUYER_ID", dm_documnet_buyer_id);
+                                            intent.putExtra("BUYER_ADDRESS", dm_document_buyer_address);
+                                            intent.putExtra("PRICE", dm_document_price);
+                                            intent.putExtra("ORDER_TIME", dm_document_order_time);
+                                            intent.putExtra("DELIVER_ID", dm_document_deliver_id);
+                                            intent.putExtra("DOCUMENT_NAME", dm_document_document_name);
+                                            startActivityForResult(intent, DELIVER_REQUEST);
+                                            break;
                                         }
                                     }
                                 }
@@ -310,13 +343,13 @@ public class Deliver_MainActivity extends AppCompatActivity {
             return;
         }
         if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
-            LoginSharedPreferenceUtil util11 =  new LoginSharedPreferenceUtil(this);
+            LoginSharedPreferenceUtil util11 = new LoginSharedPreferenceUtil(this);
             Boolean goToLogin = util11.getBooleanData("AutoLogin", false);
 
             util11.setBooleanData("AutoLogin", false);
             util11.setStringData("ID", "");
             util11.setStringData("권한", "null");
-            if(goToLogin) {
+            if (goToLogin) {
                 startActivity(new Intent(Deliver_MainActivity.this, LogInActivity.class));
             }
             finish();

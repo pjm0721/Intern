@@ -3,7 +3,21 @@ package com.example.kyngpook.Deliver;
 import com.example.kyngpook.Login_Signup.LogInActivity;
 import com.example.kyngpook.Login_Signup.StartActivity;
 import com.example.kyngpook.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.Transaction;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +32,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import static maes.tech.intentanim.CustomIntent.customType;
 
@@ -29,6 +44,8 @@ public class Deliver_Item_Information extends AppCompatActivity {
     private ImageView bike;
     private Animation anim;
     private final int RESULT_ACCEPT = 1001;
+    private FirebaseFirestore db;
+    private String temp_document_name = "";
 
     @Override
     public void onBackPressed() {
@@ -39,8 +56,12 @@ public class Deliver_Item_Information extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deliver_item_information);
-        bike=(ImageView)findViewById(R.id.Deliver_item_bike);
-        anim= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.anim_bike_2);
+
+        db = FirebaseFirestore.getInstance();
+        temp_document_name = getIntent().getExtras().getString("DOCUMENT_NAME", "");
+
+        bike = (ImageView) findViewById(R.id.Deliver_item_bike);
+        anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.anim_bike_2);
         anim.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -54,6 +75,7 @@ public class Deliver_Item_Information extends AppCompatActivity {
             public void onAnimationRepeat(Animation animation) {
             }
         });
+
         bike.startAnimation(anim);
         deliver_item_information_arraylist = new ArrayList<String>();
         deliver_item_information_arraylist.add("주문자 이름 : " + getIntent().getExtras().getString("SELLER_NAME"));
@@ -70,9 +92,12 @@ public class Deliver_Item_Information extends AppCompatActivity {
         deliver_item_information_complete_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DocumentReference dr = db.collection("주문내역").document(temp_document_name);
+                dr.update("배달현황", true);
                 setResult(RESULT_ACCEPT, new Intent());
                 finish();
             }
         });
+
     }
 }
