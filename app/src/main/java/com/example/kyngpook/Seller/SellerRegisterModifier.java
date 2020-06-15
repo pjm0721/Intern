@@ -121,12 +121,30 @@ public class SellerRegisterModifier extends AppCompatActivity {
         adapter=new SellerRMListAdapter(this);
         recyclerView.setAdapter(adapter);
 
+        seller_business_area=findViewById(R.id.seller_business_area);
+        seller_business_city=findViewById(R.id.seller_business_city);
+
 
         SharedPreferences pref = getSharedPreferences("seller", MODE_PRIVATE);
 
         final String seller_ID = pref.getString("id","");
 
         db= FirebaseFirestore.getInstance();
+
+        //시티 온셀렉트
+
+        seller_business_city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                si=parent.getItemAtPosition(position).toString();
+                next_spinner();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
         // 카테고리 스피너
@@ -320,6 +338,8 @@ public class SellerRegisterModifier extends AppCompatActivity {
             }
         });
 
+
+
     }
 
     // 아이템 추가 결과 받기
@@ -382,8 +402,6 @@ public class SellerRegisterModifier extends AppCompatActivity {
 
         // 주소 스피너
         CollectionReference jiyeok=db.collection("지역");
-        seller_business_area=findViewById(R.id.seller_business_area);
-        seller_business_city=findViewById(R.id.seller_business_city);
 
         int c=0;
         for(int i=0;i<area.length();i++)
@@ -406,7 +424,7 @@ public class SellerRegisterModifier extends AppCompatActivity {
             }
         }
 
-
+        seller_business_address.setText(sang);
 
         jiyeok
                 .get()
