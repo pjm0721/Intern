@@ -3,6 +3,7 @@ package com.example.kyngpook.Login_Signup;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -95,6 +96,7 @@ public class SignupBuyerActivity extends AppCompatActivity {
                     user.put("전화번호", editText5.getText().toString());
                     db.collection("USERS").document("Buyer").collection("Buyer").document(editText1.getText().toString()).set(user);
                     Toast.makeText(getApplicationContext(), "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                    ActivityCompat.finishAffinity(SignupBuyerActivity.this);
                     Intent intent = new Intent(getApplicationContext(),SignupFinishActivity.class);
                     intent.putExtra("ID",editText1.getText().toString());
                     startActivity(intent);

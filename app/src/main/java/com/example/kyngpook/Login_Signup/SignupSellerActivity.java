@@ -3,6 +3,7 @@ package com.example.kyngpook.Login_Signup;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -129,6 +130,7 @@ public class SignupSellerActivity extends AppCompatActivity {
                 user.put("권한",0);
                 user.put("리뷰고유값",0);
                 db.collection("USERS").document("Seller").collection("Seller").document(ID).set(user);
+                ActivityCompat.finishAffinity(SignupSellerActivity.this);
                 Intent intent=new Intent(getApplicationContext(),SignupFinishActivity.class);
                 intent.putExtra("ID",ID);
                 customType(SignupSellerActivity.this, "left-to-right");
