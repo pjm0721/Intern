@@ -109,31 +109,44 @@
             android:background="@android:color/transparent"
             android:text="" />
     </LinearLayout>
-
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="270dp"
+    android:layout_marginBottom="10dp">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/Buyer_Shopping_productRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="285dp"
+        android:layout_height="270dp"
         android:layout_marginVertical="10dp" />
+</androidx.cardview.widget.CardView>
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="190dp">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/Buyer_Shopping_basketRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="190dp"
         android:layout_marginBottom="10dp" />
-
+    </androidx.cardview.widget.CardView>
     <TextView
         android:id="@+id/Buyer_Shopping_totalPriceText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="right"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
         android:text="총 상품금액 : 0원"
         android:textSize="17dp" />
 
     <Button
         android:id="@+id/Buyer_Shopping_Btn"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_width="370dp"
+        android:background="@drawable/login_focus_btn_selector"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:textColor="#fff"
         android:text="결  제  하  기"
         android:textSize="20dp" />
 </LinearLayout>

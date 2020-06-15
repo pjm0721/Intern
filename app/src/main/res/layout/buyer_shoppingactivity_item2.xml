@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:background="@drawable/border_below">
 
     <TextView
         android:id="@+id/Buyer_Shopping_item2_nameText"
