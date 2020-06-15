@@ -78,12 +78,21 @@ public class SellerRegisterModifier extends AppCompatActivity {
     Button seller_del_thing;
     Button seller_complete;
 
+
+    Spinner seller_business_area;
+    Spinner seller_business_city;
+
     Spinner seller_business_category;
 
     String category;
 
     FirebaseStorage storage;
     StorageReference storageRef;
+
+    String area="";
+    String si="";
+    String gu="";
+    String sang="";
 
     @Override
     protected void onResume() {
@@ -112,6 +121,9 @@ public class SellerRegisterModifier extends AppCompatActivity {
         adapter=new SellerRMListAdapter(this);
         recyclerView.setAdapter(adapter);
 
+        seller_business_area=findViewById(R.id.seller_business_area);
+        seller_business_city=findViewById(R.id.seller_business_city);
+
 
         SharedPreferences pref = getSharedPreferences("seller", MODE_PRIVATE);
 
@@ -119,37 +131,23 @@ public class SellerRegisterModifier extends AppCompatActivity {
 
         db= FirebaseFirestore.getInstance();
 
-        // 메뉴 리스트뷰 불러오기
+        //시티 온셀렉트
 
-        final CollectionReference things =db.collection("PRODUCT").document("대구광역시").collection("남구").document(seller_ID).collection("판매상품");
+        seller_business_city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                si=parent.getItemAtPosition(position).toString();
+                next_spinner();
+            }
 
-        things
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful())
-                        {
-                            for(QueryDocumentSnapshot doc :task.getResult()) {
-                                String price = (String) doc.getData().get("가격");
-                                //DecimalFormat formatter = new DecimalFormat("###,###");
-                                // String formattedPrice = formatter.format(Integer.valueOf(price)) + " 원";
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
-
-                                SellerRMListData d = new SellerRMListData((String) doc.getData().get("상품이름"), (String) doc.getData().get("개수"), price);
-                                adapter.addItem(d);
-                                adapter.notifyDataSetChanged();
-                            }
-
-                        }
-                        else
-                            Log.w("sellerRM","error",task.getException());
-
-                    }
-                });
+            }
+        });
 
 
-        // 스피너
+        // 카테고리 스피너
 
         seller_business_category=findViewById(R.id.seller_business_category);
 
@@ -158,9 +156,6 @@ public class SellerRegisterModifier extends AppCompatActivity {
         ArrayAdapter<String> sp_adapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
 
         seller_business_category.setAdapter(sp_adapter);
-
-
-        final DocumentReference docRef=db.collection("USERS").document("Seller").collection("Seller").document(seller_ID);
 
 
 
@@ -191,8 +186,7 @@ public class SellerRegisterModifier extends AppCompatActivity {
             }
         });
 
-
-
+        final DocumentReference docRef=db.collection("USERS").document("Seller").collection("Seller").document(seller_ID);
 
         // 데이터 베이스에 저장된 정보 불러오기
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -205,7 +199,7 @@ public class SellerRegisterModifier extends AppCompatActivity {
                     Log.d("SellerRegisterModifier", "DocumentSnapshot data: " + document.getData());
                     seller_business_name.setText(document.getData().get("업소명").toString());
                     seller_business_master.setText(document.getData().get("대표자명").toString());
-                    seller_business_address.setText(document.getData().get("주소").toString());
+                    area=document.getData().get("주소").toString();
                     seller_business_time.setText(document.getData().get("영업시간").toString());
                     seller_business_contact_number.setText(document.getData().get("전화번호").toString());
 
@@ -220,8 +214,41 @@ public class SellerRegisterModifier extends AppCompatActivity {
                 } else {
                     Log.d("SellerRegisterModifier", "get failed with ", task.getException());
                 }
+
+                address_spinner();
             }
         });
+
+
+        // 메뉴 리스트뷰 불러오기
+
+        final CollectionReference things =db.collection("PRODUCT").document("대구광역시").collection("남구").document(seller_ID).collection("판매상품");
+
+        things
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful())
+                        {
+                            for(QueryDocumentSnapshot doc :task.getResult()) {
+                                String price = (String) doc.getData().get("가격");
+                                //DecimalFormat formatter = new DecimalFormat("###,###");
+                                // String formattedPrice = formatter.format(Integer.valueOf(price)) + " 원";
+
+
+                                SellerRMListData d = new SellerRMListData((String) doc.getData().get("상품이름"), (String) doc.getData().get("개수"), price);
+                                adapter.addItem(d);
+                                adapter.notifyDataSetChanged();
+                            }
+
+                        }
+                        else
+                            Log.w("sellerRM","error",task.getException());
+
+                    }
+                });
+
 
         //리스트 아이템 추가 버튼
         seller_add_thing=findViewById(R.id.seller_add_thing);
@@ -277,7 +304,9 @@ public class SellerRegisterModifier extends AppCompatActivity {
                         "업소명",seller_business_name.getText().toString()
                         ,
                         "대표자명",seller_business_master.getText().toString(),
-                        "주소",seller_business_address.getText().toString(),
+                        "주소", seller_business_city.getSelectedItem().toString()+" "
+                                +seller_business_area.getSelectedItem().toString()+" "
+                                +seller_business_address.getText().toString(),
                         "영업시간",seller_business_time.getText().toString(),
                         "전화번호",seller_business_contact_number.getText().toString(),
                         "카테고리",seller_business_category.getSelectedItem().toString(),
@@ -308,6 +337,8 @@ public class SellerRegisterModifier extends AppCompatActivity {
                 finish();
             }
         });
+
+
 
     }
 
@@ -365,5 +396,111 @@ public class SellerRegisterModifier extends AppCompatActivity {
                 Toast.makeText(this,"사진 선택 취소",Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    public void address_spinner(){
+
+        // 주소 스피너
+        CollectionReference jiyeok=db.collection("지역");
+
+        int c=0;
+        for(int i=0;i<area.length();i++)
+        {
+
+            if(c<2 && area.charAt(i)==' ') {
+                c++;
+            }
+            else if(c==0)
+            {
+                si+=area.charAt(i);
+            }
+            else if(c==1)
+            {
+                gu+=area.charAt(i);
+            }
+            else
+            {
+                sang+=area.charAt(i);
+            }
+        }
+
+        seller_business_address.setText(sang);
+
+        jiyeok
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+
+                            String[] si_arr=new String[100];
+                            int a=0;
+                            for(QueryDocumentSnapshot doc : task.getResult())
+                            {
+                                si_arr[a++]=doc.getId();
+                            }
+
+                            String[] arr=new String[a];
+
+                            for(int i=0;i<a;i++)
+                                arr[i]=si_arr[i];
+
+                            ArrayAdapter<String> sp_adapter_city=new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, arr);
+
+                            seller_business_city.setAdapter(sp_adapter_city);
+
+                            for(int i=0;i<a;i++)
+                            {
+                                if(arr[i].equals(si))
+                                    seller_business_city.setSelection(i);
+                            }
+
+
+                        } else {
+                            Log.w("SRM", "Error", task.getException());
+                        }
+                        next_spinner();
+
+                    }
+                });
+
+
+
+
+    }
+
+    public void next_spinner(){
+
+        DocumentReference gugun=db.collection("지역").document(si);
+
+        gugun.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                if(task.isSuccessful()) {
+                    int num = Integer.parseInt(task.getResult().get("개수").toString());
+
+                    String[] arr = new String[num];
+
+                    for (int i = 1; i <= num; i++) {
+                        arr[i - 1] = task.getResult().get("" + i).toString();
+                    }
+
+                    ArrayAdapter<String> sp_adapter_area = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, arr);
+
+                    seller_business_area.setAdapter(sp_adapter_area);
+
+                    for (int i = 0; i < num; i++) {
+                        if (arr[i].equals(gu))
+                            seller_business_area.setSelection(i);
+                    }
+                }
+                else
+                {
+
+                }
+            }
+        });
+
     }
 }
