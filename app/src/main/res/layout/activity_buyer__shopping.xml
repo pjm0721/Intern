@@ -9,6 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -21,132 +22,113 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="업소명입니다."
-                android:textSize="30dp" />
+                android:textColor="#000"
+                android:textSize="19dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/Buyer_Shopping_timeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="영업시간과 휴무일"
-                android:textSize="17dp" />
+                android:text="영업시간 : 영업시간과 휴무일"
+                android:textSize="15dp" />
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/Buyer_Shopping_holidayText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:text="휴무일 : 영업시간과 휴무일"
+                android:textSize="15dp" />
 
-                <TextView
-                    android:id="@+id/Buyer_Shopping_callText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="☎ : 010-1234-1234"
-                    android:textSize="17dp" />
+            <TextView
+                android:id="@+id/Buyer_Shopping_callText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="☎ : 010-1234-1234"
+                android:textSize="15dp" />
 
-                <TextView
-                    android:id="@+id/Buyer_Shopping_PresentativeText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:text="대표자명 : 김철수"
-                    android:textSize="17dp" />
-            </LinearLayout>
+            <TextView
+                android:id="@+id/Buyer_Shopping_PresentativeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="대표자명 : 김철수"
+                android:textSize="15dp" />
         </LinearLayout>
 
         <Button
             android:id="@+id/Buyer_Shopping_ReviewBtn"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_margin="10dp"
-            android:text="리뷰"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/orederlist_review"
             android:textSize="20dp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal">
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1.4"
-            android:layout_height="match_parent"
-            android:layout_marginRight="2dp"
-            android:background="@android:color/transparent"
-            android:text="" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_gravity="left"
             android:layout_weight="3"
-            android:gravity="center"
-            android:text="상품명"
+            android:text="    상품리스트"
             android:textColor="@android:color/black"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="재고"
-            android:textColor="@android:color/black"
-            android:textSize="20dp" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="center"
-            android:text="가격"
-            android:textColor="@android:color/black"
-            android:textSize="20dp" />
-
-        <Button
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:text="" />
     </LinearLayout>
-<androidx.cardview.widget.CardView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/Buyer_Shopping_productRecyclerView"
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="260dp"
-        android:layout_marginVertical="10dp" />
-</androidx.cardview.widget.CardView>
+        android:layout_height="270dp"
+        android:layout_marginBottom="10dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/Buyer_Shopping_productRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/Buyer_Shopping_basketRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:layout_marginBottom="10dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/Buyer_Shopping_basketRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_marginBottom="10dp" />
     </androidx.cardview.widget.CardView>
+
     <TextView
         android:id="@+id/Buyer_Shopping_totalPriceText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="right"
         android:layout_marginTop="10dp"
-        android:textColor="#000"
+        android:gravity="right"
         android:text="총 상품금액 : 0원"
+        android:textColor="#000"
         android:textSize="17dp" />
 
     <Button
         android:id="@+id/Buyer_Shopping_Btn"
         android:layout_width="370dp"
-        android:background="@drawable/login_focus_btn_selector"
         android:layout_height="40dp"
-        android:layout_marginTop="10dp"
         android:layout_gravity="center"
-        android:textColor="#fff"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/login_focus_btn_selector"
         android:text="결  제  하  기"
+        android:textColor="#fff"
         android:textSize="20dp" />
 </LinearLayout>
