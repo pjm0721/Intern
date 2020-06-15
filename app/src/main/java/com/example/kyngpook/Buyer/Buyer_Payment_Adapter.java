@@ -67,7 +67,7 @@ public class Buyer_Payment_Adapter extends RecyclerView.Adapter<Buyer_Payment_Ad
         //처리하면 댐.
         void onBind(ITEM data) {
             nameText.setText(data.name);
-            numberText.setText(String.valueOf(data.nownum));
+            numberText.setText(String.valueOf(data.nownum)+" 개");
             DecimalFormat formatter = new DecimalFormat("###,###");
             int tot = Integer.valueOf(data.price) * data.nownum;
             priceText.setText(formatter.format(tot) + " 원");
