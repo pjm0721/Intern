@@ -35,6 +35,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -71,6 +72,8 @@ public class Deliver_MainActivity extends AppCompatActivity {
     private long backKeyPressedTime = 0;
     private String seller_phone_number = "";
     private LoginSharedPreferenceUtil util12 = null;
+
+    private Map prev_value = null;
 
     @Override
     protected void onResume() {
@@ -131,6 +134,10 @@ public class Deliver_MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 // 판매자의 ID를 통해서 전화번호를 얻어옴.
                 deliver_mainactivity_get_seller_phone(deliver_mainactivity_boardlist.get(position).getDMI_Seller_Id());
+                final String[] address_temp_array = deliver_mainactivity_boardlist.get(position).getDMI_Seller_Address().split(" ");
+                final String temp_document_name = deliver_mainactivity_boardlist.get(position).getDMI_document();
+                final String temp_seller_id = deliver_mainactivity_boardlist.get(position).getDMI_Seller_Id();
+                deliver_mainactivity_get_seller_item(address_temp_array[0], address_temp_array[1], temp_seller_id);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(Deliver_MainActivity.this);
                 builder.setTitle("배달을 수락하시겠습니까?")
@@ -140,36 +147,38 @@ public class Deliver_MainActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 deliver_process_check = true;
-                                db.runTransaction(new Transaction.Function<Void>() {
-                                    @Nullable
-                                    @Override
-                                    public Void apply(@NonNull Transaction transaction) throws FirebaseFirestoreException {
-                                        // 한번더 배달중임을 확인해준다.
 
-                                        /*
-                                        DocumentSnapshot snapshot = transaction.get(deliver_mainactivity_boardlist.get(position).getDMI_Document_Reference());
-                                        String temp_deliver_id = snapshot.get("배달담당자아이디").toString();
+                                try {
+                                    DocumentReference dr1 = db.collection("주문내역").document(temp_document_name);
+                                    dr1.update("배달자담당아이디", util12.getStringData("ID", "default"));
 
-                                        if (!temp_deliver_id.equals("")) {
-                                            Toast.makeText(getApplicationContext(), "이미 배달이 진행중입니다..", Toast.LENGTH_LONG).show();
-                                            deliver_process_check = false;
-                                            return null;
+                                    CollectionReference cr1 = db.collection("PRODUCT")
+                                            .document(address_temp_array[0])
+                                            .collection(address_temp_array[1])
+                                            .document(temp_seller_id)
+                                            .collection("판매상품");
+
+                                    Map temp_order_info = deliver_mainactivity_boardlist.get(position).getDMI_Order_Info();
+
+                                    for (Object temp_name : temp_order_info.keySet()) {
+                                        String list_name = (String) temp_name;
+                                        try {
+                                            String temp_prev_value = prev_value.get(list_name).toString();
+                                            String temp_prev_diff_value = temp_order_info.get(list_name).toString();
+                                            int new_value = Integer.parseInt(temp_prev_value) - Integer.parseInt(temp_prev_diff_value);
+                                            cr1.document(list_name).update("개수", String.valueOf(new_value));
+                                        } catch (Exception e) {
+                                            Toast.makeText(getApplicationContext(), "개수변경 오류" + e, Toast.LENGTH_LONG).show();
                                         }
-
-                                         */
-
-                                        transaction.update(deliver_mainactivity_boardlist.get(position).getDMI_Document_Reference(), "배달자담당아이디", util12.getStringData("ID", "default"));
-                                        return null;
                                     }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(getApplicationContext(), "오류가 발생했습니다.. 다시 시도해주세요.." + e, Toast.LENGTH_LONG).show();
-                                    }
-                                });
+
+                                } catch (Exception e) {
+                                    Toast.makeText(getApplicationContext(), "오류가 발생했습니다.. 다시시도해주세요" + e, Toast.LENGTH_LONG).show();
+                                }
 
                                 if (deliver_process_check) {
                                     // 배달 상세 화면으로 넘어갈 때 그냥 Intent에 값을 넣어서 넘겨준다.
+
                                     Intent intent = new Intent(Deliver_MainActivity.this, Deliver_Item_Information.class);
                                     intent.putExtra("SELLER_NAME", deliver_mainactivity_boardlist.get(position).getDMI_Seller_Name());
                                     intent.putExtra("SELLER_ID", deliver_mainactivity_boardlist.get(position).getDMI_Seller_Id());
@@ -228,7 +237,6 @@ public class Deliver_MainActivity extends AppCompatActivity {
             }
         }
     }
-
 
 
     private void deliver_mainactivity_get_data(final String text) {
@@ -329,6 +337,24 @@ public class Deliver_MainActivity extends AppCompatActivity {
                                 if (temp_seller_id.equals(seller_id)) {
                                     seller_phone_number += temp_phone_number;
                                 }
+                            }
+                        }
+                    }
+                });
+    }
+
+    private void deliver_mainactivity_get_seller_item(final String si, final String gu, final String seller_id) {
+        prev_value = new HashMap<String, String>();
+        db = FirebaseFirestore.getInstance();
+        db.collection("PRODUCT").document(si).collection(gu).document(seller_id).collection("판매상품").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot doc : task.getResult()) {
+                                String doc_product_name = doc.getData().get("상품이름").toString();
+                                String doc_product_remain = doc.getData().get("개수").toString();
+                                prev_value.put(doc_product_name, doc_product_remain);
                             }
                         }
                     }
