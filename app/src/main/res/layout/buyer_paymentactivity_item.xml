@@ -3,10 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="55dp"
-    android:layout_marginHorizontal="10dp"
-    android:layout_marginVertical="3dp"
-    android:background="@drawable/border_below"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
     android:orientation="horizontal">
 
 
@@ -14,20 +12,17 @@
         android:id="@+id/Buyer_Payment_item_nameText"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_marginBottom="5dp"
         android:layout_weight="2"
-        android:gravity="center"
-        android:text="드라이버드라이버드라"
-        android:textColor="#000"
-        android:textSize="17dp"
-        android:textStyle="bold" />
+        android:gravity="left
+"
+        android:text="드라이버드라이버드라" />
 
     <TextView
         android:id="@+id/Buyer_Payment_item_numText"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:gravity="center"
+        android:gravity="left"
         android:paddingRight="25dp"
         android:text="수량 : 5"
         android:textSize="15dp" />
@@ -37,10 +32,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="center"
-        android:text="5,000 원"
-        android:textColor="#000"
-        android:textSize="17dp" />
+        android:gravity="left"
+        android:text="5,000 원" />
 
 
 

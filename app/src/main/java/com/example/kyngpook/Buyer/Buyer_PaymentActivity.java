@@ -97,7 +97,7 @@ public class Buyer_PaymentActivity extends AppCompatActivity {
             total += list.get(i).nownum * Integer.valueOf(list.get(i).price);
         }
         DecimalFormat formatter = new DecimalFormat("###,###");
-        textView.setText(formatter.format(total) + " 원");
+        textView.setText("총 결제금액 : "+formatter.format(total) + " 원");
 
         //결제 방식
         String[] items = new String[]{"만나서 카드 결제", "만나서 현금 결제","카드 결제", "카카오페이", "네이버 페이", "휴대폰 결제", "삼성 페이"};
