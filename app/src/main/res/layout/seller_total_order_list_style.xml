@@ -2,21 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/seller_order_list_layout"
     android:layout_width="match_parent"
-    android:layout_margin="15dp"
     android:layout_height="wrap_content"
-    android:background="@drawable/test_back"
+    android:background="@drawable/border_below"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
         android:layout_height="wrap_content">
         <TextView
             android:id="@+id/seller_order_list_price"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="#000"
             android:text="금액 : 30000원"/>
 
         <TextView
@@ -24,6 +25,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="#000"
             android:text="주문상태 : 주문 대기"/>
     </LinearLayout>
 
@@ -31,7 +33,9 @@
         android:id="@+id/seller_order_list_address"
         android:layout_width="match_parent"
         android:layout_marginLeft="15dp"
+        android:layout_marginBottom="15dp"
         android:layout_height="wrap_content"
+        android:textColor="#000"
         android:text="구매자 주소 : 대구광역시 북구 대학로 80 첨성관 1233호"/>
 
 </LinearLayout>

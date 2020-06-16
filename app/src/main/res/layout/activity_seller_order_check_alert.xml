@@ -5,68 +5,113 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".SellerOrderCheckAlert">
+    android:padding="15dp">
+    <TextView
+        android:layout_marginBottom="5dp"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_below"
+        android:textStyle="bold"
+        android:text="구매자 정보">
 
+    </TextView>
     <TextView
         android:id="@+id/seller_order_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:padding="5dp"
         android:text="요청지 : 대구 북구 경북대학교 IT 1호관" />
 
     <TextView
         android:id="@+id/seller_order_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:padding="5dp"
         android:text="주문자 : 정현석" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/border_below_thick" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="요청 상품" />
+        android:background="@drawable/border_below"
+        android:padding="5dp"
+        android:textStyle="bold"
+        android:text="주문 내역" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/seller_order_list"
         android:layout_width="match_parent"
         android:layout_height="200dp"
- />
+        android:background="@drawable/border_below"
+        android:layout_marginBottom="5dp"
+        android:padding="5dp" />
 
     <TextView
         android:id="@+id/seller_order_sum"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:layout_marginBottom="5dp"
+        android:padding="5dp"
         android:text="가격 합계 : 30000원" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/border_below_thick" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_below"
+        android:layout_marginBottom="5dp"
+        android:text="주문 정보"
+        android:textStyle="bold"
+        android:padding="5dp"/>
 
     <TextView
         android:id="@+id/seller_order_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:layout_marginBottom="5dp"
+        android:padding="5dp"
         android:text="주문 시간" />
 
     <TextView
         android:id="@+id/seller_order_state"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="5dp"
         android:text="요청 상태 : 배달 요청" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:orientation="horizontal">
-    <Button
-        android:id="@+id/seller_order_accept"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="요청 수락" />
 
-    <Button
-        android:id="@+id/seller_order_deny"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="요청 거부" />
+        <Button
+            android:id="@+id/seller_order_accept"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@drawable/login_focus_btn_selector"
+            android:text="요청 수락"
+            android:textColor="#fff" />
+
+        <Button
+            android:id="@+id/seller_order_deny"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_cancel"
+            android:text="요청 거부" />
 
     </LinearLayout>
 

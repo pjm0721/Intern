@@ -92,8 +92,8 @@ public class SellerOrderCheckAlert extends AppCompatActivity {
                                 seller_order_address.setText("구매자 주소 : "+doc.getData().get("구매자주소").toString());
                                 seller_order_name.setText("구매자 이름 : "+doc.getData().get("구매자이름").toString());
                                 seller_order_time.setText("주문 시간 : "+doc.getData().get("주문시간").toString());
-                                seller_order_sum.setText("총 금액 : "+doc.getData().get("금액").toString());
-                                seller_order_state.setText("주문상태 : "+doc.getData().get("주문상태").toString());
+                                seller_order_sum.setText("총 금액 : "+doc.getData().get("금액").toString()+" 원");
+                                seller_order_state.setText("주문 상태 : "+doc.getData().get("주문상태").toString());
                                 order_state=doc.getData().get("주문상태").toString();
                                 doc_name=doc.getData().get("문서이름").toString();
                                 buyer_id=doc.getData().get("구매자아이디").toString();
