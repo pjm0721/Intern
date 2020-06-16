@@ -17,8 +17,7 @@ import android.widget.Toast;
 //판매자 로그인 시 처음 보이는 액티비티로, 1)내 게시글 작성 및 수정 2)내 가게 주문 내역 관리하기 두가지 버튼을 가진다
 public class SellerMainActivity extends AppCompatActivity {
 
-
-    static String seller_ID;
+    private static String seller_ID;
     private long backKeyPressedTime = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
