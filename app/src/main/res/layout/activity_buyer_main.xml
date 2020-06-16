@@ -18,13 +18,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/border"
+        android:background="@drawable/border_top"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/Buyer_MainActivity_ModifyImageView"
-            android:layout_width="77dp"
-            android:layout_height="50dp"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp"
             android:src="@drawable/buyer_modify_btn2"
@@ -35,8 +35,8 @@
 
         <ImageView
             android:id="@+id/Buyer_MainActivity_HistoryImageView"
-            android:layout_width="77dp"
-            android:layout_height="50dp"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
             android:layout_marginBottom="2dp"
             android:layout_marginTop="2dp"
             android:src="@drawable/buyer_history_btn2"
@@ -47,8 +47,8 @@
 
         <ImageView
             android:id="@+id/Buyer_MainActivity_OrderImageView"
-            android:layout_width="77dp"
-            android:layout_height="50dp"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
             android:layout_marginBottom="2dp"
             android:layout_marginTop="2dp"
             android:src="@drawable/buyer_order_btn"
