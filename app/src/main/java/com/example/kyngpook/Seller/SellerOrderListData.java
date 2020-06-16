@@ -7,10 +7,12 @@ public class SellerOrderListData {
     String price;
     String state;
     String address;
+    String order_time;
 
-    public SellerOrderListData(String price,String state,String address){
+    public SellerOrderListData(String price,String state,String address,String order_time){
         this.address=address;
         this.state=state;
         this.price=price;
+        this.order_time=order_time;
     }
 }

@@ -45,7 +45,7 @@ public class SellerOrderListAdapter extends RecyclerView.Adapter<SellerOrderList
             public void onClick(View view) {
                 Intent intent=new Intent(view.getContext(),SellerOrderCheckAlert.class);
 
-                intent.putExtra("구매자주소",listData.get(position).address);
+                intent.putExtra("문서이름",listData.get(position).order_time);
                 view.getContext().startActivity(intent);
             }
         });
@@ -67,14 +67,13 @@ public class SellerOrderListAdapter extends RecyclerView.Adapter<SellerOrderList
         private TextView seller_order_list_price;
         private TextView seller_order_list_state;
         private TextView seller_order_list_address;
-        private LinearLayout seller_order_list_layout;
+
         //ID다 찾아주고
         ItemViewHolder(View itemView) {
             super(itemView);
             seller_order_list_price = itemView.findViewById(R.id.seller_order_list_price);
             seller_order_list_state = itemView.findViewById(R.id.seller_order_list_state);
             seller_order_list_address = itemView.findViewById(R.id.seller_order_list_address);
-            seller_order_list_layout=itemView.findViewById(R.id.seller_order_list_layout);
 
         }
         //처리하면 댐.

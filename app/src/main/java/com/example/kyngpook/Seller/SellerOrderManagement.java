@@ -69,7 +69,8 @@ public class SellerOrderManagement extends AppCompatActivity {
                         {
                             if(doc.getData().get("판매자아이디").toString().equals(seller_ID))
                             {
-                                adapter.addItem(new SellerOrderListData(doc.getData().get("금액").toString(),doc.getData().get("주문상태").toString(),doc.getData().get("구매자주소").toString()));
+                                adapter.addItem(new SellerOrderListData(doc.getData().get("금액").toString(),doc.getData().get("주문상태").toString()
+                                        ,doc.getData().get("구매자주소").toString(),doc.getData().get("문서이름").toString()));
                                 adapter.notifyDataSetChanged();
                             }
                         }

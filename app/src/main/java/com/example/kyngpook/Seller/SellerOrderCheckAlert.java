@@ -87,7 +87,7 @@ public class SellerOrderCheckAlert extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         for(QueryDocumentSnapshot doc :task.getResult())
                         {
-                            if(doc.getData().get("판매자아이디").toString().equals(seller_ID) && doc.getData().get("구매자주소").toString().equals(intent.getStringExtra("구매자주소")))
+                            if(doc.getData().get("판매자아이디").toString().equals(seller_ID) && doc.getData().get("문서이름").toString().equals(intent.getStringExtra("문서이름")))
                             {
                                 seller_order_address.setText("구매자 주소 : "+doc.getData().get("구매자주소").toString());
                                 seller_order_name.setText("구매자 이름 : "+doc.getData().get("구매자이름").toString());
