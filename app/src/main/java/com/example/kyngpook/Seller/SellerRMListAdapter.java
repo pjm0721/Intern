@@ -69,9 +69,11 @@ public class SellerRMListAdapter extends RecyclerView.Adapter<SellerRMListAdapte
 
         SharedPreferences pref = context.getSharedPreferences("seller", MODE_PRIVATE);
         String seller_ID = pref.getString("id","");
+        int a=0;
         for(int i=listData.size()-1;i>=0;i--)
         {
             if(listData.get(i).check) {
+                a++;
 
                 storage = FirebaseStorage.getInstance();
                 storageRef = storage.getReferenceFromUrl("gs://internproject-2e699.appspot.com/seller/" + seller_ID + "/" + listData.get(i).name + ".jpg");
@@ -81,7 +83,9 @@ public class SellerRMListAdapter extends RecyclerView.Adapter<SellerRMListAdapte
 
             }
         }
-        Toast.makeText(context, "삭제되었습니다.", Toast.LENGTH_SHORT).show();
+        if(a==0)
+            Toast.makeText(context, "물품을 선택해주세요.", Toast.LENGTH_SHORT).show();
+        else Toast.makeText(context, "삭제되었습니다.", Toast.LENGTH_SHORT).show();
 
         notifyDataSetChanged();
     }
@@ -106,7 +110,7 @@ public class SellerRMListAdapter extends RecyclerView.Adapter<SellerRMListAdapte
         //처리하면 댐.
         void onBind(final SellerRMListData data) {
             seller_modify_list_name.setText(" 물건 이름 : "+data.name);
-            seller_modify_list_num.setText(" 개수 : "+data.num+" 개");
+            seller_modify_list_num.setText(" 재고 : "+data.num+" 개");
             seller_modify_list_price.setText(" 가격 : "+data.price+" 원");
 
             SharedPreferences pref = context.getSharedPreferences("seller", MODE_PRIVATE);

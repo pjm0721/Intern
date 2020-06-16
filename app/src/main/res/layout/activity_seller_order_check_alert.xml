@@ -111,7 +111,7 @@
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:background="@drawable/btn_cancel"
-            android:text="요청 거부" />
+            android:text="요청 거부/ 삭제" />
 
     </LinearLayout>
 
