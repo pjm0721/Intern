@@ -2,12 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.kyngpook">
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/conono"
@@ -16,32 +18,33 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:label">
-        <activity android:name=".Buyer.Buyer_PayCompleteActivity" ></activity>
+        <activity android:name=".Buyer.Buyer_PayCompleteActivity"></activity>
         <activity android:name=".Buyer.Buyer_PaymentActivity" />
         <activity android:name=".Buyer.Buyer_ReviewActivity" />
         <activity android:name=".Buyer.Buyer_ShoppingActivity" />
         <activity android:name=".Buyer.Buyer_AddressRegistActivity" />
         <activity android:name=".Buyer.Buyer_MainActivity" />
-        <activity android:name=".Seller.SellerPlusItem"
-            android:theme="@style/Theme.AppCompat.DayNight.Dialog.Alert" />
+        <activity
+            android:name=".Seller.SellerPlusItem"
+            android:theme="@style/MyAlertDialogStyle_seller" />
         <activity
             android:name=".Seller.SellerOrderCheckAlert"
-            android:theme="@style/Theme.AppCompat.DayNight.Dialog.Alert" />
+            android:theme="@style/MyAlertDialogStyle_seller" />
         <activity android:name=".Seller.SellerOrderManagement" />
         <activity android:name=".Seller.SellerRegisterModifier" />
-        <activity android:name=".Seller.SellerMainActivity"/>
-        <activity android:name=".Deliver.Deliver_Item_Information"/>
-        <activity android:name=".Deliver.Deliver_MainActivity"/>
-        <activity android:name=".Login_Signup.Find_Id_Activity"/>
-        <activity android:name=".Login_Signup.Find_Pw_Activity"/>
-        <activity android:name=".Login_Signup.Find_Id_Complete"/>
-        <activity android:name=".Login_Signup.Find_Pw_Complete"/>
-        <activity android:name=".Login_Signup.SignupDeliverActivity"/>
+        <activity android:name=".Seller.SellerMainActivity" />
+        <activity android:name=".Deliver.Deliver_Item_Information" />
+        <activity android:name=".Deliver.Deliver_MainActivity" />
+        <activity android:name=".Login_Signup.Find_Id_Activity" />
+        <activity android:name=".Login_Signup.Find_Pw_Activity" />
+        <activity android:name=".Login_Signup.Find_Id_Complete" />
+        <activity android:name=".Login_Signup.Find_Pw_Complete" />
+        <activity android:name=".Login_Signup.SignupDeliverActivity" />
         <activity android:name=".Login_Signup.SignupFinishActivity" />
         <activity android:name=".Login_Signup.SignupSellerActivity" />
         <activity android:name=".Login_Signup.SignupBuyerActivity" />
         <activity android:name=".Login_Signup.SignupStartActivity" />
-        <activity android:name=".Login_Signup.LogInActivity"/>
+        <activity android:name=".Login_Signup.LogInActivity" />
         <activity android:name=".Login_Signup.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
