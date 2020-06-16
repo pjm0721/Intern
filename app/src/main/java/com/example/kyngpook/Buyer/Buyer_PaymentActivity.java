@@ -155,7 +155,7 @@ public class Buyer_PaymentActivity extends AppCompatActivity {
                             order.put("금액", finalTotal);
                             order.put("리뷰여부", false);
                             order.put("업소명", storeName);
-                            order.put("주문상태", "주문완료");
+                            order.put("주문상태", "주문대기");
                             order.put("구매자이름", realName);
                             SimpleDateFormat format2 = new SimpleDateFormat ( "yyyy년 MM월dd일 HH:mm:ss");
                             Date time = new Date();
