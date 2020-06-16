@@ -104,7 +104,7 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
         String[] preAddressArr = preAddress.split("\n");
         String[] preAddressArr2 = preAddressArr[0].split(" ");
 
-        if(preAddressArr2.length>=1 &&  (preAddressArr2[1].equals("남구") || preAddressArr2[1].equals("달서구") || preAddressArr2[1].equals("동구")
+        if(preAddressArr2.length > 1 &&  (preAddressArr2[1].equals("남구") || preAddressArr2[1].equals("달서구") || preAddressArr2[1].equals("동구")
                 || preAddressArr2[1].equals("중구") || preAddressArr2[1].equals("서구") || preAddressArr2[1].equals("수성구")
                 || preAddressArr2[1].equals("북구"))) {
             Log.d("NONONO123", "true");
@@ -151,12 +151,10 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
                         //tmp[0] : 대한민국, tmp[1] : 대구광역시
                         //address1 = tmp[1];
                         //tmp[2] : XX구, tmp[3~] : 상세주소
-                        address2 = tmp[2];
-
                         if(provinceMap.get(tmp[2]) != null)
-                            selectPrivince(provinceMap.get(tmp[2]));
+                            address2 = selectPrivince(provinceMap.get(tmp[2]));
                         else
-                            selectPrivince(-1);
+                            address2 = selectPrivince(-1);
 
                         String tt = "";
                         for(int i = 3; i < tmp.length; i++) {

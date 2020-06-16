@@ -14,6 +14,7 @@ import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -117,13 +118,18 @@ public class Buyer_ShoppingActivity extends AppCompatActivity {
         findViewById(R.id.Buyer_Shopping_Btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Buyer_PaymentActivity.class);
-                ArrayList<ITEM> list = adapter2.getListData();
-                intent.putExtra("장바구니", list);
-                intent.putExtra("판매자주소", StoreAddress);
-                intent.putExtra("업소명", storename);
-                intent.putExtra("판매자아이디", ID);
-                startActivity(intent);
+                int listCount = adapter2.getItemCount();
+                if(listCount > 0) {
+                    Intent intent = new Intent(getApplicationContext(), Buyer_PaymentActivity.class);
+                    ArrayList<ITEM> list = adapter2.getListData();
+                    intent.putExtra("장바구니", list);
+                    intent.putExtra("판매자주소", StoreAddress);
+                    intent.putExtra("업소명", storename);
+                    intent.putExtra("판매자아이디", ID);
+                    startActivity(intent);
+                }
+                else
+                    Toast.makeText(getApplicationContext(), "상품을 담아주세요.", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -141,6 +147,10 @@ public class Buyer_ShoppingActivity extends AppCompatActivity {
         totalPriceText.setText("총 상품금액 : " + formatter.format(Integer.valueOf(calculate())) + " 원");
     }
     public void addItemToTempBasket(ITEM item) {
+        if(Integer.valueOf(item.number) == 0) {
+            Toast.makeText(Buyer_ShoppingActivity.this, "재고가 없습니다.", Toast.LENGTH_SHORT).show();
+            return;
+        }
         ArrayList<ITEM> l = adapter2.getListData();
         for(int i = 0; i < l.size(); i++) {
             if(item.equals(l.get(i)))
