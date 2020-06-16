@@ -94,6 +94,7 @@ public class Deliver_Item_Information extends AppCompatActivity {
             public void onClick(View v) {
                 DocumentReference dr = db.collection("주문내역").document(temp_document_name);
                 dr.update("배달현황", true);
+                dr.update("주문상태", "주문완료");
                 setResult(RESULT_ACCEPT, new Intent());
                 finish();
             }
