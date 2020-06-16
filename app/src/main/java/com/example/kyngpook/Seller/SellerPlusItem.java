@@ -32,6 +32,7 @@ public class SellerPlusItem extends AppCompatActivity {
     StorageReference storageRef;
     ImageView seller_add_image;
     Bitmap bitmap;
+   // int sw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +73,7 @@ public class SellerPlusItem extends AppCompatActivity {
                 String num = seller_add_num.getText().toString();
                 String price = seller_add_price.getText().toString();
 
-                if (name.length() != 0 && num.length() != 0 && price.length() != 0) {
+                if (name.length() != 0 && num.length() != 0 && price.length() != 0 && bitmap!=null) {
                     intent.putExtra("상품이름", name);
                     intent.putExtra("개수", num);
                     intent.putExtra("가격", price);
@@ -95,11 +96,13 @@ public class SellerPlusItem extends AppCompatActivity {
 
                     setResult(RESULT_OK, intent);
 
+                    finish();
+
                 } else {
                     setResult(RESULT_CANCELED, intent);
                     Toast.makeText(getApplicationContext(), "모두 입력해주세요", Toast.LENGTH_LONG).show();
                 }
-                finish();
+
             }
         });
 
@@ -128,6 +131,7 @@ public class SellerPlusItem extends AppCompatActivity {
 
                     bitmap= BitmapFactory.decodeStream(in);
                     in.close();
+                  //  sw=0;
                     seller_add_image.setImageBitmap(bitmap);
                 }
                 catch (Exception e){
