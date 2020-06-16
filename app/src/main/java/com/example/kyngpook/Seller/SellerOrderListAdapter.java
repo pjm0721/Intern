@@ -78,7 +78,7 @@ public class SellerOrderListAdapter extends RecyclerView.Adapter<SellerOrderList
         }
         //처리하면 댐.
         void onBind(SellerOrderListData data) {
-            seller_order_list_price.setText(" 금액 : "+data.price);
+            seller_order_list_price.setText(" 금액 : "+data.price+" 원");
             seller_order_list_state.setText(" 주문상태 : "+data.state);
             seller_order_list_address.setText(" 주소 : "+data.address);
 

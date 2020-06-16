@@ -153,7 +153,7 @@ public class SellerRegisterModifier extends AppCompatActivity {
 
         final String[] items=new String[]{" ","가구","꽃","문구","생필품","의류","주방용품","철물"};
 
-        ArrayAdapter<String> sp_adapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
+        ArrayAdapter<String> sp_adapter=new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item, items);
 
         seller_business_category.setAdapter(sp_adapter);
 
@@ -445,7 +445,7 @@ public class SellerRegisterModifier extends AppCompatActivity {
                             for(int i=0;i<a;i++)
                                 arr[i]=si_arr[i];
 
-                            ArrayAdapter<String> sp_adapter_city=new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, arr);
+                            ArrayAdapter<String> sp_adapter_city=new ArrayAdapter<String>(getApplicationContext(), R.layout.spinner_layout, arr);
 
                             seller_business_city.setAdapter(sp_adapter_city);
 
@@ -486,7 +486,7 @@ public class SellerRegisterModifier extends AppCompatActivity {
                         arr[i - 1] = task.getResult().get("" + i).toString();
                     }
 
-                    ArrayAdapter<String> sp_adapter_area = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, arr);
+                    ArrayAdapter<String> sp_adapter_area = new ArrayAdapter<String>(getApplicationContext(), R.layout.spinner_layout, arr);
 
                     seller_business_area.setAdapter(sp_adapter_area);
 
