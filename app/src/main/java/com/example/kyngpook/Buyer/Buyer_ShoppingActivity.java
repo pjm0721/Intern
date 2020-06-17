@@ -58,7 +58,7 @@ public class Buyer_ShoppingActivity extends AppCompatActivity {
         storenameText.setText(storename);
 
         TextView timeText = (TextView)findViewById(R.id.Buyer_Shopping_timeText);
-        timeText.setText(time);
+        timeText.setText("영업시간 : "+time);
 
         TextView callText = (TextView)findViewById(R.id.Buyer_Shopping_callText);
         callText.setText("전화번호 : " + call);
