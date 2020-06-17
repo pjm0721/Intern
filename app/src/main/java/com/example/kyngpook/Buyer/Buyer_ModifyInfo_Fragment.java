@@ -1,13 +1,17 @@
 package com.example.kyngpook.Buyer;
 
+import com.example.kyngpook.Login_Signup.Find_Id_Complete;
+import com.example.kyngpook.Login_Signup.LogInActivity;
 import com.example.kyngpook.R;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -23,7 +27,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+
+import static maes.tech.intentanim.CustomIntent.customType;
 
 public class Buyer_ModifyInfo_Fragment  extends Fragment {
     Buyer_MainActivity activity;
@@ -47,7 +54,16 @@ public class Buyer_ModifyInfo_Fragment  extends Fragment {
                              Bundle savedInstanceState) {
         rootView = (ViewGroup) inflater.inflate(R.layout.activity_buyer__modify_info, container, false);
         util = new SharedPreferenceUtil(activity);
-
+//        Button logout_btn=rootView.findViewById(R.id.Buyer_logout_btn);
+//        logout_btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent=new Intent(getContext(),LogInActivity.class);
+//                ActivityCompat.finishAffinity(getActivity());
+//                startActivity(intent);
+//                customType(getContext(), "bottom-to-up");
+//            }
+//        });
         TextView idText = rootView.findViewById(R.id.Buyer_ModifyInfoActivity_idText);
         idText.setText(util.getStringData("ID", "id1.default"));
         final EditText nameEdit = rootView.findViewById(R.id.Buyer_ModifyInfoActivity_nameEdit);
@@ -143,5 +159,7 @@ public class Buyer_ModifyInfo_Fragment  extends Fragment {
 
 
         return rootView;
+
     }
+
 }
