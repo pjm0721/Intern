@@ -117,7 +117,7 @@
                     android:layout_height="40dp"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="4"
-                    android:background="@drawable/textview_selector"
+                    android:background="#FFFFFF"
                     android:padding="10dp"
                     android:textSize="15dp" />
             </LinearLayout>

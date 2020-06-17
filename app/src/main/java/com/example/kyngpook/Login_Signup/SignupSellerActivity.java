@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -20,6 +21,9 @@ import android.widget.Toast;
 import com.example.kyngpook.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -39,10 +43,13 @@ public class SignupSellerActivity extends AppCompatActivity {
     private TextView storenumber;
     private TextView name;
     private Toast toast;
-    private EditText editText;
-    private Spinner spinner;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private int scs = 0;
+    private EditText editText;
+    private Spinner spinner;
+    private Spinner city_first;
+    private Spinner city_second;
+    private EditText city_third;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +71,80 @@ public class SignupSellerActivity extends AppCompatActivity {
         ArrayAdapter<String> sp_adapter=new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item, qr);
 
         spinner.setAdapter(sp_adapter);
+        city_first=findViewById(R.id.city_first);
+        city_second=findViewById(R.id.city_second);
+        city_third=findViewById(R.id.city_third);
+
+        CollectionReference area=db.collection("지역");
+
+        area.get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+
+                            String[] city_arr=new String[100];
+                            int a=0;
+                            for(QueryDocumentSnapshot doc : task.getResult()) {
+                                city_arr[++a]=doc.getId();
+                            }
+                            String[] arr=new String[++a];
+
+                            arr[0]="선택해주세요";
+                            for(int i=1;i<a;i++)
+                                arr[i]=city_arr[i];
+
+                            ArrayAdapter<String> sp_adapter_city=new ArrayAdapter<String>(getApplicationContext(), R.layout.spinner_layout, arr);
+
+                            city_first.setAdapter(sp_adapter_city);
+
+                        } else {
+                            Log.w("signUpSeller", "Error", task.getException());
+                        }
+                    }
+                });
+
+
+        city_first.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String city=parent.getItemAtPosition(position).toString();
+                if(!city.equals("선택해주세요"))
+                    show_second_city(city);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+    }
+
+    public void show_second_city(String city)
+    {
+        DocumentReference second_city=db.collection("지역").document(city);
+
+        second_city.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                if(task.isSuccessful()) {
+                    int num = Integer.parseInt(task.getResult().get("개수").toString());
+
+                    String[] arr = new String[++num];
+
+                    arr[0]="선택해주세요";
+                    for (int i = 1; i < num; i++) {
+                        arr[i] = task.getResult().get("" + i).toString();
+                    }
+
+                    ArrayAdapter<String> sp_adapter_area = new ArrayAdapter<String>(getApplicationContext(), R.layout.spinner_layout, arr);
+
+                    city_second.setAdapter(sp_adapter_area);
+
+                }
+            }
+        });
     }
 
     public void on_seller_idchk(View v) {
@@ -95,7 +176,6 @@ public class SignupSellerActivity extends AppCompatActivity {
                                 if (document.getId().equals(id.getText().toString()) == true) {
                                     scs = 1;
                                 }
-                                ;
                             }
                         } else {
 //                             Log.w("LoginActivity.java", "Error getting documents.", task.getException());
@@ -134,7 +214,11 @@ public class SignupSellerActivity extends AppCompatActivity {
             password.setText(null);
         } else if (queryCheck()==false) {
             Toast.makeText(getApplicationContext(), "질문을 선택하고 답변을 입력해주세요", Toast.LENGTH_SHORT).show();
-        } else {
+        }else if(city_first.getSelectedItem().toString().equals("선택해주세요") || city_second.getSelectedItem().toString().equals("선택해주세요") || city_third.getText().toString().equals(""))
+        {
+            Toast.makeText(getApplicationContext(), "주소를 정확히 입력해주세요", Toast.LENGTH_SHORT).show();
+        }
+        else {
             Map<String, Object> user = new HashMap<>();
             user.put("ID", ID);
             user.put("PASSWORD", PASSWORD);
@@ -150,6 +234,8 @@ public class SignupSellerActivity extends AppCompatActivity {
             user.put("리뷰고유값", 0);
             user.put("질문",spinner.getSelectedItem().toString());
             user.put("답변",editText.getText().toString());
+            user.put("주소",city_first.getSelectedItem().toString()+" "+city_second.getSelectedItem().toString()+" "+city_third.getText().toString());
+
             db.collection("USERS").document("Seller").collection("Seller").document(ID).set(user);
             ActivityCompat.finishAffinity(SignupSellerActivity.this);
             Intent intent = new Intent(getApplicationContext(), SignupFinishActivity.class);

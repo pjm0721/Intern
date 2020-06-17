@@ -25,6 +25,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -68,7 +69,7 @@ public class SellerRegisterModifier extends AppCompatActivity {
     EditText seller_business_name;
     EditText seller_business_master;
     ImageView seller_business_image;
-    EditText seller_business_address;
+    TextView seller_business_address;
     EditText seller_business_time;
     EditText seller_business_contact_number;
 
@@ -254,7 +255,7 @@ public class SellerRegisterModifier extends AppCompatActivity {
                             }
                         });
             }
-        },300);
+        },500);
 
 
 
