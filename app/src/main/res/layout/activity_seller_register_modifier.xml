@@ -94,65 +94,6 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="7dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="9"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content"
-                        android:text="도시"
-                        android:textColor="#000"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <Spinner
-                            android:id="@+id/seller_business_city"
-                            android:layout_width="160dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="8"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="40dp"
-                        android:layout_height="wrap_content"
-                        android:text="구/군"
-                        android:textColor="#000"
-                        android:textSize="15dp"
-                        android:textStyle="bold"
-                        />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <Spinner
-                            android:id="@+id/seller_business_area"
-                            android:layout_width="120dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp" />
-                    </LinearLayout>
-                </LinearLayout>
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -163,14 +104,14 @@
                 <TextView
                     android:layout_width="60dp"
                     android:layout_height="wrap_content"
-                    android:text="상세주소"
+                    android:text="주소"
                     android:textColor="#000"
                     android:textSize="15dp"
                     android:textStyle="bold"
 
                     />
 
-                <EditText
+                <TextView
                     android:id="@+id/seller_business_address"
                     android:layout_width="0dp"
                     android:layout_height="40dp"

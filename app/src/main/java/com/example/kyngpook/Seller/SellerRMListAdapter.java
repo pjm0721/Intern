@@ -109,7 +109,7 @@ public class SellerRMListAdapter extends RecyclerView.Adapter<SellerRMListAdapte
         }
         //처리하면 댐.
         void onBind(final SellerRMListData data) {
-            seller_modify_list_name.setText(" 물건 이름 : "+data.name);
+            seller_modify_list_name.setText(" 물품 : "+data.name);
             seller_modify_list_num.setText(" 재고 : "+data.num+" 개");
             seller_modify_list_price.setText(" 가격 : "+data.price+" 원");
 

@@ -116,57 +116,57 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
-    android:id="@+id/sellerSignUp_cardView5"
-    android:layout_width="380dp"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.483"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/sellerSignUp_cardView4"
-    app:cardElevation="1dp">
-
-    <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/sellerSignUp_cardView5"
+        android:layout_width="380dp"
         android:layout_height="wrap_content"
-        android:paddingLeft="10dp">
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sellerSignUp_cardView4"
+        app:cardElevation="1dp">
 
-        <EditText
-            android:id="@+id/sellerSignUp_name"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@null"
-            android:hint="대표자명"
-            android:inputType="textPersonName"
-            android:textSize="15sp" />
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp">
+
+            <EditText
+                android:id="@+id/sellerSignUp_name"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@null"
+                android:hint="대표자명"
+                android:inputType="textPersonName"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
-    android:id="@+id/sellerSignUp_cardView6"
-    android:layout_width="380dp"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.483"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/sellerSignUp_cardView5"
-    app:cardElevation="1dp">
-
-    <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/sellerSignUp_cardView6"
+        android:layout_width="380dp"
         android:layout_height="wrap_content"
-        android:paddingLeft="10dp">
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sellerSignUp_cardView5"
+        app:cardElevation="1dp">
 
-        <EditText
-            android:id="@+id/sellerSignUp_store_name"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@null"
-            android:hint="업소명"
-            android:inputType="textPersonName"
-            android:textSize="15sp" />
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp">
+
+            <EditText
+                android:id="@+id/sellerSignUp_store_name"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@null"
+                android:hint="업소명"
+                android:inputType="textPersonName"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
         android:id="@+id/sellerSignUp_cardView7"
         android:layout_width="380dp"
