@@ -7,20 +7,20 @@
 
     <ImageView
         android:id="@+id/Buyer_MArketList_item_ImageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_margin="10dp"/>
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+       android:layout_margin="10dp"
+        android:scaleType="fitXY"/>
     <LinearLayout
         android:orientation="vertical"
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/Buyer_MArketList_item_NameTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
             android:textColor="#000"
             android:text="업소명입니다."/>
 
@@ -29,7 +29,6 @@
             android:id="@+id/Buyer_MArketList_item_TimeTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
             android:text="평일 09:00 ~ 19:00 연중무휴"/>
 
     </LinearLayout>

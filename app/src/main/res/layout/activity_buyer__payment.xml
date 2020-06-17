@@ -13,6 +13,7 @@
         android:text="결 제 하 기"
         android:textSize="20dp"
         android:textColor="#000"
+        android:textStyle="bold"
         android:layout_margin="10dp"
         android:layout_marginBottom="15dp"
         android:layout_width="match_parent"
@@ -37,7 +38,6 @@
         android:layout_height="wrap_content" >
         <TextView
             android:text="ID"
-            android:textSize="17dp"
             android:textColor="#000"
             android:gravity="left"
             android:layout_width="80dp"
@@ -47,7 +47,6 @@
             android:id="@+id/Buyer_PaymentActivity_idText"
             android:text="IDIDIDIDIDID"
             android:gravity="left"
-            android:textSize="17dp"
             android:layout_width="290dp"
             android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -60,7 +59,6 @@
         <TextView
             android:text="이름"
             android:gravity="left"
-            android:textSize="17dp"
             android:textColor="#000"
             android:layout_width="80dp"
             android:layout_height="wrap_content"/>
@@ -69,7 +67,6 @@
             android:id="@+id/Buyer_PaymentActivity_nameText"
             android:text="홍길동"
             android:gravity="left"
-            android:textSize="17dp"
             android:layout_width="290dp"
             android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -82,7 +79,6 @@
         <TextView
             android:text="전화번호"
             android:gravity="left"
-            android:textSize="17dp"
             android:textColor="#000"
             android:layout_width="80dp"
             android:layout_height="wrap_content"/>
@@ -90,7 +86,6 @@
         <TextView
             android:id="@+id/Buyer_PaymentActivity_callText"
             android:text="010-1234-1324"
-            android:textSize="17dp"
             android:gravity="left"
             android:layout_width="290dp"
             android:layout_height="wrap_content"/>
@@ -105,7 +100,6 @@
         <TextView
             android:text="주소"
             android:gravity="left"
-            android:textSize="17dp"
             android:textColor="#000"
             android:layout_width="80dp"
             android:layout_height="match_parent"/>
@@ -114,7 +108,6 @@
             android:id="@+id/Buyer_PaymentActivity_addressText"
             android:text="대구광역시 수성구 무슨동 10-3 무슨무슨무슨아파트 101동 101호"
             android:gravity="left"
-            android:textSize="17dp"
             android:layout_width="290dp"
             android:layout_height="match_parent"/>
     </LinearLayout>
@@ -144,7 +137,6 @@
 
     <TextView
         android:text="※ 배달료 1,000원입니다. ※"
-        android:textSize="15dp"
         android:layout_marginLeft="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -155,7 +147,6 @@
         android:text="총 결제금액 : 100000원"
         android:layout_marginRight="10dp"
         android:textStyle="bold"
-        android:textSize="18dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
@@ -165,7 +156,6 @@
         android:layout_height="50dp" >
         <TextView
             android:text="결제방법"
-            android:textSize="15dp"
             android:layout_marginVertical="15dp"
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
@@ -180,7 +170,7 @@
     <Button
         android:layout_margin="15dp"
         android:id="@+id/Buyer_PaymentActivity_Btn"
-        android:textSize="25dp"
+        android:textSize="20dp"
         android:text="결  제  하  기"
         android:textColor="#fff"
         android:layout_gravity="center"
