@@ -16,7 +16,7 @@
         android:text="회원가입이
         완료되었습니다"
         android:textSize="40sp"
-        android:textColor="#888888"
+        android:textColor="#000"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

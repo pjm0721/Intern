@@ -158,14 +158,19 @@
                 android:inputType="number" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-    <Spinner
-        android:id="@+id/deliverSignUp_spinner"
-        android:layout_width="409dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/signup_deliver_cardview"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deliverSignUp_cardView4" />
+        app:layout_constraintTop_toBottomOf="@+id/deliverSignUp_cardView4"
+        android:layout_marginTop="20dp">
+        <Spinner
+            android:id="@+id/deliverSignUp_spinner"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content" />
+    </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
         android:id="@+id/deliverSignUp_cardView5"
         android:layout_width="380dp"
@@ -175,7 +180,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deliverSignUp_spinner">
+        app:layout_constraintTop_toBottomOf="@+id/signup_deliver_cardview">
 
         <LinearLayout
             android:layout_width="match_parent"
