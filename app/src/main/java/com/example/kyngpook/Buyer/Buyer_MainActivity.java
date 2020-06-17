@@ -34,7 +34,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-
+import static maes.tech.intentanim.CustomIntent.customType;
 
 
 public class Buyer_MainActivity extends AppCompatActivity {
@@ -168,6 +168,17 @@ public class Buyer_MainActivity extends AppCompatActivity {
             finish();
             toast.cancel();
         }
+    }
+    public void Buyer_Logout() {
+        LoginSharedPreferenceUtil util11 =  new LoginSharedPreferenceUtil(Buyer_MainActivity.this);
+        util11.setBooleanData("AutoLogin", false);
+        util11.setStringData("ID", "");
+        util11.setStringData("권한", "null");
+
+        Intent intent=new Intent(Buyer_MainActivity.this,LogInActivity.class);
+        ActivityCompat.finishAffinity(Buyer_MainActivity.this);
+        startActivity(intent);
+        customType(Buyer_MainActivity.this, "bottom-to-up");
     }
 }
 
