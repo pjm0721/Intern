@@ -1,10 +1,12 @@
 package com.example.kyngpook.Seller;
 
+import com.example.kyngpook.Buyer.Buyer_MainActivity;
 import com.example.kyngpook.Deliver.Deliver_MainActivity;
 import com.example.kyngpook.Login_Signup.LogInActivity;
 import com.example.kyngpook.Login_Signup.LoginSharedPreferenceUtil;
 import com.example.kyngpook.R;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -59,7 +61,7 @@ public class SellerMainActivity extends AppCompatActivity {
         toast= Toast.makeText(this, "초기화", Toast.LENGTH_SHORT);
         if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
             backKeyPressedTime = System.currentTimeMillis();
-            toast = Toast.makeText(this, "한번 더 누르면 로그아웃됩니다.", Toast.LENGTH_SHORT);
+            toast = Toast.makeText(this, "종료 하시겠습니까?", Toast.LENGTH_SHORT);
             toast.show();
             return;
         }
@@ -71,7 +73,7 @@ public class SellerMainActivity extends AppCompatActivity {
             util11.setStringData("ID", "");
             util11.setStringData("권한", "null");
 //            if(goToLogin) {
-               startActivity(new Intent(SellerMainActivity.this, LogInActivity.class));
+            ActivityCompat.finishAffinity(SellerMainActivity.this);
 //            }
             finish();
             toast.cancel();

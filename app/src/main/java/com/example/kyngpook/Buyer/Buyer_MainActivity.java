@@ -1,5 +1,6 @@
 package com.example.kyngpook.Buyer;
 
+import com.example.kyngpook.Login_Signup.Find_Id_Complete;
 import com.example.kyngpook.Login_Signup.LogInActivity;
 import com.example.kyngpook.Login_Signup.LoginSharedPreferenceUtil;
 import com.example.kyngpook.R;
@@ -149,7 +150,7 @@ public class Buyer_MainActivity extends AppCompatActivity {
         toast= Toast.makeText(this, "초기화", Toast.LENGTH_SHORT);
         if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
             backKeyPressedTime = System.currentTimeMillis();
-            toast = Toast.makeText(this, "로그아웃 하시겠습니까?", Toast.LENGTH_SHORT);
+            toast = Toast.makeText(this, "종료 하시겠습니까?", Toast.LENGTH_SHORT);
             toast.show();
             return;
         }
@@ -162,7 +163,7 @@ public class Buyer_MainActivity extends AppCompatActivity {
             util11.setStringData("권한", "null");
 
 //            if(goToLogin) {
-               startActivity(new Intent(Buyer_MainActivity.this, LogInActivity.class));
+            ActivityCompat.finishAffinity(Buyer_MainActivity.this);
 //            }
             finish();
             toast.cancel();

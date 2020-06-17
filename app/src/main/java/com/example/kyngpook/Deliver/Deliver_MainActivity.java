@@ -385,7 +385,7 @@ public class Deliver_MainActivity extends AppCompatActivity {
         toast = Toast.makeText(this, "초기화", Toast.LENGTH_SHORT);
         if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
             backKeyPressedTime = System.currentTimeMillis();
-            toast = Toast.makeText(this, "로그아웃 하시겠습니까?", Toast.LENGTH_SHORT);
+            toast = Toast.makeText(this, "종료 하시겠습니까?", Toast.LENGTH_SHORT);
             toast.show();
             return;
         }
@@ -397,7 +397,7 @@ public class Deliver_MainActivity extends AppCompatActivity {
             util11.setStringData("ID", "");
             util11.setStringData("권한", "null");
 //            if (goToLogin) {
-            startActivity(new Intent(Deliver_MainActivity.this, LogInActivity.class));
+            ActivityCompat.finishAffinity(Deliver_MainActivity.this);
 //            }
             finish();
             toast.cancel();
