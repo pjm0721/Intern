@@ -11,6 +11,9 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +39,8 @@ public class SignupSellerActivity extends AppCompatActivity {
     private TextView storenumber;
     private TextView name;
     private Toast toast;
+    private EditText editText;
+    private Spinner spinner;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private int scs = 0;
 
@@ -50,6 +55,15 @@ public class SignupSellerActivity extends AppCompatActivity {
         name = (TextView) findViewById(R.id.sellerSignUp_name);
         storename = (TextView) findViewById(R.id.sellerSignUp_store_name);
         storenumber = (TextView) findViewById(R.id.sellerSignUp_store_num);
+        editText = findViewById(R.id.sellerSignUp_answer);
+        spinner = findViewById(R.id.sellerSignUp_spinner);
+
+        final String[] qr=new String[]{"질문을 선택해주세요.","나의 보물 1호는?","어머니 성함은?","아버지 성함은?",
+                "나의 어릴적 별명은?","출신 초등학교 이름은?","내가 태어난 지역은?","첫 사랑 이름은?"};
+
+        ArrayAdapter<String> sp_adapter=new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item, qr);
+
+        spinner.setAdapter(sp_adapter);
     }
 
     public void on_seller_idchk(View v) {
@@ -61,9 +75,9 @@ public class SignupSellerActivity extends AppCompatActivity {
 
     public void idchk(String ID) {
         scs = 0;
-        String pattern = "^[a-zA-Z가-힣0-9]{6,10}$";
-        if (ID.length() < 6 || ID.length() > 10) {
-            Toast.makeText(this, "아이디는 6자 이상 10자 이하로 입력해주세요", Toast.LENGTH_SHORT).show();
+        String pattern = "^[a-zA-Z가-힣0-9]{3,10}$";
+        if (ID.length() < 3 || ID.length() > 10) {
+            Toast.makeText(this, "아이디는 3자 이상 10자 이하로 입력해주세요", Toast.LENGTH_SHORT).show();
             return;
         }
         if (Pattern.matches(pattern, ID) == false) {
@@ -118,6 +132,8 @@ public class SignupSellerActivity extends AppCompatActivity {
         } else if (PHONE.length() != 10 && PHONE.length() != 11) {
             Toast.makeText(this, "전화번호를 제대로 입력해주세요", Toast.LENGTH_SHORT).show();
             password.setText(null);
+        } else if (queryCheck()==false) {
+            Toast.makeText(getApplicationContext(), "질문을 선택하고 답변을 입력해주세요", Toast.LENGTH_SHORT).show();
         } else {
             Map<String, Object> user = new HashMap<>();
             user.put("ID", ID);
@@ -132,6 +148,8 @@ public class SignupSellerActivity extends AppCompatActivity {
             user.put("휴무일", "");
             user.put("권한", 0);
             user.put("리뷰고유값", 0);
+            user.put("질문",spinner.getSelectedItem().toString());
+            user.put("답변",editText.getText().toString());
             db.collection("USERS").document("Seller").collection("Seller").document(ID).set(user);
             ActivityCompat.finishAffinity(SignupSellerActivity.this);
             Intent intent = new Intent(getApplicationContext(), SignupFinishActivity.class);
@@ -198,7 +216,12 @@ public class SignupSellerActivity extends AppCompatActivity {
 
         dialog.show();
     }
-
+    private boolean queryCheck()
+    {
+        if(spinner.getSelectedItem().toString().equals("질문을 선택해주세요.")) return false;
+        if(editText.getText().toString().equals("")) return false;
+        return true;
+    }
     @Override
     public void onBackPressed() {
         super.onBackPressed();

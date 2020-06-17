@@ -151,7 +151,7 @@ public class SellerRegisterModifier extends AppCompatActivity {
 
         seller_business_category=findViewById(R.id.seller_business_category);
 
-        final String[] items=new String[]{" ","가구","꽃","문구","생필품","의류","주방용품","철물"};
+        final String[] items=new String[]{" ","가구","꽃","문구","생필품","의류","주방용품","철물","음식","기타"};
 
         ArrayAdapter<String> sp_adapter=new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item, items);
 

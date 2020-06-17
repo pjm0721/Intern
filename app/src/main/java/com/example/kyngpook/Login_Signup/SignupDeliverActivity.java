@@ -10,8 +10,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.kyngpook.R;
@@ -35,7 +37,9 @@ public class SignupDeliverActivity extends AppCompatActivity {
     private  EditText editText2;
     private EditText editText3;
     private EditText editText4;
+    private EditText editText5;
     private String ufid;
+    private Spinner spinner;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private int state = 1;
     Map<String, Object> deliver = new HashMap<>();
@@ -50,6 +54,18 @@ public class SignupDeliverActivity extends AppCompatActivity {
         editText2 = findViewById(R.id.deliverSignUp_password);
         editText3 = findViewById(R.id.deliverSignUp_passwordC);
         editText4 = findViewById(R.id.deliverSignUp_phone);
+        editText5 = findViewById(R.id.deliverSignUp_answer);
+        spinner = findViewById(R.id.deliverSignUp_spinner);
+
+        final String[] qr=new String[]{"질문을 선택해주세요.","나의 보물 1호는?","어머니 성함은?","아버지 성함은?",
+                "나의 어릴적 별명은?","출신 초등학교 이름은?","내가 태어난 지역은?","첫 사랑 이름은?"};
+
+        ArrayAdapter<String> sp_adapter=new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item, qr);
+
+        spinner.setAdapter(sp_adapter);
+
+
+
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,12 +90,16 @@ public class SignupDeliverActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "비밀번호가 맞지 않습니다", Toast.LENGTH_SHORT).show();
                 else if(dPhone.length()<10||dPhone.length()>11)
                     Toast.makeText(getApplicationContext(), "전화번호를 제대로 입력해주세요", Toast.LENGTH_SHORT).show();
+                else if(queryCheck()==false)
+                    Toast.makeText(getApplicationContext(), "질문을 선택하고 답변을 입력해주세요", Toast.LENGTH_SHORT).show();
                 else{
                     deliver.put("이름",editText.getText().toString());
                     deliver.put("ID", editText1.getText().toString());
                     deliver.put("PASSWORD", editText2.getText().toString());
                     deliver.put("전화번호", editText4.getText().toString());
                     deliver.put("배달건수","0");
+                    deliver.put("질문",spinner.getSelectedItem().toString());
+                    deliver.put("답변",editText5.getText().toString());
                     db.collection("USERS").document("Deliver").collection("Deliver").document(editText1.getText().toString()).set(deliver);
                     Toast.makeText(getApplicationContext(), "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show();
                     ActivityCompat.finishAffinity(SignupDeliverActivity.this);
@@ -95,7 +115,7 @@ public class SignupDeliverActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String id = editText1.getText().toString();
-                if(id.length()<6||id.length()>10) Toast.makeText(getApplicationContext(),"아이디는 6자 이상 ~ 10자 이하로 입력해주세요.",Toast.LENGTH_SHORT).show();
+                if(id.length()<3||id.length()>10) Toast.makeText(getApplicationContext(),"아이디는 3자 이상 ~ 10자 이하로 입력해주세요.",Toast.LENGTH_SHORT).show();
                 else {
                     for(int i=0; i<id.length();i++) {
                         if (('a' <= id.charAt(i) && id.charAt(i) <= 'z') || ('A' <= id.charAt(i) && id.charAt(i) <= 'Z') || ('0' <= id.charAt(i) && id.charAt(i) <= '9'))
@@ -203,6 +223,12 @@ public class SignupDeliverActivity extends AppCompatActivity {
         }
         if(check == 0) return 1;
         return 0;
+    }
+    private boolean queryCheck()
+    {
+        if(spinner.getSelectedItem().toString().equals("질문을 선택해주세요.")) return false;
+        if(editText5.getText().toString().equals("")) return false;
+        return true;
     }
     @Override
     public void onBackPressed() {

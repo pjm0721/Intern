@@ -88,7 +88,7 @@ public class Buyer_MarketList_Fragment extends Fragment {
         RVadapter = new Buyer_MarketList_Adapter(activity);
         recyclerView.setAdapter(RVadapter);
 
-        String[] items = new String[]{"가구", "꽃", "문구", "생필품", "의류", "주방용품", "철물"};
+        String[] items = new String[]{"가구", "꽃", "문구", "생필품", "의류", "주방용품", "철물","음식","기타"};
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(activity, R.layout.support_simple_spinner_dropdown_item, items);
         spinner = rootView.findViewById(R.id.Buyer_MarketListAcvitity_Spinner);
         spinner.setAdapter(adapter);
