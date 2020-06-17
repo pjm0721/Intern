@@ -53,7 +53,7 @@ public class Buyer_ReviewActivity extends AppCompatActivity {
         TextView callText = (TextView) findViewById(R.id.Buyer_ReviewActivity_callText);
         callText.setText("전화번호 : " + call);
         TextView timeText = (TextView) findViewById(R.id.Buyer_ReviewActivity_timeText);
-        timeText.setText(time);
+        timeText.setText("영업시간 : "+time);
         final TextView reviewText = (TextView) findViewById(R.id.Buyer_ReviewActivity_numText);
 
 

@@ -83,6 +83,7 @@ public class Deliver_MainActivity extends AppCompatActivity {
         // activity가 다시 시작할 때 구현부.
         // 검색내용을 그대로 두고 배달완료한 것만 삭제 후 다시 리스트뷰 생성.
         super.onResume();
+        // onActivityResult() 메소드에서 새로고침할 수 있도록 변경함 아니면 이전 내용이 그대로 리스트뷰에 떠있음.
         // deliver_mainactivity_get_data(deliver_mainactivity_searchview.getText().toString());
     }
 
@@ -138,7 +139,7 @@ public class Deliver_MainActivity extends AppCompatActivity {
         deliver_mainactivity_boardlistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-                // 판매자의 ID를 통해서 전화번호를 얻어옴.
+                // Database를 변경하기 위한 전처리 과정
                 deliver_mainactivity_get_seller_phone(deliver_mainactivity_boardlist.get(position).getDMI_Seller_Id());
                 final String[] address_temp_array = deliver_mainactivity_boardlist.get(position).getDMI_Seller_Address().split(" ");
                 final String temp_document_name = deliver_mainactivity_boardlist.get(position).getDMI_document();
@@ -154,6 +155,8 @@ public class Deliver_MainActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 deliver_process_check = true;
                                 try {
+                                    // 배달 담당자를 설정해주어서 다른 사람들에게 해당 배달내용을 보이지 않게 해주는 처리
+                                    // ID값을 못읽어 와도 default 값이 들어오니 다른사람에게 안보여짐
                                     DocumentReference dr1 = db.collection("주문내역").document(temp_document_name);
                                     dr1.update("배달자담당아이디", ID);
 
@@ -170,7 +173,16 @@ public class Deliver_MainActivity extends AppCompatActivity {
                                         try {
                                             String temp_prev_value = prev_value.get(list_name).toString();
                                             String temp_prev_diff_value = temp_order_info.get(list_name).toString();
+                                            /*
+                                            기존의 개수를 prev_value 라는 Map에 다가 저장해두었음
+                                            temp_order_info라는 Map은 현재 주문의 개수들을 저장하고 있음
+                                             */
                                             int new_value = Integer.parseInt(temp_prev_value) - Integer.parseInt(temp_prev_diff_value);
+                                            // 오류 발생시 catch 문으로 가니 문제 없음.
+                                            if (new_value < 0) {
+                                                new_value = 0;
+                                            }
+                                            // Database에 주문상품개수를 자동적으로 차감
                                             cr1.document(list_name).update("개수", String.valueOf(new_value));
                                         } catch (Exception e) {
                                             Toast.makeText(getApplicationContext(), "개수변경 오류" + e, Toast.LENGTH_LONG).show();
@@ -340,6 +352,7 @@ public class Deliver_MainActivity extends AppCompatActivity {
                                 String temp_phone_number = document.get("전화번호").toString();
 
                                 if (temp_seller_id.equals(seller_id)) {
+                                    // 추가해주어도 ID중복을 미리 막아두었기 때문에 1번만 추가된다.
                                     seller_phone_number += temp_phone_number;
                                 }
                             }
@@ -384,7 +397,7 @@ public class Deliver_MainActivity extends AppCompatActivity {
             util11.setStringData("ID", "");
             util11.setStringData("권한", "null");
 //            if (goToLogin) {
-               startActivity(new Intent(Deliver_MainActivity.this, LogInActivity.class));
+            startActivity(new Intent(Deliver_MainActivity.this, LogInActivity.class));
 //            }
             finish();
             toast.cancel();

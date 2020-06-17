@@ -23,30 +23,27 @@
                 android:layout_height="wrap_content"
                 android:text="업소명입니다."
                 android:textColor="#000"
-                android:textSize="19dp"
+                android:textSize="18dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/Buyer_Shopping_timeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="영업시간 : 영업시간과 휴무일"
-                android:textSize="15dp" />
+                android:text="영업시간 : 영업시간과 휴무일" />
 
             <TextView
                 android:id="@+id/Buyer_Shopping_holidayText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="휴무일 : 영업시간과 휴무일"
-                android:textSize="15dp" />
+                android:text="휴무일 : 영업시간과 휴무일" />
 
             <TextView
                 android:id="@+id/Buyer_Shopping_callText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="☎ : 010-1234-1234"
-                android:textSize="15dp" />
+                android:text="☎ : 010-1234-1234" />
 
             <TextView
                 android:id="@+id/Buyer_Shopping_PresentativeText"
@@ -54,8 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:text="대표자명 : 김철수"
-                android:textSize="15dp" />
+                android:text="대표자명 : 김철수" />
         </LinearLayout>
 
         <Button
@@ -82,7 +78,7 @@
             android:layout_weight="3"
             android:text="    상품리스트"
             android:textColor="@android:color/black"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:textStyle="bold" />
 
     </LinearLayout>
