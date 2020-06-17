@@ -15,6 +15,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import static maes.tech.intentanim.CustomIntent.customType;
+
 
 //판매자 로그인 시 처음 보이는 액티비티로, 1)내 게시글 작성 및 수정 2)내 가게 주문 내역 관리하기 두가지 버튼을 가진다
 public class SellerMainActivity extends AppCompatActivity {
@@ -55,6 +57,17 @@ public class SellerMainActivity extends AppCompatActivity {
         editor.putString("id",intent2.getStringExtra("ID"));
         editor.commit();
     }
+    public void on_seller_logout(View v){
+        LoginSharedPreferenceUtil util11 =  new LoginSharedPreferenceUtil(SellerMainActivity.this);
+        util11.setBooleanData("AutoLogin", false);
+        util11.setStringData("ID", "");
+        util11.setStringData("권한", "null");
+        Toast.makeText(this,"로그아웃 되었습니다.",Toast.LENGTH_SHORT).show();
+        Intent intent=new Intent(SellerMainActivity.this,LogInActivity.class);
+        ActivityCompat.finishAffinity(SellerMainActivity.this);
+        startActivity(intent);
+        customType(SellerMainActivity.this, "bottom-to-up");
+    }
     @Override
     public void onBackPressed() {
         Toast toast;
@@ -68,10 +81,6 @@ public class SellerMainActivity extends AppCompatActivity {
         if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
             LoginSharedPreferenceUtil util11 =  new LoginSharedPreferenceUtil(this);
             //Boolean goToLogin = util11.getBooleanData("AutoLogin", false);
-
-            util11.setBooleanData("AutoLogin", false);
-            util11.setStringData("ID", "");
-            util11.setStringData("권한", "null");
 //            if(goToLogin) {
             ActivityCompat.finishAffinity(SellerMainActivity.this);
 //            }

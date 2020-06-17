@@ -50,6 +50,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static maes.tech.intentanim.CustomIntent.customType;
+
 
 public class Deliver_MainActivity extends AppCompatActivity {
     // ListView variables
@@ -390,12 +392,7 @@ public class Deliver_MainActivity extends AppCompatActivity {
             return;
         }
         if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
-            LoginSharedPreferenceUtil util11 = new LoginSharedPreferenceUtil(this);
             //Boolean goToLogin = util11.getBooleanData("AutoLogin", false);
-
-            util11.setBooleanData("AutoLogin", false);
-            util11.setStringData("ID", "");
-            util11.setStringData("권한", "null");
 //            if (goToLogin) {
             ActivityCompat.finishAffinity(Deliver_MainActivity.this);
 //            }
@@ -403,7 +400,17 @@ public class Deliver_MainActivity extends AppCompatActivity {
             toast.cancel();
         }
     }
-
+    public void on_deliver_logout(View v){
+        LoginSharedPreferenceUtil util11 =  new LoginSharedPreferenceUtil(Deliver_MainActivity.this);
+        util11.setBooleanData("AutoLogin", false);
+        util11.setStringData("ID", "");
+        util11.setStringData("권한", "null");
+        Toast.makeText(this,"로그아웃 되었습니다.",Toast.LENGTH_SHORT).show();
+        Intent intent=new Intent(Deliver_MainActivity.this,LogInActivity.class);
+        ActivityCompat.finishAffinity(Deliver_MainActivity.this);
+        startActivity(intent);
+        customType(Deliver_MainActivity.this, "bottom-to-up");
+    }
     private void send_sms(final String number, final String message) {
         try {
             SmsManager sms = SmsManager.getDefault();

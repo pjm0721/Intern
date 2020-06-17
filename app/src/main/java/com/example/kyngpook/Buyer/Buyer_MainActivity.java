@@ -155,13 +155,7 @@ public class Buyer_MainActivity extends AppCompatActivity {
             return;
         }
         if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
-            LoginSharedPreferenceUtil util11 =  new LoginSharedPreferenceUtil(this);
             //Boolean goToLogin = util11.getBooleanData("AutoLogin", false);
-
-            util11.setBooleanData("AutoLogin", false);
-            util11.setStringData("ID", "");
-            util11.setStringData("권한", "null");
-
 //            if(goToLogin) {
             ActivityCompat.finishAffinity(Buyer_MainActivity.this);
 //            }
@@ -174,7 +168,7 @@ public class Buyer_MainActivity extends AppCompatActivity {
         util11.setBooleanData("AutoLogin", false);
         util11.setStringData("ID", "");
         util11.setStringData("권한", "null");
-
+        Toast.makeText(this,"로그아웃 되었습니다.",Toast.LENGTH_SHORT).show();
         Intent intent=new Intent(Buyer_MainActivity.this,LogInActivity.class);
         ActivityCompat.finishAffinity(Buyer_MainActivity.this);
         startActivity(intent);
