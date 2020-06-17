@@ -31,6 +31,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -82,7 +83,11 @@ public class Deliver_Item_Information extends AppCompatActivity {
         deliver_item_information_arraylist.add("주문자 주소 : " + getIntent().getExtras().getString("SELLER_ADDRESS"));
         deliver_item_information_arraylist.add("구매자 이름 : " + getIntent().getExtras().getString("BUYER_NAME"));
         deliver_item_information_arraylist.add("구매자 주소 : " + getIntent().getExtras().getString("BUYER_ADDRESS"));
-        deliver_item_information_arraylist.add("총 결제금액 : " + getIntent().getExtras().getInt("PRICE"));
+
+        DecimalFormat formatter = new DecimalFormat("###,###");
+        String priceText = formatter.format(getIntent().getExtras().getInt("PRICE"));
+
+        deliver_item_information_arraylist.add("총 결제금액 : " + priceText + " 원");
         deliver_item_information_arraylist.add("주문요청시간 : " + getIntent().getExtras().getString("ORDER_TIME"));
         deliver_item_information_adapter = new ArrayAdapter(Deliver_Item_Information.this, android.R.layout.simple_list_item_1, deliver_item_information_arraylist);
         deliver_item_information_listview = (ListView) findViewById(R.id.adii_listview);

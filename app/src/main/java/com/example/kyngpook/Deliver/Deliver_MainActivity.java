@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -75,6 +76,8 @@ public class Deliver_MainActivity extends AppCompatActivity {
 
     private Map prev_value = null;
 
+
+    private String ID;
     @Override
     protected void onResume() {
         // activity가 다시 시작할 때 구현부.
@@ -87,6 +90,9 @@ public class Deliver_MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.deliver_activity_main);
+        Intent intent =  getIntent();
+        ID = intent.getStringExtra("ID");
+
         util12 = new LoginSharedPreferenceUtil(this);
         deliver_mainactivity_searchview = (EditText) findViewById(R.id.deliver_activity_main_searchview);
         deliver_mainactivity_progressbar = (ProgressBar) findViewById(R.id.deliver_activity_main_progressbar);
@@ -147,10 +153,9 @@ public class Deliver_MainActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 deliver_process_check = true;
-
                                 try {
                                     DocumentReference dr1 = db.collection("주문내역").document(temp_document_name);
-                                    dr1.update("배달자담당아이디", util12.getStringData("ID", "default"));
+                                    dr1.update("배달자담당아이디", ID);
 
                                     CollectionReference cr1 = db.collection("PRODUCT")
                                             .document(address_temp_array[0])
@@ -272,7 +277,7 @@ public class Deliver_MainActivity extends AppCompatActivity {
                                 // 담당자가 없고, 배달상태가 false 인 것
                                 if (dm_document_order_status.equals("주문수락")) {
                                     if (!dm_document_deliver_status) {
-                                        if (dm_document_deliver_id == "") {
+                                        if (dm_document_deliver_id.equals("")) {
                                             if (text.length() == 0) {
                                                 deliver_count++;
                                                 deliver_mainactivity_boardlist.add(new Deliver_Main_Item(

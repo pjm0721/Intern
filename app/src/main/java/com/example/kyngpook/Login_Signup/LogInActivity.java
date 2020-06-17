@@ -159,6 +159,11 @@ public class LogInActivity extends AppCompatActivity {
                 util.setStringData("ID", ID);
                 util.setStringData("권한", "일반 이용자");
             }
+            else {
+                util.setBooleanData("AutoLogin", false);
+                util.setStringData("ID", "null");
+                util.setStringData("권한", "일반 이용자");
+            }
         } else if (who.equals("판매자") == true) {
             toast = Toast.makeText(this, ID + " 님 로그인에 성공하였습니다.", Toast.LENGTH_SHORT);
             Intent intent = new Intent(getApplicationContext(), SellerMainActivity.class);
@@ -170,6 +175,11 @@ public class LogInActivity extends AppCompatActivity {
                 util.setStringData("ID", ID);
                 util.setStringData("권한", "판매자");
             }
+            else {
+                util.setBooleanData("AutoLogin", false);
+                util.setStringData("ID", "null");
+                util.setStringData("권한", "판매자");
+            }
         } else if (who.equals("배달원") == true) {
             toast = Toast.makeText(this, ID + " 님 로그인에 성공하였습니다.", Toast.LENGTH_SHORT);
             Intent intent = new Intent(getApplicationContext(), Deliver_MainActivity.class);
@@ -179,6 +189,11 @@ public class LogInActivity extends AppCompatActivity {
             if (autoLogin) {
                 util.setBooleanData("AutoLogin", true);
                 util.setStringData("ID", ID);
+                util.setStringData("권한", "배달원");
+            }
+            else {
+                util.setBooleanData("AutoLogin", false);
+                util.setStringData("ID", "null");
                 util.setStringData("권한", "배달원");
             }
         } else toast = Toast.makeText(this, "로그인에 실패하였습니다.", Toast.LENGTH_SHORT);
