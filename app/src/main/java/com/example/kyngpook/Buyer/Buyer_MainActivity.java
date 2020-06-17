@@ -7,6 +7,7 @@ import com.example.kyngpook.R;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -154,15 +155,15 @@ public class Buyer_MainActivity extends AppCompatActivity {
         }
         if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
             LoginSharedPreferenceUtil util11 =  new LoginSharedPreferenceUtil(this);
-            Boolean goToLogin = util11.getBooleanData("AutoLogin", false);
+            //Boolean goToLogin = util11.getBooleanData("AutoLogin", false);
 
             util11.setBooleanData("AutoLogin", false);
             util11.setStringData("ID", "");
             util11.setStringData("권한", "null");
 
-            if(goToLogin) {
-                startActivity(new Intent(Buyer_MainActivity.this, LogInActivity.class));
-            }
+//            if(goToLogin) {
+               startActivity(new Intent(Buyer_MainActivity.this, LogInActivity.class));
+//            }
             finish();
             toast.cancel();
         }

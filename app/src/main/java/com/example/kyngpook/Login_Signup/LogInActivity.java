@@ -153,7 +153,7 @@ public class LogInActivity extends AppCompatActivity {
             Buyer_util.setStringData("이름", intent.getStringExtra("이름"));
 
             startActivity(intent);
-
+            finish();
             if (autoLogin) {
                 util.setBooleanData("AutoLogin", true);
                 util.setStringData("ID", ID);
@@ -164,7 +164,7 @@ public class LogInActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), SellerMainActivity.class);
             intent.putExtra("ID", ID);
             startActivity(intent);
-
+            finish();
             if (autoLogin) {
                 util.setBooleanData("AutoLogin", true);
                 util.setStringData("ID", ID);
@@ -175,7 +175,7 @@ public class LogInActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), Deliver_MainActivity.class);
             intent.putExtra("ID", ID);
             startActivity(intent);
-
+            finish();
             if (autoLogin) {
                 util.setBooleanData("AutoLogin", true);
                 util.setStringData("ID", ID);
