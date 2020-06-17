@@ -54,16 +54,13 @@ public class Buyer_ModifyInfo_Fragment  extends Fragment {
                              Bundle savedInstanceState) {
         rootView = (ViewGroup) inflater.inflate(R.layout.activity_buyer__modify_info, container, false);
         util = new SharedPreferenceUtil(activity);
-//        Button logout_btn=rootView.findViewById(R.id.Buyer_logout_btn);
-//        logout_btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent=new Intent(getContext(),LogInActivity.class);
-//                ActivityCompat.finishAffinity(getActivity());
-//                startActivity(intent);
-//                customType(getContext(), "bottom-to-up");
-//            }
-//        });
+        Button logout_btn=rootView.findViewById(R.id.Buyer_logout_btn);
+        logout_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.Buyer_Logout();
+            }
+        });
         TextView idText = rootView.findViewById(R.id.Buyer_ModifyInfoActivity_idText);
         idText.setText(util.getStringData("ID", "id1.default"));
         final EditText nameEdit = rootView.findViewById(R.id.Buyer_ModifyInfoActivity_nameEdit);
