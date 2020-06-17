@@ -21,7 +21,7 @@ public class SignupFinishActivity extends AppCompatActivity {
         Intent intent=getIntent();
         ID= intent.getStringExtra("ID");
         txt=(TextView)findViewById(R.id.signup_finish_txt2);
-        txt.setText(ID+"님    환영합니다");
+        txt.setText(ID+"님 환영합니다");
     }
     public void on_signup_finish_btn(View v){
         Intent intent=new Intent(getApplicationContext(),LogInActivity.class);

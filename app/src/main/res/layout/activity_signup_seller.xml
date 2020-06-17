@@ -219,14 +219,19 @@
                 android:textSize="15sp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-    <Spinner
-        android:id="@+id/sellerSignUp_spinner"
-        android:layout_width="409dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/sellerSignUp_cardview10"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sellerSignUp_cardView8" />
+        app:layout_constraintTop_toBottomOf="@+id/sellerSignUp_cardView8"
+        android:layout_marginTop="20dp">
+        <Spinner
+            android:id="@+id/sellerSignUp_spinner"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content" />
+    </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
         android:id="@+id/sellerSignUp_cardView9"
         android:layout_width="380dp"
@@ -236,7 +241,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sellerSignUp_spinner">
+        app:layout_constraintTop_toBottomOf="@+id/sellerSignUp_cardview10">
 
         <LinearLayout
             android:layout_width="match_parent"
