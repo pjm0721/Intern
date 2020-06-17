@@ -310,7 +310,7 @@ public class SellerRegisterModifier extends AppCompatActivity {
                         "영업시간",seller_business_time.getText().toString(),
                         "전화번호",seller_business_contact_number.getText().toString(),
                         "카테고리",seller_business_category.getSelectedItem().toString(),
-                        "소개",seller_business_explain.getText().toString()
+                        "휴무일",seller_business_explain.getText().toString()
                 );
 
 
@@ -459,7 +459,8 @@ public class SellerRegisterModifier extends AppCompatActivity {
                         } else {
                             Log.w("SRM", "Error", task.getException());
                         }
-                        next_spinner();
+
+                        if(!si.equals("")) next_spinner();
 
                     }
                 });

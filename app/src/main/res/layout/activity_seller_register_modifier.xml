@@ -269,7 +269,7 @@
                 <TextView
                     android:layout_width="60dp"
                     android:layout_height="wrap_content"
-                    android:text="소    개"
+                    android:text="휴무일"
                     android:textColor="#000"
                     android:textSize="15dp"
                     android:textStyle="bold"
