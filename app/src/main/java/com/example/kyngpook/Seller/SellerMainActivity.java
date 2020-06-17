@@ -31,6 +31,7 @@ public class SellerMainActivity extends AppCompatActivity {
         seller_ID=intent.getStringExtra("ID");
         Button seller_register_modify_button=findViewById(R.id.seller_register_modify);
         Button seller_management_orders_button=findViewById(R.id.seller_management_orders);
+        Button seller_management_review_button =findViewById(R.id.seller_management_review);
 
         seller_register_modify_button.setOnClickListener(new View.OnClickListener(){
 
@@ -46,6 +47,15 @@ public class SellerMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent =new Intent(getApplicationContext(),SellerOrderManagement.class);
+                startActivity(intent);
+            }
+        });
+
+        seller_management_review_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SellerReviewManage.class);
+                intent.putExtra("SELLER_ID", seller_ID);
                 startActivity(intent);
             }
         });
