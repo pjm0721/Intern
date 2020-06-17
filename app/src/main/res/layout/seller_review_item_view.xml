@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/border_below"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/sriv_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="닉네임"
+            android:textColor="#000"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/sriv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="7dp"
+            android:text="2020년 05월 10일"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/sriv_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="평점 : 0.0 / 5.0"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/sriv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="내용내용내용내용"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+</LinearLayout>
