@@ -40,9 +40,14 @@ public class SellerReviewAdapter extends BaseAdapter {
 
         TextView sra_nickname = (TextView)v.findViewById(R.id.sriv_nickname);
         TextView sra_time = (TextView)v.findViewById(R.id.sriv_time);
+        TextView sra_score = (TextView)v.findViewById(R.id.sriv_score);
+        TextView sra_content = (TextView)v.findViewById(R.id.sriv_content);
 
         sra_nickname.setText(boardlist.get(position).getSri_nickname());
         sra_time.setText(boardlist.get(position).getSri_time());
+        sra_score.setText("평점 : " + boardlist.get(position).getReview_score() + ".0 / 5.0");
+        sra_content.setText(boardlist.get(position).getSri_content());
+
         return v;
     }
 }
