@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
@@ -61,7 +62,7 @@ public class Buyer_OrderList_Fragment extends Fragment {
 
         Log.d("NONONO", "NONONO");
         //주문 내역 DB 로드
-        db.collection("주문내역")
+        db.collection("주문내역").orderBy("주문시간", Query.Direction.DESCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
