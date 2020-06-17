@@ -39,6 +39,15 @@
     </androidx.cardview.widget.CardView>
 
     <Button
+        android:id="@+id/adii_call_button"
+        android:layout_width="340dp"
+        android:layout_height="37dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/login_focus_btn_selector"
+        android:textColor="#fff"
+        android:text="구매자에게 전화하기" />
+
+    <Button
         android:id="@+id/adii_complete_button"
         android:layout_width="340dp"
         android:layout_height="37dp"

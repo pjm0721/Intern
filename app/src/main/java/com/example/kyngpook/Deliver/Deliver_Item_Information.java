@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -39,6 +40,8 @@ import static maes.tech.intentanim.CustomIntent.customType;
 
 public class Deliver_Item_Information extends AppCompatActivity {
     private Button deliver_item_information_complete_button;
+    private Button deliver_item_information_call_button;
+
     private ListView deliver_item_information_listview;
     private ArrayAdapter deliver_item_information_adapter = null;
     private ArrayList<String> deliver_item_information_arraylist = null;
@@ -47,6 +50,7 @@ public class Deliver_Item_Information extends AppCompatActivity {
     private final int RESULT_ACCEPT = 1001;
     private FirebaseFirestore db;
     private String temp_document_name = "";
+    private String buyer_phone_number = "";
 
     @Override
     public void onBackPressed() {
@@ -78,6 +82,8 @@ public class Deliver_Item_Information extends AppCompatActivity {
         });
 
         bike.startAnimation(anim);
+        deliver_item_infomation_get_buyer_phone(getIntent().getExtras().getString("BUYER_ID"));
+
         deliver_item_information_arraylist = new ArrayList<String>();
         deliver_item_information_arraylist.add("주문자 이름 : " + getIntent().getExtras().getString("SELLER_NAME"));
         deliver_item_information_arraylist.add("주문자 주소 : " + getIntent().getExtras().getString("SELLER_ADDRESS"));
@@ -105,5 +111,36 @@ public class Deliver_Item_Information extends AppCompatActivity {
             }
         });
 
+        deliver_item_information_call_button = (Button) findViewById(R.id.adii_call_button);
+        deliver_item_information_call_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + buyer_phone_number)));
+            }
+        });
+
+    }
+
+    private void deliver_item_infomation_get_buyer_phone(final String buyer_id) {
+        buyer_phone_number = "";
+        db = FirebaseFirestore.getInstance();
+
+        db.collection("USERS").document("Buyer").collection("Buyer")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot doc : task.getResult()) {
+                                String temp_buyer_id = doc.get("ID").toString();
+                                String temp_phone_number = doc.get("전화번호").toString();
+
+                                if (temp_buyer_id.equals(buyer_id)) {
+                                    buyer_phone_number += temp_phone_number;
+                                }
+                            }
+                        }
+                    }
+                });
     }
 }
