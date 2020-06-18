@@ -98,41 +98,6 @@ public class SellerRegisterModifier extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        // 메뉴 리스트뷰 불러오기
-
-
-
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-                things
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if(task.isSuccessful())
-                                {
-                                    for(QueryDocumentSnapshot doc :task.getResult()) {
-                                        String price = (String) doc.getData().get("가격");
-                                        //DecimalFormat formatter = new DecimalFormat("###,###");
-                                        // String formattedPrice = formatter.format(Integer.valueOf(price)) + " 원";
-
-
-                                        SellerRMListData d = new SellerRMListData((String) doc.getData().get("상품이름"), (String) doc.getData().get("개수"), price);
-                                        adapter.addItem(d);
-                                        adapter.notifyDataSetChanged();
-                                    }
-
-                                }
-                                else
-                                    Log.w("sellerRM","error",task.getException());
-
-                            }
-                        });
-            }
-        },1000);
 
 
     }
@@ -279,6 +244,42 @@ public class SellerRegisterModifier extends AppCompatActivity {
 
             }
         });
+
+        // 메뉴 리스트뷰 불러오기
+
+
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                things
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if(task.isSuccessful())
+                                {
+                                    for(QueryDocumentSnapshot doc :task.getResult()) {
+                                        String price = (String) doc.getData().get("가격");
+                                        //DecimalFormat formatter = new DecimalFormat("###,###");
+                                        // String formattedPrice = formatter.format(Integer.valueOf(price)) + " 원";
+
+
+                                        SellerRMListData d = new SellerRMListData((String) doc.getData().get("상품이름"), (String) doc.getData().get("개수"), price);
+                                        adapter.addItem(d);
+                                        adapter.notifyDataSetChanged();
+                                    }
+
+                                }
+                                else
+                                    Log.w("sellerRM","error",task.getException());
+
+                            }
+                        });
+            }
+        },1000);
 
 
 
