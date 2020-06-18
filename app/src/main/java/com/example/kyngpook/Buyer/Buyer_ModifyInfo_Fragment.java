@@ -125,9 +125,11 @@ public class Buyer_ModifyInfo_Fragment  extends Fragment {
                     return;
                 }
                 util.setStringData("전화번호", call);
-
                 Map<String, Object> info = new HashMap<>();
-
+                pwEdit.clearFocus();
+                nameEdit.clearFocus();
+                nicknameEdit.clearFocus();
+                callEdit.clearFocus();
                 String id = util.getStringData("ID", "id1");
                 info.put("ID", id);
                 info.put("PASSWORD", password);
