@@ -132,7 +132,7 @@ public class SellerRegisterModifier extends AppCompatActivity {
                             }
                         });
             }
-        },2000);
+        },1000);
 
 
     }
