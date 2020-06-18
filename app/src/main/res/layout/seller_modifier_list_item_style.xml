@@ -15,6 +15,7 @@
         android:layout_weight="1"
         android:layout_gravity="center"
         android:scaleType="fitXY"
+        android:src="@drawable/seller_init_img"
         />
 
     <TextView

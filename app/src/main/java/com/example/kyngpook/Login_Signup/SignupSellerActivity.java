@@ -237,6 +237,15 @@ public class SignupSellerActivity extends AppCompatActivity {
             user.put("주소",city_first.getSelectedItem().toString()+" "+city_second.getSelectedItem().toString()+" "+city_third.getText().toString());
 
             db.collection("USERS").document("Seller").collection("Seller").document(ID).set(user);
+
+            Map<String,Object> item = new HashMap<>();
+            item.put("상품이름","예시");
+            item.put("개수","1");
+            item.put("가격","1000");
+
+            db.collection("PRODUCT").document(city_first.getSelectedItem().toString()).collection(city_second.getSelectedItem().toString()).
+                    document(ID).collection("판매상품").document("").set(item);
+
             ActivityCompat.finishAffinity(SignupSellerActivity.this);
             Intent intent = new Intent(getApplicationContext(), SignupFinishActivity.class);
             intent.putExtra("ID", ID);
