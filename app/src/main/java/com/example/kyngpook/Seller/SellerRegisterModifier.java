@@ -85,6 +85,7 @@ public class SellerRegisterModifier extends AppCompatActivity {
 
     FirebaseStorage storage;
     StorageReference storageRef;
+    Bitmap bitmap;
 
     private String area,si,gu;
     CollectionReference things;
@@ -117,6 +118,7 @@ public class SellerRegisterModifier extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         si="";
         gu="";
+        bitmap=null;
 
 
 
@@ -340,6 +342,17 @@ public class SellerRegisterModifier extends AppCompatActivity {
                     }
                 },300);
 
+                //이미지 저장
+
+                if(bitmap!=null) {
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                    byte[] byte_data = baos.toByteArray();
+
+                    UploadTask uploadTask = storageRef.putBytes(byte_data);
+                }
+
+
 
 
                 finish();
@@ -380,18 +393,13 @@ public class SellerRegisterModifier extends AppCompatActivity {
                 try {
                     InputStream in=getContentResolver().openInputStream(data.getData());
 
-                    Bitmap bitmap= BitmapFactory.decodeStream(in);
+                    bitmap= BitmapFactory.decodeStream(in);
                     in.close();
                     seller_business_image.setImageBitmap(bitmap);
 
                     seller_business_image.setDrawingCacheEnabled(true);
                     seller_business_image.buildDrawingCache();
 
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                    byte[] byte_data = baos.toByteArray();
-
-                    UploadTask uploadTask=storageRef.putBytes(byte_data);
 
 
                 }
