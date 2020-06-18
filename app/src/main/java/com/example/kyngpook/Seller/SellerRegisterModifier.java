@@ -91,15 +91,62 @@ public class SellerRegisterModifier extends AppCompatActivity {
     private String area,si,gu;
     private CollectionReference things;
 
+    String seller_ID;
+
 
     @Override
     protected void onResume() {
         super.onResume();
+
+        // 메뉴 리스트뷰 불러오기
+
+
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                things
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if(task.isSuccessful())
+                                {
+                                    for(QueryDocumentSnapshot doc :task.getResult()) {
+                                        String price = (String) doc.getData().get("가격");
+                                        //DecimalFormat formatter = new DecimalFormat("###,###");
+                                        // String formattedPrice = formatter.format(Integer.valueOf(price)) + " 원";
+
+
+                                        SellerRMListData d = new SellerRMListData((String) doc.getData().get("상품이름"), (String) doc.getData().get("개수"), price);
+                                        adapter.addItem(d);
+                                        adapter.notifyDataSetChanged();
+                                    }
+
+                                }
+                                else
+                                    Log.w("sellerRM","error",task.getException());
+
+                            }
+                        });
+            }
+        },2000);
+
+
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences pref = getSharedPreferences("seller", MODE_PRIVATE);
+
+
+
+        seller_ID = pref.getString("id","");
+
         setContentView(R.layout.activity_seller_register_modifier);
 
         seller_business_name=findViewById(R.id.seller_business_name);
@@ -133,9 +180,7 @@ public class SellerRegisterModifier extends AppCompatActivity {
             }
         }, 1700);
 
-        SharedPreferences pref = getSharedPreferences("seller", MODE_PRIVATE);
 
-        final String seller_ID = pref.getString("id","");
 
         db= FirebaseFirestore.getInstance();
 
@@ -230,45 +275,11 @@ public class SellerRegisterModifier extends AppCompatActivity {
                     }
                 }
 
+                things = db.collection("PRODUCT").document(si).collection(gu).document(seller_ID).collection("판매상품");
+
             }
         });
 
-
-        // 메뉴 리스트뷰 불러오기
-
-
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                things =db.collection("PRODUCT").document(si).collection(gu).document(seller_ID).collection("판매상품");
-
-                things
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if(task.isSuccessful())
-                                {
-                                    for(QueryDocumentSnapshot doc :task.getResult()) {
-                                        String price = (String) doc.getData().get("가격");
-                                        //DecimalFormat formatter = new DecimalFormat("###,###");
-                                        // String formattedPrice = formatter.format(Integer.valueOf(price)) + " 원";
-
-
-                                        SellerRMListData d = new SellerRMListData((String) doc.getData().get("상품이름"), (String) doc.getData().get("개수"), price);
-                                        adapter.addItem(d);
-                                        adapter.notifyDataSetChanged();
-                                    }
-
-                                }
-                                else
-                                    Log.w("sellerRM","error",task.getException());
-
-                            }
-                        });
-            }
-        },500);
 
 
 
