@@ -4,6 +4,7 @@ import com.example.kyngpook.R;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class Buyer_OrderList_Fragment extends Fragment {
     Buyer_MainActivity activity;
@@ -60,7 +62,6 @@ public class Buyer_OrderList_Fragment extends Fragment {
         util = new SharedPreferenceUtil(activity);
         final String ID = util.getStringData("ID", "id1");
 
-        Log.d("NONONO", "NONONO");
         //주문 내역 DB 로드
         db.collection("주문내역").orderBy("주문시간", Query.Direction.DESCENDING)
                 .get()
@@ -89,7 +90,6 @@ public class Buyer_OrderList_Fragment extends Fragment {
                                     orderInfo info = new orderInfo(store, time, state, address, order, price, review, id, idd);
                                     adapter.addItem(info);
                                     adapter.notifyDataSetChanged();
-                                    Log.d("NONONO", info.toString());
                                 }
                             }
                         } else {
@@ -97,6 +97,55 @@ public class Buyer_OrderList_Fragment extends Fragment {
                         }
                     }
                 });
+
+        final SwipeRefreshLayout swipe = (SwipeRefreshLayout) rootView.findViewById(R.id.Buyer_OrderList_Swipe);
+        swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                adapter.clear();
+                db.collection("주문내역").orderBy("주문시간", Query.Direction.DESCENDING)
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        if (document.getData().get("구매자아이디").toString().equals(ID))
+                                        {
+                                            String store = (String) document.getData().get("업소명");
+                                            String time = (String) document.getData().get("주문시간");
+                                            String state = (String) document.getData().get("주문상태");
+                                            String address = (String) document.getData().get("구매자주소");
+                                            String order = "";
+                                            Map orderMap = (Map) document.getData().get("주문내역");
+                                            for(Object keyy : orderMap.keySet()) {
+                                                String key = (String) keyy;
+                                                order += key + "×" + orderMap.get(key).toString()+" ";
+                                            }
+
+                                            int price = Integer.valueOf(document.getData().get("금액").toString());
+                                            boolean review = (boolean) document.getData().get("리뷰여부");
+                                            String id = (String) document.getData().get("판매자아이디");
+                                            String idd = document.getId();
+                                            orderInfo info = new orderInfo(store, time, state, address, order, price, review, id, idd);
+                                            adapter.addItem(info);
+                                            adapter.notifyDataSetChanged();
+                                        }
+                                    }
+                                } else {
+//                            Log.w("Buyer_MarketListActiviry", "Error getting documents.", task.getException());
+                                }
+                            }
+                        });
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipe.setRefreshing(false);
+                    }
+                }, 750);
+
+            }
+        });
 
         return rootView;
     }

@@ -15,15 +15,24 @@
         android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-    <androidx.cardview.widget.CardView
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/Buyer_OrderList_Swipe"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/Buyer_OrderListActivity_RecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-    </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/Buyer_OrderListActivity_RecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </androidx.cardview.widget.CardView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
 </LinearLayout>
