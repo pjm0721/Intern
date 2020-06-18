@@ -211,19 +211,11 @@ public class Deliver_MainActivity extends AppCompatActivity {
                                     if (seller_phone_number != "") {
                                         /* SMS 문자메시지 내용 변수 */
                                         String contents = deliver_mainactivity_boardlist.get(position).getDMI_Buyer_Address();
-                                        contents += "로 주문을 배달 배정받았습니다! 해당 가게로 이동 중입니다!";
-                                        // send_sms("01062817950", contents);
-
-                                        /* 이거 주석 절대 풀지마세요.. 데이터베이스에 053112도 있던데 그리로 문자갑니다..
-                                        위에 send_sms("01062817950", contents); 코드 없애고 아래 코드를 추가하면 정상 작동.
+                                        contents += " 주문을 배달 배정받았습니다! 해당 가게로 이동 중입니다!";
                                         send_sms(seller_phone_number, contents);
-                                         */
-
-                                        // seller_phone_number 확인
                                         // Toast.makeText(getApplicationContext(), seller_phone_number, Toast.LENGTH_LONG).show();
                                     }
 
-                                    // Activity 시작
                                     startActivityForResult(intent, DELIVER_REQUEST);
                                 }
 
