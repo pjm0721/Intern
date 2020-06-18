@@ -140,7 +140,7 @@ public class SellerOrderCheckAlert extends AppCompatActivity {
 
                 DocumentReference d= db.collection("주문내역").document(doc_name);
                 if(!order_state.equals("주문완료")) {
-                    send_sms("01023207930",buyer_num+"주문이 완료되었습니다.");
+                    send_sms(buyer_num,"주문이 완료되었습니다.");
                     d.update("주문상태", "주문수락");
                 }
                 else{
@@ -157,7 +157,7 @@ public class SellerOrderCheckAlert extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                send_sms("01023207930",buyer_num+"주문이 취소되었습니다.");
+                send_sms(buyer_num,"주문이 취소되었습니다.");
                 DocumentReference d=db.collection("주문내역").document(doc_name);
                 d.delete();
                 finish();
