@@ -76,7 +76,7 @@ public class Find_Pw_Activity extends AppCompatActivity {
         int id = pfind_id_rgp.getCheckedRadioButtonId();
         pfind_id_rb = (RadioButton)findViewById(id);
         final String who= pfind_id_rb.getText().toString();
-        String user=null;
+        final String user;
         final String name;
         if(who.equals("일반 이용자")==true) {
             user="Buyer";
@@ -90,7 +90,9 @@ public class Find_Pw_Activity extends AppCompatActivity {
             user = "Deliver";
             name = "이름";
         }
-        else name = null;
+        else {
+            name = null; user = null;
+        }
         db.collection("USERS").document(user).collection(user)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -103,7 +105,7 @@ public class Find_Pw_Activity extends AppCompatActivity {
                                     if (document.getData().get("전화번호").toString().equals(numbertext) == true) {
                                         if (document.getData().get("ID").toString().equals(idtext) == true) {
                                             if (document.getData().get("질문").toString().equals(qtext) && document.getData().get("답변").toString().equals(atext)) {
-                                                pfind_Pw = document.getData().get("PASSWORD").toString();
+                                                pfind_Pw = document.getData().get("ID").toString();
                                                 state = 1;
                                             }
                                         }
@@ -116,7 +118,8 @@ public class Find_Pw_Activity extends AppCompatActivity {
                         }
                         if (state == 1) {
                             Intent intent = new Intent(getApplicationContext(), Find_Pw_Complete.class);
-                            intent.putExtra("PW", pfind_Pw);
+                            intent.putExtra("ID", pfind_Pw);
+                            intent.putExtra("USER",user);
                             startActivity(intent);
                             customType(Find_Pw_Activity.this, "left-to-right");
                             finish();
