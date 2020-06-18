@@ -5,34 +5,84 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.kyngpook.Login_Signup.Find_Pw_Complete">
-
     <TextView
-        android:id="@+id/find_pw_complete_txt"
-        android:layout_width="match_parent"
-        android:layout_height="268dp"
-        android:layout_marginTop="136dp"
-        android:gravity="center"
-        android:text="비밀번호: 123412341231"
-        android:textColor="#888888"
+        android:id="@+id/find_pw_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="비밀번호 재설정"
+        android:textColor="#f000"
         android:textSize="30sp"
-        android:textStyle="bold|italic"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.118"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/find_pw_cardView"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/find_pw_textView"
+        app:cardElevation="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp">
+            <EditText
+                android:id="@+id/find_pw_password"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@null"
+                android:hint="비밀번호 (8~12자리, 특수문자 가능)"
+                android:textSize="15sp"
+                android:inputType="textPassword" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/find_pw_cardView1"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/find_pw_cardView"
+        app:cardElevation="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp">
+            <EditText
+                android:id="@+id/find_pw_pCheck"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@null"
+                android:textSize="15sp"
+                android:hint="비밀번호 확인"
+                android:inputType="textPassword" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/find_pw_complete_btn"
         android:layout_width="160dp"
         android:layout_height="46dp"
         android:background="@drawable/login_focus_btn_selector"
-        android:text="로그인하러 가기"
+        android:text="변경 완료"
         android:textColor="#ffffff"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.709" />
+        app:layout_constraintTop_toBottomOf="@+id/find_pw_cardView1"
+        app:layout_constraintVertical_bias="0.452" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
