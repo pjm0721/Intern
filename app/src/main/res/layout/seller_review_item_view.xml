@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@drawable/border_below"
         android:padding="10dp">
 
         <TextView
@@ -17,8 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="닉네임"
-            android:textColor="#000"
-            android:textSize="18dp" />
+            android:textColor="#000" />
 
         <TextView
             android:id="@+id/sriv_time"
@@ -32,16 +30,14 @@
             android:id="@+id/sriv_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="평점 : 0.0 / 5.0"
-            android:textSize="15dp" />
+            android:text="평점 : 0.0 / 5.0" />
 
         <TextView
             android:id="@+id/sriv_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="내용내용내용내용"
-            android:textSize="18dp" />
+            android:text="내용내용내용내용" />
     </LinearLayout>
 
 </LinearLayout>

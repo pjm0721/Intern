@@ -23,6 +23,7 @@
             android:text="가게글 작성 및 수정"
             android:textSize="20dp"
             android:textStyle="bold"
+            android:paddingTop="60dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -35,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="180dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="60dp"
             android:src="@drawable/seller_main1" />
     </androidx.cardview.widget.CardView>
 
@@ -56,6 +57,7 @@
             android:text="가게 주문 내역 관리"
             android:textSize="20dp"
             android:textStyle="bold"
+            android:paddingTop="60dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
@@ -68,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="170dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="60dp"
             android:src="@drawable/seller_main2" />
     </androidx.cardview.widget.CardView>
 
@@ -87,6 +89,7 @@
             android:layout_height="match_parent"
             android:background="@null"
             android:text="리뷰 보기"
+            android:paddingTop="60dp"
             android:textSize="20dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -101,8 +104,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="170dp"
-            android:layout_marginTop="100dp"
-            android:src="@drawable/seller_main2" />
+            android:background="@drawable/seller_review"
+            android:layout_marginTop="60dp"/>
     </androidx.cardview.widget.CardView>
 
     <Button

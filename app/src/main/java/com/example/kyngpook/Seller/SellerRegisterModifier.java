@@ -42,6 +42,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.xiasuhuei321.loadingdialog.view.LoadingDialog;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -60,35 +61,35 @@ public class SellerRegisterModifier extends AppCompatActivity {
 
     public static final int REQUEST_CODE = 100;
     public static final int IMAGE_REQUEST=1000;
+    private LoadingDialog l;
+    private FirebaseFirestore db;
+    private SellerRMListAdapter adapter;
+    private RecyclerView recyclerView;
+    private LinearLayoutManager linearLayoutManager;
 
-    FirebaseFirestore db;
-    SellerRMListAdapter adapter;
-    RecyclerView recyclerView;
-    LinearLayoutManager linearLayoutManager;
+    private EditText seller_business_name;
+    private EditText seller_business_master;
+    private ImageView seller_business_image;
+    private TextView seller_business_address;
+    private EditText seller_business_time;
+    private EditText seller_business_contact_number;
 
-    EditText seller_business_name;
-    EditText seller_business_master;
-    ImageView seller_business_image;
-    TextView seller_business_address;
-    EditText seller_business_time;
-    EditText seller_business_contact_number;
+    private EditText seller_business_explain;
 
-    EditText seller_business_explain;
+    private Button seller_add_thing;
+    private Button seller_del_thing;
+    private Button seller_complete;
 
-    Button seller_add_thing;
-    Button seller_del_thing;
-    Button seller_complete;
+    private Spinner seller_business_category;
 
-    Spinner seller_business_category;
+    private String category;
 
-    String category;
-
-    FirebaseStorage storage;
-    StorageReference storageRef;
-    Bitmap bitmap;
+    private FirebaseStorage storage;
+    private StorageReference storageRef;
+    private Bitmap bitmap;
 
     private String area,si,gu;
-    CollectionReference things;
+    private CollectionReference things;
 
 
     @Override
@@ -119,8 +120,18 @@ public class SellerRegisterModifier extends AppCompatActivity {
         si="";
         gu="";
         bitmap=null;
-
-
+        l=new LoadingDialog(this);
+        l.setLoadingText("로딩중")
+                .setSuccessText("완료")
+                .setInterceptBack(true)
+                .setLoadSpeed(LoadingDialog.Speed.SPEED_ONE)
+                .show();
+        Handler mHandler = new Handler();
+        mHandler.postDelayed(new Runnable()  {
+            public void run() {
+                l.close();// 시간 지난 후 실행할 코딩
+            }
+        }, 1700);
 
         SharedPreferences pref = getSharedPreferences("seller", MODE_PRIVATE);
 

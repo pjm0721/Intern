@@ -44,7 +44,7 @@ public class Buyer_MarketList_Fragment extends Fragment {
     private String address1 = "";
     private String address2 = "";
     private String Category = "가구";
-    LoadingDialog l;
+    private LoadingDialog l;
 
     private Buyer_MarketList_Adapter RVadapter;
     private Spinner spinner;
