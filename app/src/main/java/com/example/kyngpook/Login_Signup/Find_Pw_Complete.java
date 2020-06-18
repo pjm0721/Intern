@@ -53,6 +53,7 @@ public class Find_Pw_Complete extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "비밀번호가 맞지 않습니다", Toast.LENGTH_SHORT).show();
         else {
             db.collection("USERS").document(User).collection(User).document(ID).update("PASSWORD",findpw);
+            Toast.makeText(this,"비밀번호 변경이 완료되었습니다.",Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getApplicationContext(), LogInActivity.class);
             ActivityCompat.finishAffinity(Find_Pw_Complete.this);
             startActivity(intent);
