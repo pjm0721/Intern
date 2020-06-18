@@ -74,12 +74,10 @@ public class Deliver_MainActivity extends AppCompatActivity {
     private Boolean deliver_process_check = true;
     private long backKeyPressedTime = 0;
     private String seller_phone_number = "";
-    private LoginSharedPreferenceUtil util12 = null;
 
     private Map prev_value = null;
-
-
     private String ID;
+
     @Override
     protected void onResume() {
         // activity가 다시 시작할 때 구현부.
@@ -93,10 +91,9 @@ public class Deliver_MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.deliver_activity_main);
-        Intent intent =  getIntent();
+        Intent intent = getIntent();
         ID = intent.getStringExtra("ID");
 
-        util12 = new LoginSharedPreferenceUtil(this);
         deliver_mainactivity_searchview = (EditText) findViewById(R.id.deliver_activity_main_searchview);
         deliver_mainactivity_progressbar = (ProgressBar) findViewById(R.id.deliver_activity_main_progressbar);
         deliver_mainactivity_boardlistview = (ListView) findViewById(R.id.deliver_activity_main_listview);
@@ -207,7 +204,7 @@ public class Deliver_MainActivity extends AppCompatActivity {
                                     intent.putExtra("BUYER_ADDRESS", deliver_mainactivity_boardlist.get(position).getDMI_Buyer_Address());
                                     intent.putExtra("PRICE", deliver_mainactivity_boardlist.get(position).getDMI_Price());
                                     intent.putExtra("ORDER_TIME", deliver_mainactivity_boardlist.get(position).getDMI_Order_Time());
-                                    intent.putExtra("DELIVER_ID", util12.getStringData("ID", "default"));
+                                    intent.putExtra("DELIVER_ID", ID);
                                     intent.putExtra("DOCUMENT_NAME", deliver_mainactivity_boardlist.get(position).getDMI_document());
 
                                     // null일 때 전화번호가 없는 데 메시지 보내면 오류발생하니까 null이 아닐때만 처리.
@@ -400,17 +397,19 @@ public class Deliver_MainActivity extends AppCompatActivity {
             toast.cancel();
         }
     }
-    public void on_deliver_logout(View v){
-        LoginSharedPreferenceUtil util11 =  new LoginSharedPreferenceUtil(Deliver_MainActivity.this);
+
+    public void on_deliver_logout(View v) {
+        LoginSharedPreferenceUtil util11 = new LoginSharedPreferenceUtil(Deliver_MainActivity.this);
         util11.setBooleanData("AutoLogin", false);
         util11.setStringData("ID", "");
         util11.setStringData("권한", "null");
-        Toast.makeText(this,"로그아웃 되었습니다.",Toast.LENGTH_SHORT).show();
-        Intent intent=new Intent(Deliver_MainActivity.this,LogInActivity.class);
+        Toast.makeText(this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(Deliver_MainActivity.this, LogInActivity.class);
         ActivityCompat.finishAffinity(Deliver_MainActivity.this);
         startActivity(intent);
         customType(Deliver_MainActivity.this, "bottom-to-up");
     }
+
     private void send_sms(final String number, final String message) {
         try {
             SmsManager sms = SmsManager.getDefault();
