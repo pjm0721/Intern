@@ -122,7 +122,7 @@ public class SellerRMListAdapter extends RecyclerView.Adapter<SellerRMListAdapte
                 @Override
                 public void onComplete(@NonNull Task<Uri> task) {
                     if (task.isSuccessful()) {
-                        Glide.with(itemView.getContext())
+                        Glide.with(context)
                                 .load(task.getResult())
                                 .into(seller_modify_list_image);
                     }

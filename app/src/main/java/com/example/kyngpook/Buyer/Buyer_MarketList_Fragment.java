@@ -71,15 +71,13 @@ public class Buyer_MarketList_Fragment extends Fragment {
         //주소 등록 버튼
         address_text=rootView.findViewById(R.id.Buyer_Address_TextView);
         AddressBtn = rootView.findViewById(R.id.Buyer_MarketListAcvitity_AddressBtn);
+
         AddressBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 activity.startAddressRegistActivity();
             }
         });
-
-
-
         //카테고리 선택 스피너
         RecyclerView recyclerView = rootView.findViewById(R.id.Buyer_MarketListAcvitity_RecyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity);

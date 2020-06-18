@@ -7,6 +7,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.Manifest;
 import android.content.DialogInterface;
@@ -18,6 +20,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +52,7 @@ import java.util.Set;
 
 public class Buyer_AddressRegistActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private final String address1 = "대구광역시";
+    private String address1 = "";
     private String address2 = "";
     private GpsTracker gpsTracker;
     private ViewGroup gps_btn;
@@ -58,64 +61,70 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONS_REQUEST_CODE = 100;
     String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
-    private Button[] BtnArray = new Button[7];
+
 
     private SharedPreferenceUtil util;
-
-    private Map<String, Integer> provinceMap = new HashMap<>();
-
+    private FragmentManager fragmentManager = getSupportFragmentManager();
+    private Buyer_Address_Busan_Fragment fragment2;
+    private Buyer_Address_Daegu_Fragment fragment1;
+    private Button busan;
+    private Button daegu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buyer__address_regist);
-        provinceMap.put("남구", 0);
-        provinceMap.put("달서구", 1);
-        provinceMap.put("동구", 2);
-        provinceMap.put("북구", 3);
-        provinceMap.put("서구", 4);
-        provinceMap.put("수성구", 5);
-        provinceMap.put("중구", 6);
+        final EditText editText = (EditText) findViewById(R.id.Buyer_AddressRegistActivity_EditText);
 
+        util = new SharedPreferenceUtil(this);
+
+        fragment1 = new Buyer_Address_Daegu_Fragment();
+        fragment2 = new Buyer_Address_Busan_Fragment();
+        fragmentManager.beginTransaction().add(R.id.Buyer_AddressRegistActivity_Container, fragment1).hide(fragment1).commit();
+        fragmentManager.beginTransaction().add(R.id.Buyer_AddressRegistActivity_Container, fragment2).hide(fragment2).commit();
+        busan = (Button) findViewById(R.id.Buyer_AddressRegistActivity_BusanBtn);
+        daegu = (Button) findViewById(R.id.Buyer_AddressRegistActivity_DaeguBtn);
+
+        daegu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragmentManager.beginTransaction().hide(fragment2).commit();
+                fragmentManager.beginTransaction().show(fragment1).commit();
+                daegu.setBackgroundResource(R.drawable.buyer_button_shape3);
+                busan.setBackgroundResource(R.drawable.buyer_button_shape);
+            }
+        });
+        busan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragmentManager.beginTransaction().hide(fragment1).commit();
+                fragmentManager.beginTransaction().show(fragment2).commit();
+                daegu.setBackgroundResource(R.drawable.buyer_button_shape);
+                busan.setBackgroundResource(R.drawable.buyer_button_shape3);
+            }
+        });
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                String fullAddress = util.getStringData("주소", ""); // 대구광역시 중구\n가나다라
+                if(fullAddress.length() > 4) {
+                    String[] s1Address = fullAddress.split("\n"); //0: 대구광역시 중구, 1: 가나다라
+                    if(s1Address.length == 2) {
+                        String[] s2Address = s1Address[0].split(" "); // 0:대구광역시, 1:중구
+                        if(s2Address.length == 2) {
+                            if(loadPreOrderAddress(s2Address[0], s2Address[1])) {
+                                editText.setText(s1Address[1]);
+                            }
+                        }
+                    }
+                }
+            }
+        }, 800);
 
 
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        BtnArray[0] = (Button) findViewById(R.id.Buyer_AddressRegistActivity_mBtn1);
-        BtnArray[1] = (Button) findViewById(R.id.Buyer_AddressRegistActivity_mBtn2);
-        BtnArray[2] = (Button) findViewById(R.id.Buyer_AddressRegistActivity_mBtn3);
-        BtnArray[3] = (Button) findViewById(R.id.Buyer_AddressRegistActivity_mBtn4);
-        BtnArray[4] = (Button) findViewById(R.id.Buyer_AddressRegistActivity_mBtn5);
-        BtnArray[5] = (Button) findViewById(R.id.Buyer_AddressRegistActivity_mBtn6);
-        BtnArray[6] = (Button) findViewById(R.id.Buyer_AddressRegistActivity_mBtn7);
 
-        for(int i = 0; i < 7; i++) {
-            final int finalI = i;
-            BtnArray[i].setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    address2 = selectPrivince(finalI);
-                }
-            });
-        }
-        final EditText editText = (EditText) findViewById(R.id.Buyer_AddressRegistActivity_EditText);
-
-        util = new SharedPreferenceUtil(this);
-        String preAddress = util.getStringData("주소", "null");
-        String[] preAddressArr = preAddress.split("\n");
-        String[] preAddressArr2 = preAddressArr[0].split(" ");
-
-        if(preAddressArr2.length > 1 &&  (preAddressArr2[1].equals("남구") || preAddressArr2[1].equals("달서구") || preAddressArr2[1].equals("동구")
-                || preAddressArr2[1].equals("중구") || preAddressArr2[1].equals("서구") || preAddressArr2[1].equals("수성구")
-                || preAddressArr2[1].equals("북구"))) {
-            Log.d("NONONO123", "true");
-            final String[] addressSplit = preAddress.split("\n");
-            final String[] addressSplit2 = addressSplit[0].split(" ");
-            //address1 = addressSplit2[0];
-            address2 = addressSplit2[1];
-            Log.d("NONONO11", address2 + "/" + provinceMap.get(address2));
-            selectPrivince(provinceMap.get(address2));
-            editText.setText(addressSplit[1]);
-        }
 
         if (!checkLocationServicesStatus()) {
 
@@ -146,21 +155,15 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
                 }else {
                     if(checkRunTimePermission()) {
                         String[] tmp = address.split(" ");
-                        for(int i = 0; i < tmp.length; i++)
-                            Log.d("NONO123", tmp[i]);
                         //tmp[0] : 대한민국, tmp[1] : 대구광역시
-                        //address1 = tmp[1];
                         //tmp[2] : XX구, tmp[3~] : 상세주소
-                        if(provinceMap.get(tmp[2]) != null)
-                            address2 = selectPrivince(provinceMap.get(tmp[2]));
-                        else
-                            address2 = selectPrivince(-1);
-
-                        String tt = "";
-                        for(int i = 3; i < tmp.length; i++) {
-                            tt += tmp[i] + " ";
+                        if(loadPreOrderAddress(tmp[1], tmp[2])) {
+                            String tt = "";
+                            for(int i = 3; i < tmp.length; i++) {
+                                tt += tmp[i] + " ";
+                            }
+                            editText.setText(tt);
                         }
-                        editText.setText(tt);
                     }
                 }
             }
@@ -174,10 +177,6 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
                 else if(address1.equals("") || address2.equals("")) {
                     Toast.makeText(getApplicationContext(), "주소를 클릭하여 설정하세요.", Toast.LENGTH_SHORT).show();
                 }
-                else if(!( address2.equals("동구") ||  address2.equals("서구") ||  address2.equals("남구") ||  address2.equals("북구")
-                            ||  address2.equals("달서구") ||  address2.equals("수성구") ||  address2.equals("중구"))) {
-                    Toast.makeText(getApplicationContext(), "주소지가 대구가 아닙니다.\n대구 지역 내에서만 사용 가능합니다.", Toast.LENGTH_SHORT).show();
-                }
                 else {
                     Intent intent = new Intent();
                     intent.putExtra("주소1", address1);
@@ -189,6 +188,18 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void setAddress2(String province, String address) {
+        if(province.equals("대구")) {
+            this.address1 = "대구광역시";
+            fragment2.selectPrivinceBusan(-1);
+        }
+        else if(province.equals("부산")) {
+            fragment1.selectPrivinceDaegu(-1);
+            this.address1 = "부산광역시";
+        }
+        this.address2 = address;
     }
     @Override
     public void onRequestPermissionsResult(int permsRequestCode,
@@ -334,32 +345,72 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                 || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
     }
-    private String selectPrivince(int i) {
-        for(int j = 0; j < 7; j++) {
-            BtnArray[j].setBackgroundResource(R.drawable.buyer_button_shape);
-        }
-        if(i == -1) return "null";
-        BtnArray[i].setBackgroundResource(R.drawable.buyer_button_shape2);
-        switch (i) {
-            case 0:
-                return "남구";
-            case 1:
-                return "달서구";
-            case 2:
-                return "동구";
-            case 3:
-                return "북구";
-            case 4:
-                return "서구";
-            case 5:
-                return "수성구";
-            case 6:
-                return "중구";
-            default:
-                break;
-        }
-        return "null";
-    }
 
+    private Boolean loadPreOrderAddress(String t1, String t2) {
+        if(t1.equals("대구광역시")) {
+            fragmentManager.beginTransaction().hide(fragment2).commit();
+            fragmentManager.beginTransaction().show(fragment1).commit();
+            daegu.setBackgroundResource(R.drawable.buyer_button_shape3);
+            busan.setBackgroundResource(R.drawable.buyer_button_shape);
+            address1 = "대구광역시";
+
+            switch(t2) {
+                case "남구":
+                    fragment1.selectPrivinceDaegu(0); address2 = "남구"; return true;
+                case "달서구":
+                    fragment1.selectPrivinceDaegu(1); address2 = "달서구"; return true;
+                case "동구":
+                    fragment1.selectPrivinceDaegu(2); address2 = "동구"; return true;
+                case "북구":
+                    fragment1.selectPrivinceDaegu(3); address2 = "북구"; return true;
+                case "서구":
+                    fragment1.selectPrivinceDaegu(4); address2 = "서구"; return true;
+                case "수성구":
+                    fragment1.selectPrivinceDaegu(5); address2 = "수성구"; return true;
+                case "중구":
+                    fragment1.selectPrivinceDaegu(6); address2 = "중구"; return true;
+                default:
+                    address2 = ""; break;
+            }
+        }
+        else if(t1.equals("부산광역시")) {
+            fragmentManager.beginTransaction().hide(fragment1).commit();
+            fragmentManager.beginTransaction().show(fragment2).commit();
+            daegu.setBackgroundResource(R.drawable.buyer_button_shape);
+            busan.setBackgroundResource(R.drawable.buyer_button_shape3);
+            address1 = "부산광역시";
+            switch(t2) {
+                case "금정구":
+                    fragment2.selectPrivinceBusan(0); address2 = "금정구"; return true;
+                case "북구":
+                    fragment2.selectPrivinceBusan(1); address2 = "북구"; return true;
+                case "동래구":
+                    fragment2.selectPrivinceBusan(2); address2 = "동래구"; return true;
+                case "연제구":
+                    fragment2.selectPrivinceBusan(3); address2 = "연제구"; return true;
+                case "남구":
+                    fragment2.selectPrivinceBusan(4); address2 = "남구"; return true;
+                case "부산진구":
+                    fragment2.selectPrivinceBusan(5); address2 = "부산진구"; return true;
+                case "동구":
+                    fragment2.selectPrivinceBusan(6); address2 = "동구"; return true;
+                case "중구":
+                    fragment2.selectPrivinceBusan(7); address2 = "중구"; return true;
+                case "사상구":
+                    fragment2.selectPrivinceBusan(8); address2 = "사상구"; return true;
+                case "서구":
+                    fragment2.selectPrivinceBusan(9); address2 = "서구"; return true;
+                case "사하구":
+                    fragment2.selectPrivinceBusan(10); address2 = "사하구"; return true;
+                case "해운대구":
+                    fragment2.selectPrivinceBusan(11); address2 = "해운대구"; return true;
+                default:
+                    address2 = ""; break;
+            }
+        }
+        else
+            Toast.makeText(Buyer_AddressRegistActivity.this, "해당 주소지는 서비스가 불가능합니다.", Toast.LENGTH_SHORT).show();
+        return false;
+    }
 }
 

@@ -47,6 +47,7 @@ public class Buyer_MainActivity extends AppCompatActivity {
     private ImageView order_img_v;
     private ImageView history_img_v;
     private ImageView modify_img_v;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,9 +62,9 @@ public class Buyer_MainActivity extends AppCompatActivity {
 //        util.setStringData("닉네임", intent.getStringExtra("닉네임"));
 //        util.setStringData("이름", intent.getStringExtra("이름"));
 
-        order_img_v=(ImageView)findViewById(R.id.Buyer_MainActivity_OrderImageView);
-        modify_img_v=(ImageView)findViewById(R.id.Buyer_MainActivity_ModifyImageView);
-        history_img_v=(ImageView)findViewById(R.id.Buyer_MainActivity_HistoryImageView);
+        order_img_v = (ImageView) findViewById(R.id.Buyer_MainActivity_OrderImageView);
+        modify_img_v = (ImageView) findViewById(R.id.Buyer_MainActivity_ModifyImageView);
+        history_img_v = (ImageView) findViewById(R.id.Buyer_MainActivity_HistoryImageView);
         fragment1 = new Buyer_MarketList_Fragment();
         fragment2 = new Buyer_OrderList_Fragment();
         fragment3 = new Buyer_ModifyInfo_Fragment();
@@ -114,13 +115,13 @@ public class Buyer_MainActivity extends AppCompatActivity {
         startActivityForResult(intent, 100);
     }
 
-                @Override
-                protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-                    super.onActivityResult(requestCode, resultCode, data);
-                    if (requestCode == 100) {
-                        if (data != null && resultCode == RESULT_OK) {
-                            final String address1 = data.getStringExtra("주소1");
-                            final String address2 = data.getStringExtra("주소2");
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 100) {
+            if (data != null && resultCode == RESULT_OK) {
+                final String address1 = data.getStringExtra("주소1");
+                final String address2 = data.getStringExtra("주소2");
                 String address3 = data.getStringExtra("주소3");
 
                 fragment1.getResultFromActivity(address1, address2, address3);
@@ -144,10 +145,11 @@ public class Buyer_MainActivity extends AppCompatActivity {
         if (fragment3 != id)
             fragmentManager.beginTransaction().hide(fragment3).commit();
     }
+
     @Override
     public void onBackPressed() {
         Toast toast;
-        toast= Toast.makeText(this, "초기화", Toast.LENGTH_SHORT);
+        toast = Toast.makeText(this, "초기화", Toast.LENGTH_SHORT);
         if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
             backKeyPressedTime = System.currentTimeMillis();
             toast = Toast.makeText(this, "종료 하시겠습니까?", Toast.LENGTH_SHORT);
@@ -163,13 +165,14 @@ public class Buyer_MainActivity extends AppCompatActivity {
             toast.cancel();
         }
     }
+
     public void Buyer_Logout() {
-        LoginSharedPreferenceUtil util11 =  new LoginSharedPreferenceUtil(Buyer_MainActivity.this);
+        LoginSharedPreferenceUtil util11 = new LoginSharedPreferenceUtil(Buyer_MainActivity.this);
         util11.setBooleanData("AutoLogin", false);
         util11.setStringData("ID", "");
         util11.setStringData("권한", "null");
-        Toast.makeText(this,"로그아웃 되었습니다.",Toast.LENGTH_SHORT).show();
-        Intent intent=new Intent(Buyer_MainActivity.this,LogInActivity.class);
+        Toast.makeText(this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(Buyer_MainActivity.this, LogInActivity.class);
         ActivityCompat.finishAffinity(Buyer_MainActivity.this);
         startActivity(intent);
         customType(Buyer_MainActivity.this, "bottom-to-up");
@@ -202,6 +205,7 @@ class Buyer_Seller {
         this.ReviewNum = Review;
     }
 }
+
 class orderInfo {
     String store, time, state, address, order;
     int price;
