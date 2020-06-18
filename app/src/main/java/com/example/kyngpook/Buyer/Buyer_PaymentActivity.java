@@ -131,16 +131,10 @@ public class Buyer_PaymentActivity extends AppCompatActivity {
                             String smsBody1 = "<코노노> 주문입니다!\n";
                             smsBody1 += "구매자 : " + realName + "\n";
                             smsBody1 += "주소 : " + address1 + " " + address2 + "\n";
-
-                            String smsBody2 = "<주문내역>\n";
-                            for (int i = 0; i < list.size(); i++) {
-                                smsBody2 += list.get(i).name + " " + list.get(i).nownum + "\n";
-                            }
-                            smsBody2 += "금액 : " + finalTotal;
+                            smsBody1 += "주문내역 : " + list.get(0).name + "외 " + String.valueOf(list.size() - 1) + "건";
                             try {
 //                                SmsManager smsManager = SmsManager.getDefault();
 //                                smsManager.sendTextMessage(phoneNumber, null, smsBody1, null, null);
-//                                smsManager.sendTextMessage(phoneNumber, null, smsBody2, null, null);
                             } catch (Exception e) {
                                 Log.w("ServiceThread", "메세지 전송 오류");
                                 e.printStackTrace();

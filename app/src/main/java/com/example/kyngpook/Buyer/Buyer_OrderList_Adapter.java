@@ -115,15 +115,19 @@ public class Buyer_OrderList_Adapter extends RecyclerView.Adapter<Buyer_OrderLis
                 @Override
                 public void onClick(View v) {
                     if(!data.review) {
-                        CustomDialog mCustomDialog = new CustomDialog(context, data);
-                        mCustomDialog.show();
-                        Display display = context.getWindowManager().getDefaultDisplay();
-                        Point size = new Point();
-                        display.getSize(size);
-                        Window window = mCustomDialog.getWindow();
-                        int x = (int)(size.x * 0.8f);
-                        int y = (int)(size.y * 0.6f);
-                        window.setLayout(x, y);
+                        if(data.state.equals("주문완료")) {
+                            CustomDialog mCustomDialog = new CustomDialog(context, data);
+                            mCustomDialog.show();
+                            Display display = context.getWindowManager().getDefaultDisplay();
+                            Point size = new Point();
+                            display.getSize(size);
+                            Window window = mCustomDialog.getWindow();
+                            int x = (int)(size.x * 0.8f);
+                            int y = (int)(size.y * 0.6f);
+                            window.setLayout(x, y);
+                        }
+                        else
+                            Toast.makeText(context, "상품 수령 후 작성이 가능합니다.", Toast.LENGTH_SHORT).show();
                     }
                     else
                         Toast.makeText(context, "이미 리뷰를 작성하셨습니다.", Toast.LENGTH_SHORT).show();
