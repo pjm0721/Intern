@@ -122,6 +122,7 @@ public class Buyer_ShoppingActivity extends AppCompatActivity {
                 if(listCount > 0) {
                     Intent intent = new Intent(getApplicationContext(), Buyer_PaymentActivity.class);
                     ArrayList<ITEM> list = adapter2.getListData();
+                    intent.putExtra("판매자번호", call);
                     intent.putExtra("장바구니", list);
                     intent.putExtra("판매자주소", StoreAddress);
                     intent.putExtra("업소명", storename);

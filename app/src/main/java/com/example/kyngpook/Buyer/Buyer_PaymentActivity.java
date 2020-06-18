@@ -80,6 +80,7 @@ public class Buyer_PaymentActivity extends AppCompatActivity {
         final String storeAddress = intent.getStringExtra("판매자주소");
         final String storeName = intent.getStringExtra("업소명");
         final String sellerID = intent.getStringExtra("판매자아이디");
+        final String SellerCall = intent.getStringExtra("판매자번호");
 
         final ArrayList<ITEM> list = (ArrayList<ITEM>) intent.getSerializableExtra("장바구니");
 
@@ -127,11 +128,11 @@ public class Buyer_PaymentActivity extends AppCompatActivity {
                         //암호 비교하기
                         if(value.equals(password)) {
                             //문자 보내기
-                            String phoneNumber = call;
+                            String phoneNumber = SellerCall;
                             String smsBody1 = "<코노노> 주문입니다!\n";
                             smsBody1 += "구매자 : " + realName + "\n";
                             smsBody1 += "주소 : " + address1 + " " + address2 + "\n";
-                            smsBody1 += "주문내역 : " + list.get(0).name + "외 " + String.valueOf(list.size() - 1) + "건";
+                            smsBody1 += "주문내역 : " + list.get(0).name + " 외 " + String.valueOf(list.size() - 1) + "건";
                             try {
                                 SmsManager smsManager = SmsManager.getDefault();
                                 smsManager.sendTextMessage(phoneNumber, null, smsBody1, null, null);
