@@ -312,7 +312,7 @@ public class Deliver_MainActivity extends AppCompatActivity {
                                                 }
                                             }
                                         } else {
-                                            if (dm_document_deliver_id.equals(util12.getStringData("ID", ""))) {
+                                            if (dm_document_deliver_id.equals(ID)) {
                                                 Toast.makeText(getApplicationContext(), "아직 완료하지 않은 배달이 있습니다.", Toast.LENGTH_LONG).show();
                                                 Intent intent = new Intent(Deliver_MainActivity.this, Deliver_Item_Information.class);
                                                 intent.putExtra("SELLER_NAME", dm_document_seller_name);
