@@ -320,7 +320,6 @@ public class SellerRegisterModifier extends AppCompatActivity {
         seller_complete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 // 컬렉션 내 모든 문서 삭제
                 things
                         .get()
@@ -346,6 +345,16 @@ public class SellerRegisterModifier extends AppCompatActivity {
                         "휴무일",seller_business_explain.getText().toString()
                 );
 
+                //이미지 저장
+
+                if(bitmap!=null) {
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                    byte[] byte_data = baos.toByteArray();
+
+                    UploadTask uploadTask = storageRef.putBytes(byte_data);
+                }
+
 
 
                 // 어레이 리스트에 있는거 다시 만들기
@@ -361,28 +370,16 @@ public class SellerRegisterModifier extends AppCompatActivity {
                             item.put("개수",d.num);
                             item.put("가격",d.price);
                             things.document(d.name).set(item);
+
+
                         }
+                        finish();
                     }
-                },300);
-
-                //이미지 저장
-
-                if(bitmap!=null) {
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                    byte[] byte_data = baos.toByteArray();
-
-                    UploadTask uploadTask = storageRef.putBytes(byte_data);
-                }
+                },1000);
 
 
-
-
-                finish();
             }
         });
-
-
 
     }
 

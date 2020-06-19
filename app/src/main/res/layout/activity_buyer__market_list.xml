@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:paddingLeft="110dp"
-        android:layout_height="50dp">
+        android:layout_height="60dp">
         <ImageView
             android:id="@+id/Buyer_Address_ImgView"
             android:layout_gravity="center"
@@ -23,7 +23,7 @@
         <TextView
             android:id="@+id/Buyer_Address_TextView"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:gravity="center"
             android:layout_gravity="center"
             android:text="지역을 입력해주세요"

@@ -174,7 +174,7 @@ public class Buyer_MarketList_Fragment extends Fragment {
                                 if(tmp2.length > 1) {
                                     String tmp3 = tmp2[0] + " " + tmp2[1];
                                     if (tmp3.equals(address1 + " " + address2)
-                                            && document.getData().get("카테고리").toString().equals(Category)) {
+                                            && document.getData().get("카테고리").toString().equals(Category)&&document.getData().get("권한").toString().equals("1")) {
                                         String ID = (String) document.getData().get("ID");
                                         String store = (String) document.getData().get("업소명");
                                         String storeaddress = (String) document.getData().get("주소");
