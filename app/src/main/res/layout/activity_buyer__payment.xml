@@ -96,7 +96,7 @@
         android:layout_marginHorizontal="15dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="50dp" >
+        android:layout_height="60dp" >
         <TextView
             android:text="주소"
             android:gravity="left"
