@@ -196,21 +196,28 @@ public class SellerRegisterModifier extends AppCompatActivity {
             }
         });
 
-        storageRef = storage.getReferenceFromUrl("gs://internproject-2e699.appspot.com/seller/" + seller_ID + "/" + seller_ID + ".jpg");
-        storageRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-            @Override
-            public void onComplete(@NonNull Task<Uri> task) {
-                if (task.isSuccessful()) {
-                    Glide.with(getApplicationContext())
-                            .load(task.getResult())
-                            .into(seller_business_image);
-                }
-                else
-                {
-                    Log.d("SellerRM", "Glide Error");
-                }
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable()  {
+            public void run() {
+                storageRef = storage.getReferenceFromUrl("gs://internproject-2e699.appspot.com/seller/" + seller_ID + "/" + seller_ID + ".jpg");
+                storageRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if (task.isSuccessful()) {
+                            Glide.with(getApplicationContext())
+                                    .load(task.getResult())
+                                    .into(seller_business_image);
+                        }
+                        else
+                        {
+                            Log.d("SellerRM", "Glide Error");
+                        }
+                    }
+                });
             }
-        });
+        }, 300);
+
+
 
         final DocumentReference docRef=db.collection("USERS").document("Seller").collection("Seller").document(seller_ID);
 
@@ -273,9 +280,9 @@ public class SellerRegisterModifier extends AppCompatActivity {
                 {
                     if(listData.get(i).check==true)
                     {
-                        things.document(listData.get(i).name).delete();
                         storageRef = storage.getReferenceFromUrl("gs://internproject-2e699.appspot.com/seller/" + seller_ID + "/" + listData.get(i).name + ".jpg");
                         storageRef.delete();
+                        things.document(listData.get(i).name).delete();
                     }
                 }
 
