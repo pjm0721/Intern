@@ -33,24 +33,24 @@ import java.util.Map;
 //판매자 주문내역 관리 상세보기 액티비티
 public class SellerOrderCheckAlert extends AppCompatActivity {
 
-    FirebaseFirestore db;
-    TextView seller_order_address;
-    TextView seller_order_name;
-    TextView seller_order_time;
-    TextView seller_order_sum;
-    TextView seller_order_state;
+    private FirebaseFirestore db;
+    private TextView seller_order_address;
+    private TextView seller_order_name;
+    private TextView seller_order_time;
+    private TextView seller_order_sum;
+    private TextView seller_order_state;
 
-    String doc_name;
-    String order_state;
+    private String doc_name;
+    private String order_state;
 
-    String buyer_id;
-    String buyer_num;
+    private String buyer_id;
+    private String buyer_num;
 
-    RecyclerView recyclerView;
-    SellerOrderAlertListAdapter adapter;
-    LinearLayoutManager linearLayoutManager;
-    Button seller_order_accept;
-    Button seller_order_deny;
+    private RecyclerView recyclerView;
+    private SellerOrderAlertListAdapter adapter;
+    private LinearLayoutManager linearLayoutManager;
+    private Button seller_order_accept;
+    private Button seller_order_deny;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

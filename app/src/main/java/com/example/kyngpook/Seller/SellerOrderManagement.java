@@ -27,11 +27,11 @@ public class SellerOrderManagement extends AppCompatActivity {
 
     public static final int REQUEST_CODE=200;
 
-    FirebaseFirestore db;
-    TextView seller_total_order_text;
-    RecyclerView recyclerView;
-    SellerOrderListAdapter adapter;
-    LinearLayoutManager linearLayoutManager;
+    private FirebaseFirestore db;
+    private TextView seller_total_order_text;
+    private RecyclerView recyclerView;
+    private SellerOrderListAdapter adapter;
+    private LinearLayoutManager linearLayoutManager;
 
 
     @Override

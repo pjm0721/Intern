@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:label">
-        <activity android:name=".Seller.SellerReviewManage"></activity>
+        <activity android:name=".Seller.SellerReviewManage"
+            android:screenOrientation="portrait"></activity>
         <activity android:name=".Buyer.Buyer_PayCompleteActivity" />
         <activity android:name=".Buyer.Buyer_PaymentActivity" />
         <activity android:name=".Buyer.Buyer_ReviewActivity" />

@@ -84,7 +84,7 @@ public class SellerRegisterModifier extends AppCompatActivity {
     private Button seller_complete;
 
     private Spinner seller_business_category;
-
+    private LoadingDialog l2;
     private String category;
 
     private FirebaseStorage storage;
@@ -94,7 +94,7 @@ public class SellerRegisterModifier extends AppCompatActivity {
     private String si,gu;
     private CollectionReference things;
 
-    String seller_ID;
+    private String seller_ID;
 
     private ArrayList<SellerRMListData> listData=new ArrayList<SellerRMListData>();
 
@@ -330,13 +330,27 @@ public class SellerRegisterModifier extends AppCompatActivity {
         {
             if(resultCode==RESULT_OK)
             {
-                String name=data.getStringExtra("상품이름");
+                final String name=data.getStringExtra("상품이름");
+                final String count =data.getStringExtra("개수");
+                final String price= data.getStringExtra("가격");
+                l=new LoadingDialog(this);
+                l.setLoadingText("로딩중")
+                        .setSuccessText("완료")
+                        .setInterceptBack(true)
+                        .setLoadSpeed(LoadingDialog.Speed.SPEED_ONE)
+                        .show();
+                Handler mHandler = new Handler();
+                mHandler.postDelayed(new Runnable()  {
+                    public void run() {
+                        final Map<String,Object> item = new HashMap<>();
+                        item.put("상품이름",name);
+                        item.put("개수",count);
+                        item.put("가격",price);
+                        things.document(name).set(item);
+                        l.close();// 시간 지난 후 실행할 코딩
+                    }
+                }, 1700);
 
-                final Map<String,Object> item = new HashMap<>();
-                item.put("상품이름",name);
-                item.put("개수",data.getStringExtra("개수"));
-                item.put("가격",data.getStringExtra("가격"));
-                things.document(name).set(item);
 
             }
         }

@@ -37,8 +37,8 @@ public class SellerRMListAdapter extends RecyclerView.Adapter<SellerRMListAdapte
     private Context context;
     private CollectionReference cr;
 
-    FirebaseStorage storage;
-    StorageReference storageRef;
+    private FirebaseStorage storage;
+    private StorageReference storageRef;
 
     private ArrayList<SellerRMListData> listData = new ArrayList<>();
 

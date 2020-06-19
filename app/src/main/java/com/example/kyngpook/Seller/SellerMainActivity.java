@@ -33,9 +33,9 @@ public class SellerMainActivity extends AppCompatActivity {
     private static String seller_ID;
     private long backKeyPressedTime = 0;
     private FirebaseFirestore db;
-    String si="";
-    String gu="";
-    String area;
+    private String si="";
+    private String gu="";
+    private String area;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

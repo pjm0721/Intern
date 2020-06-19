@@ -28,10 +28,10 @@ import java.util.Map;
 public class SellerPlusItem extends AppCompatActivity {
 
     public static final int IMAGE_REQUEST = 1000;
-    FirebaseStorage storage;
-    StorageReference storageRef;
-    ImageView seller_add_image;
-    Bitmap bitmap;
+    private FirebaseStorage storage;
+    private StorageReference storageRef;
+    private ImageView seller_add_image;
+    private Bitmap bitmap;
    // int sw;
 
     @Override
