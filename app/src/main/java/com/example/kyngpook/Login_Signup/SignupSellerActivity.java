@@ -8,11 +8,13 @@ import androidx.core.app.ActivityCompat;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -50,7 +52,7 @@ public class SignupSellerActivity extends AppCompatActivity {
     private Spinner city_first;
     private Spinner city_second;
     private EditText city_third;
-
+    private Button seller_finish_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,12 +66,91 @@ public class SignupSellerActivity extends AppCompatActivity {
         storenumber = (TextView) findViewById(R.id.sellerSignUp_store_num);
         editText = findViewById(R.id.sellerSignUp_answer);
         spinner = findViewById(R.id.sellerSignUp_spinner);
-
+        seller_finish_btn=(Button)findViewById(R.id.sellerSignUp_btn2);
         final String[] qr=new String[]{"질문을 선택해주세요.","나의 보물 1호는?","어머니 성함은?","아버지 성함은?",
                 "나의 어릴적 별명은?","출신 초등학교 이름은?","내가 태어난 지역은?","첫 사랑 이름은?"};
 
         ArrayAdapter<String> sp_adapter=new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item, qr);
+        seller_finish_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String ID = id.getText().toString();
+                final String PASSWORD = password.getText().toString();
+                final String PASSWORD_CHK = passwordchk.getText().toString();
+                final String PHONE = phonenumber.getText().toString();
+                final String NAME = name.getText().toString();
+                final String STORE_NAME = storename.getText().toString();
+                final String STORE_NUM = storenumber.getText().toString();
+                idchk(ID);
+                if (scs != 2) Toast.makeText(SignupSellerActivity.this, "중복확인을 부탁드립니다", Toast.LENGTH_SHORT).show();
+                else if (PASSWORD.length() < 8 || PASSWORD.length() > 12) {
+                    Toast.makeText(SignupSellerActivity.this, "비밀번호는 8자 이상 12자 이하로 입력해주세요", Toast.LENGTH_SHORT).show();
+                    password.setText(null);
+                } else if (PASSWORD_CHK.equals(PASSWORD) == false) {
+                    Toast.makeText(SignupSellerActivity.this, "비밀번호가 맞지 않습니다", Toast.LENGTH_SHORT).show();
+                    passwordchk.setText(null);
+                } else if (TextUtils.isEmpty(NAME) == true)
+                    Toast.makeText(SignupSellerActivity.this, "대표자명을 입력해주세요", Toast.LENGTH_SHORT).show();
+                else if (TextUtils.isEmpty(STORE_NAME) == true)
+                    Toast.makeText(SignupSellerActivity.this, "업소명을 입력해주세요", Toast.LENGTH_SHORT).show();
+                else if (STORE_NUM.length() != 10) {
+                    Toast.makeText(SignupSellerActivity.this, "사업자번호 10자리를 입력해주세요", Toast.LENGTH_SHORT).show();
+                } else if (PHONE.length() != 10 && PHONE.length() != 11) {
+                    Toast.makeText(SignupSellerActivity.this, "전화번호를 제대로 입력해주세요", Toast.LENGTH_SHORT).show();
+                } else if (queryCheck()==false) {
+                    Toast.makeText(getApplicationContext(), "질문을 선택하고 답변을 입력해주세요", Toast.LENGTH_SHORT).show();
+                }else if(city_first.getSelectedItem().toString().equals("선택해주세요") || city_second.getSelectedItem().toString().equals("선택해주세요") || city_third.getText().toString().equals(""))
+                {
+                    Toast.makeText(getApplicationContext(), "주소를 정확히 입력해주세요", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Map<String, Object> user = new HashMap<>();
+                    user.put("ID", ID);
+                    user.put("PASSWORD", PASSWORD);
+                    user.put("대표자명", NAME);
+                    user.put("업소명", STORE_NAME);
+                    user.put("사업자번호", STORE_NUM);
+                    user.put("전화번호", PHONE);
+                    user.put("영업시간", "");
+                    user.put("주소", "");
+                    user.put("카테고리", "");
+                    user.put("휴무일", "");
+                    user.put("권한", 0);
+                    user.put("리뷰고유값", 0);
+                    user.put("질문",spinner.getSelectedItem().toString());
+                    user.put("답변",editText.getText().toString());
+                    user.put("주소",city_first.getSelectedItem().toString()+" "+city_second.getSelectedItem().toString()+" "+city_third.getText().toString());
 
+                    db.collection("USERS").document("Seller").collection("Seller").document(ID).set(user);
+
+                    final Map<String,Object> item = new HashMap<>();
+                    item.put("상품이름","예시");
+                    item.put("개수","1");
+                    item.put("가격","1000");
+
+                    Log.d("123123123", city_first.getSelectedItem().toString());
+                    Log.d("123123123", city_second.getSelectedItem().toString());
+                    Log.d("123123123", city_first.getSelectedItem().toString());
+
+//                    new Handler().postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+                            db.collection("PRODUCT").document(city_first.getSelectedItem().toString()).collection(city_second.getSelectedItem().toString()).
+                                    document(ID).collection("판매상품").document("예시").set(item);
+//
+//                        }
+//                    }, 1000);
+
+
+                    ActivityCompat.finishAffinity(SignupSellerActivity.this);
+                    Intent intent = new Intent(getApplicationContext(), SignupFinishActivity.class);
+                    intent.putExtra("ID", ID);
+                    customType(SignupSellerActivity.this, "left-to-right");
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
         spinner.setAdapter(sp_adapter);
         city_first=findViewById(R.id.city_first);
         city_second=findViewById(R.id.city_second);
@@ -184,74 +265,6 @@ public class SignupSellerActivity extends AppCompatActivity {
 
                 });
         if (scs == 0) scs = 2;
-    }
-
-    public void on_seller_signup(View v) {
-        final String ID = id.getText().toString();
-        final String PASSWORD = password.getText().toString();
-        final String PASSWORD_CHK = passwordchk.getText().toString();
-        final String PHONE = phonenumber.getText().toString();
-        final String NAME = name.getText().toString();
-        final String STORE_NAME = storename.getText().toString();
-        final String STORE_NUM = storenumber.getText().toString();
-        idchk(ID);
-        if (scs != 2) Toast.makeText(this, "중복확인을 부탁드립니다", Toast.LENGTH_SHORT).show();
-        else if (PASSWORD.length() < 8 || PASSWORD.length() > 12) {
-            Toast.makeText(this, "비밀번호는 8자 이상 12자 이하로 입력해주세요", Toast.LENGTH_SHORT).show();
-            password.setText(null);
-        } else if (PASSWORD_CHK.equals(PASSWORD) == false) {
-            Toast.makeText(this, "비밀번호가 맞지 않습니다", Toast.LENGTH_SHORT).show();
-            passwordchk.setText(null);
-        } else if (TextUtils.isEmpty(NAME) == true)
-            Toast.makeText(this, "대표자명을 입력해주세요", Toast.LENGTH_SHORT).show();
-        else if (TextUtils.isEmpty(STORE_NAME) == true)
-            Toast.makeText(this, "업소명을 입력해주세요", Toast.LENGTH_SHORT).show();
-        else if (STORE_NUM.length() != 10) {
-            Toast.makeText(this, "사업자번호 10자리를 입력해주세요", Toast.LENGTH_SHORT).show();
-            password.setText(null);
-        } else if (PHONE.length() != 10 && PHONE.length() != 11) {
-            Toast.makeText(this, "전화번호를 제대로 입력해주세요", Toast.LENGTH_SHORT).show();
-            password.setText(null);
-        } else if (queryCheck()==false) {
-            Toast.makeText(getApplicationContext(), "질문을 선택하고 답변을 입력해주세요", Toast.LENGTH_SHORT).show();
-        }else if(city_first.getSelectedItem().toString().equals("선택해주세요") || city_second.getSelectedItem().toString().equals("선택해주세요") || city_third.getText().toString().equals(""))
-        {
-            Toast.makeText(getApplicationContext(), "주소를 정확히 입력해주세요", Toast.LENGTH_SHORT).show();
-        }
-        else {
-            Map<String, Object> user = new HashMap<>();
-            user.put("ID", ID);
-            user.put("PASSWORD", PASSWORD);
-            user.put("대표자명", NAME);
-            user.put("업소명", STORE_NAME);
-            user.put("사업자번호", STORE_NUM);
-            user.put("전화번호", PHONE);
-            user.put("영업시간", "");
-            user.put("주소", "");
-            user.put("카테고리", "");
-            user.put("휴무일", "");
-            user.put("권한", 0);
-            user.put("리뷰고유값", 0);
-            user.put("질문",spinner.getSelectedItem().toString());
-            user.put("답변",editText.getText().toString());
-            user.put("주소",city_first.getSelectedItem().toString()+" "+city_second.getSelectedItem().toString()+" "+city_third.getText().toString());
-
-            db.collection("USERS").document("Seller").collection("Seller").document(ID).set(user);
-
-            Map<String,Object> item = new HashMap<>();
-            item.put("상품이름","예시");
-            item.put("개수","1");
-            item.put("가격","1000");
-
-            db.collection("PRODUCT").document(city_first.getSelectedItem().toString()).collection(city_second.getSelectedItem().toString()).
-                    document(ID).collection("판매상품").document("").set(item);
-
-            ActivityCompat.finishAffinity(SignupSellerActivity.this);
-            Intent intent = new Intent(getApplicationContext(), SignupFinishActivity.class);
-            intent.putExtra("ID", ID);
-            customType(SignupSellerActivity.this, "left-to-right");
-            startActivity(intent);
-        }
     }
 
     private void repeat_id(String ID) {
