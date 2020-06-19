@@ -5,12 +5,21 @@ import com.example.kyngpook.Deliver.Deliver_MainActivity;
 import com.example.kyngpook.Login_Signup.LogInActivity;
 import com.example.kyngpook.Login_Signup.LoginSharedPreferenceUtil;
 import com.example.kyngpook.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -23,6 +32,11 @@ public class SellerMainActivity extends AppCompatActivity {
 
     private static String seller_ID;
     private long backKeyPressedTime = 0;
+    private FirebaseFirestore db;
+    String si="";
+    String gu="";
+    String area;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,12 +46,15 @@ public class SellerMainActivity extends AppCompatActivity {
         Button seller_register_modify_button=findViewById(R.id.seller_register_modify);
         Button seller_management_orders_button=findViewById(R.id.seller_management_orders);
         Button seller_management_review_button =findViewById(R.id.seller_management_review);
+        db= FirebaseFirestore.getInstance();
 
         seller_register_modify_button.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
                 Intent intent =new Intent(getApplicationContext(),SellerRegisterModifier.class);
+                intent.putExtra("si",si);
+                intent.putExtra("gu",gu);
                 startActivity(intent);
             }
         } );
@@ -60,6 +77,38 @@ public class SellerMainActivity extends AppCompatActivity {
             }
         });
 
+        //db넘기기
+        final DocumentReference docRef=db.collection("USERS").document("Seller").collection("Seller").document(seller_ID);
+
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+
+                    area=task.getResult().getData().get("주소").toString();
+                int c=0;
+                for(int i=0;i<area.length();i++)
+                {
+
+                    if(c<2 && area.charAt(i)==' ') {
+                        c++;
+                    }
+                    else if(c==0)
+                    {
+                        si+=area.charAt(i);
+                    }
+                    else if(c==1)
+                    {
+                        gu+=area.charAt(i);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
+            }
+        }});
 
         SharedPreferences pref=getSharedPreferences("seller",MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();

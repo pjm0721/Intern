@@ -4,6 +4,8 @@ import com.bumptech.glide.Glide;
 import com.example.kyngpook.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -25,27 +27,30 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import static android.content.Context.MODE_PRIVATE;
 
 /// 판매자 메뉴 관리 어뎁터
 public class SellerRMListAdapter extends RecyclerView.Adapter<SellerRMListAdapter.ItemViewHolder> {
     private Context context;
+    private CollectionReference cr;
 
     FirebaseStorage storage;
     StorageReference storageRef;
 
-
-
     private ArrayList<SellerRMListData> listData = new ArrayList<>();
 
-    public SellerRMListAdapter(Context context) {this.context = context;}
+    public SellerRMListAdapter(Context context, ArrayList<SellerRMListData> listData)
+    {
+        this.context = context;
+        this.listData=listData;
+    }
 
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // return ViewHolder
-        //여기서 R.layout.item.xml 설정해주고
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.seller_modifier_list_item_style, parent, false);
         return new ItemViewHolder(view);
     }
@@ -58,36 +63,6 @@ public class SellerRMListAdapter extends RecyclerView.Adapter<SellerRMListAdapte
     @Override
     public int getItemCount() {
         return listData.size();
-    }
-
-    public void addItem(SellerRMListData data) {
-        listData.add(data);
-        notifyDataSetChanged();
-    }
-
-    public void checkRemoveAll(){
-
-        SharedPreferences pref = context.getSharedPreferences("seller", MODE_PRIVATE);
-        String seller_ID = pref.getString("id","");
-        int a=0;
-        for(int i=listData.size()-1;i>=0;i--)
-        {
-            if(listData.get(i).check) {
-                a++;
-
-                storage = FirebaseStorage.getInstance();
-                storageRef = storage.getReferenceFromUrl("gs://internproject-2e699.appspot.com/seller/" + seller_ID + "/" + listData.get(i).name + ".jpg");
-                storageRef.delete();
-
-                listData.remove(i);
-
-            }
-        }
-        if(a==0)
-            Toast.makeText(context, "물품을 선택해주세요.", Toast.LENGTH_SHORT).show();
-        else Toast.makeText(context, "삭제되었습니다.", Toast.LENGTH_SHORT).show();
-
-        notifyDataSetChanged();
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
@@ -113,6 +88,14 @@ public class SellerRMListAdapter extends RecyclerView.Adapter<SellerRMListAdapte
             seller_modify_list_num.setText(" 재고 : "+data.num+" 개");
             seller_modify_list_price.setText(" 가격 : "+data.price+" 원");
 
+
+            seller_modifiy_list_checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    data.check=!data.check;
+                }
+            });
+
             SharedPreferences pref = context.getSharedPreferences("seller", MODE_PRIVATE);
             String seller_ID = pref.getString("id","");
 
@@ -131,34 +114,7 @@ public class SellerRMListAdapter extends RecyclerView.Adapter<SellerRMListAdapte
                 }
             });
 
-
-            if(data.check) {
-                seller_modifiy_list_checkbox.setChecked(true);
-            }
-            else {
-                seller_modifiy_list_checkbox.setChecked(false);
-            }
-            seller_modifiy_list_checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                    if (b) {
-                        data.check = true;
-
-                    } else {
-                        data.check = false;
-                    }
-                }
-            });
-
-
         }
     }
 
-    public ArrayList<SellerRMListData> getListData() {
-        return listData;
-    }
-
-    public void setListData(ArrayList<SellerRMListData> listData) {
-        this.listData = listData;
-    }
 }

@@ -4,6 +4,7 @@ import com.bumptech.glide.Glide;
 import com.example.kyngpook.R;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,7 +36,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -88,17 +91,40 @@ public class SellerRegisterModifier extends AppCompatActivity {
     private StorageReference storageRef;
     private Bitmap bitmap;
 
-    private String area,si,gu;
+    private String si,gu;
     private CollectionReference things;
 
     String seller_ID;
 
+    private ArrayList<SellerRMListData> listData=new ArrayList<SellerRMListData>();
+
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onStart() {
+        super.onStart();
 
+        // 메뉴 리스트뷰 불러오기
 
+        things = db.collection("PRODUCT").document(si).collection(gu).document(seller_ID).collection("판매상품");
+
+        things.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+
+                if(queryDocumentSnapshots != null){
+                    listData.clear();
+                    for(DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()){
+
+                        listData.add(new SellerRMListData(String.valueOf(doc.getData().get("상품이름")),
+                                (String) doc.getData().get("개수"), (String) doc.getData().get("가격")));
+                    }
+
+                    adapter=new SellerRMListAdapter(getApplicationContext(),listData);
+
+                }
+                recyclerView.setAdapter(adapter);
+
+            }});
 
     }
 
@@ -107,9 +133,6 @@ public class SellerRegisterModifier extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         SharedPreferences pref = getSharedPreferences("seller", MODE_PRIVATE);
-
-
-
         seller_ID = pref.getString("id","");
 
         setContentView(R.layout.activity_seller_register_modifier);
@@ -127,10 +150,10 @@ public class SellerRegisterModifier extends AppCompatActivity {
         linearLayoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        adapter=new SellerRMListAdapter(this);
+
         recyclerView.setAdapter(adapter);
-        si="";
-        gu="";
+        si=getIntent().getStringExtra("si");
+        gu=getIntent().getStringExtra("gu");
         bitmap=null;
         l=new LoadingDialog(this);
         l.setLoadingText("로딩중")
@@ -203,7 +226,6 @@ public class SellerRegisterModifier extends AppCompatActivity {
                     seller_business_name.setText(document.getData().get("업소명").toString());
                     seller_business_master.setText(document.getData().get("대표자명").toString());
                     seller_business_address.setText(document.getData().get("주소").toString());
-                    area=document.getData().get("주소").toString();
                     seller_business_time.setText(document.getData().get("영업시간").toString());
                     seller_business_contact_number.setText(document.getData().get("전화번호").toString());
 
@@ -219,70 +241,9 @@ public class SellerRegisterModifier extends AppCompatActivity {
                     Log.d("SellerRegisterModifier", "get failed with ", task.getException());
                 }
 
-                int c=0;
-                for(int i=0;i<area.length();i++)
-                {
-
-                    if(c<2 && area.charAt(i)==' ') {
-                        c++;
-                    }
-                    else if(c==0)
-                    {
-                        si+=area.charAt(i);
-                    }
-                    else if(c==1)
-                    {
-                        gu+=area.charAt(i);
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-
-                things = db.collection("PRODUCT").document(si).collection(gu).document(seller_ID).collection("판매상품");
 
             }
         });
-
-        // 메뉴 리스트뷰 불러오기
-
-
-
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-                things
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if(task.isSuccessful())
-                                {
-                                    for(QueryDocumentSnapshot doc :task.getResult()) {
-                                        String price = (String) doc.getData().get("가격");
-                                        //DecimalFormat formatter = new DecimalFormat("###,###");
-                                        // String formattedPrice = formatter.format(Integer.valueOf(price)) + " 원";
-
-
-                                        SellerRMListData d = new SellerRMListData((String) doc.getData().get("상품이름"), (String) doc.getData().get("개수"), price);
-                                        adapter.addItem(d);
-                                        adapter.notifyDataSetChanged();
-                                    }
-
-                                }
-                                else
-                                    Log.w("sellerRM","error",task.getException());
-
-                            }
-                        });
-            }
-        },1000);
-
-
-
 
 
         //리스트 아이템 추가 버튼
@@ -306,9 +267,18 @@ public class SellerRegisterModifier extends AppCompatActivity {
         seller_del_thing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                adapter.checkRemoveAll();
 
-                adapter.notifyDataSetChanged();
+                storage = FirebaseStorage.getInstance();
+                for(int i=0;i<listData.size();i++)
+                {
+                    if(listData.get(i).check==true)
+                    {
+                        things.document(listData.get(i).name).delete();
+                        storageRef = storage.getReferenceFromUrl("gs://internproject-2e699.appspot.com/seller/" + seller_ID + "/" + listData.get(i).name + ".jpg");
+                        storageRef.delete();
+                    }
+                }
+
             }
         });
 
@@ -320,17 +290,6 @@ public class SellerRegisterModifier extends AppCompatActivity {
         seller_complete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // 컬렉션 내 모든 문서 삭제
-                things
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                for(QueryDocumentSnapshot doc :task.getResult())
-                                    things.document((String)doc.getData().get("상품이름")).delete();
-
-                            }
-                        });
 
 
                 // 텍스트 변경 저장
@@ -355,29 +314,7 @@ public class SellerRegisterModifier extends AppCompatActivity {
                     UploadTask uploadTask = storageRef.putBytes(byte_data);
                 }
 
-
-
-                // 어레이 리스트에 있는거 다시 만들기
-
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        for(SellerRMListData d : adapter.getListData())
-                        {
-                            Map<String,Object> item = new HashMap<>();
-                            item.put("상품이름",d.name);
-                            item.put("개수",d.num);
-                            item.put("가격",d.price);
-                            things.document(d.name).set(item);
-
-
-                        }
-                        finish();
-                    }
-                },1000);
-
-
+                finish();
             }
         });
 
@@ -393,16 +330,13 @@ public class SellerRegisterModifier extends AppCompatActivity {
         {
             if(resultCode==RESULT_OK)
             {
+                String name=data.getStringExtra("상품이름");
 
-                adapter.addItem(new SellerRMListData(data.getStringExtra("상품이름"),data.getStringExtra("개수"),data.getStringExtra("가격")));
-
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        adapter.notifyDataSetChanged();
-                    }
-                },3000);
+                final Map<String,Object> item = new HashMap<>();
+                item.put("상품이름",name);
+                item.put("개수",data.getStringExtra("개수"));
+                item.put("가격",data.getStringExtra("가격"));
+                things.document(name).set(item);
 
             }
         }
@@ -419,8 +353,6 @@ public class SellerRegisterModifier extends AppCompatActivity {
 
                     seller_business_image.setDrawingCacheEnabled(true);
                     seller_business_image.buildDrawingCache();
-
-
 
                 }
                 catch (Exception e){
