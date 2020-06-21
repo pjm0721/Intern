@@ -40,6 +40,8 @@ public class SellerOrderCheckAlert extends AppCompatActivity {
     private TextView seller_order_sum;
     private TextView seller_order_state;
 
+    private String deliver;
+
     private String doc_name;
     private String order_state;
 
@@ -97,6 +99,7 @@ public class SellerOrderCheckAlert extends AppCompatActivity {
                                 order_state=doc.getData().get("주문상태").toString();
                                 doc_name=doc.getData().get("문서이름").toString();
                                 buyer_id=doc.getData().get("구매자아이디").toString();
+                                deliver = doc.getData().get("배달자담당아이디").toString();
                                 Map orderMap =(Map)doc.getData().get("주문내역");
 
                                 for(Object keyy : orderMap.keySet())
@@ -141,7 +144,7 @@ public class SellerOrderCheckAlert extends AppCompatActivity {
                 DocumentReference d= db.collection("주문내역").document(doc_name);
 
                 if(order_state.equals("주문대기")) {
-                    send_sms(buyer_num,"주문이 수락되었습니다.");
+                    send_sms(buyer_num,"<코노노> 주문이 수락되었습니다.");
                     d.update("주문상태", "주문수락");
                 }
                 else{
@@ -158,12 +161,17 @@ public class SellerOrderCheckAlert extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(order_state.equals("주문대기"))
-                    send_sms(buyer_num,"주문이 취소되었습니다.");
-                DocumentReference d=db.collection("주문내역").document(doc_name);
-                d.delete();
-                finish();
-
+                if (order_state.equals("주문수락") && !deliver.equals("")) {
+                    Toast.makeText(getApplicationContext(), "현재 배송 중입니다.", Toast.LENGTH_LONG).show();
+                    finish();
+                }
+                else {
+                    if (order_state.equals("주문대기")||order_state.equals("주문수락"))
+                        send_sms(buyer_num, "<코노노> 주문이 취소되었습니다.");
+                    DocumentReference d = db.collection("주문내역").document(doc_name);
+                    d.delete();
+                    finish();
+                }
             }
         });
 
