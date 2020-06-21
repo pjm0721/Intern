@@ -196,11 +196,9 @@ public class SellerRegisterModifier extends AppCompatActivity {
             }
         });
 
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable()  {
-            public void run() {
-                storageRef = storage.getReferenceFromUrl("gs://internproject-2e699.appspot.com/seller/" + seller_ID + "/" + seller_ID + ".jpg");
-                storageRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+
+        storageRef = storage.getReferenceFromUrl("gs://internproject-2e699.appspot.com/seller/" + seller_ID + "/" + seller_ID + ".jpg");
+        storageRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                     @Override
                     public void onComplete(@NonNull Task<Uri> task) {
                         if (task.isSuccessful()) {
@@ -214,8 +212,11 @@ public class SellerRegisterModifier extends AppCompatActivity {
                         }
                     }
                 });
-            }
-        }, 300);
+
+
+
+
+
 
 
 
@@ -286,6 +287,8 @@ public class SellerRegisterModifier extends AppCompatActivity {
                     }
                 }
 
+                loding();
+
             }
         });
 
@@ -320,12 +323,46 @@ public class SellerRegisterModifier extends AppCompatActivity {
 
                     UploadTask uploadTask = storageRef.putBytes(byte_data);
                 }
+                loding2();
 
-                finish();
             }
         });
 
     }
+
+    void loding()
+    {
+        l=new LoadingDialog(this);
+        l.setLoadingText("로딩중")
+                .setSuccessText("완료")
+                .setInterceptBack(true)
+                .setLoadSpeed(LoadingDialog.Speed.SPEED_ONE)
+                .show();
+        Handler mHandler = new Handler();
+        mHandler.postDelayed(new Runnable()  {
+            public void run() {
+                l.close();// 시간 지난 후 실행할 코딩
+            }
+        }, 1700);
+    }
+
+    void loding2()
+    {
+        l=new LoadingDialog(this);
+        l.setLoadingText("로딩중")
+                .setSuccessText("완료")
+                .setInterceptBack(true)
+                .setLoadSpeed(LoadingDialog.Speed.SPEED_ONE)
+                .show();
+        Handler mHandler = new Handler();
+        mHandler.postDelayed(new Runnable()  {
+            public void run() {
+                l.close();// 시간 지난 후 실행할 코딩
+                finish();
+            }
+        }, 1700);
+    }
+
 
     // 아이템 추가 결과 받기
     @Override

@@ -11,6 +11,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
+import com.xiasuhuei321.loadingdialog.view.LoadingDialog;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import androidx.core.app.ActivityCompat;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -36,11 +38,33 @@ public class SellerMainActivity extends AppCompatActivity {
     private String si="";
     private String gu="";
     private String area;
+    private LoadingDialog l;
+
+//    protected  void onResume()
+//    {
+//        super.onResume();
+//        l=new LoadingDialog(this);
+//        l.setLoadingText("로딩중")
+//                .setSuccessText("완료")
+//                .setInterceptBack(true)
+//                .setLoadSpeed(LoadingDialog.Speed.SPEED_ONE)
+//                .show();
+//        Handler mHandler = new Handler();
+//        mHandler.postDelayed(new Runnable()  {
+//            public void run() {
+//                l.close();// 시간 지난 후 실행할 코딩
+//            }
+//        }, 1000);
+//
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seller_main);
+
+
+
         Intent intent=getIntent();
         seller_ID=intent.getStringExtra("ID");
         Button seller_register_modify_button=findViewById(R.id.seller_register_modify);
