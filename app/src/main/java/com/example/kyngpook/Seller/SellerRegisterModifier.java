@@ -155,21 +155,9 @@ public class SellerRegisterModifier extends AppCompatActivity {
         si=getIntent().getStringExtra("si");
         gu=getIntent().getStringExtra("gu");
         bitmap=null;
-        l=new LoadingDialog(this);
-        l.setLoadingText("로딩중")
-                .setSuccessText("완료")
-                .setInterceptBack(true)
-                .setLoadSpeed(LoadingDialog.Speed.SPEED_ONE)
-                .show();
-        Handler mHandler = new Handler();
-        mHandler.postDelayed(new Runnable()  {
-            public void run() {
-                l.close();// 시간 지난 후 실행할 코딩
-            }
-        }, 1700);
 
-
-
+        loding();
+        delay();
         db= FirebaseFirestore.getInstance();
 
 
@@ -185,7 +173,7 @@ public class SellerRegisterModifier extends AppCompatActivity {
 
 
 
-        // 이미지
+        // 프로필 이미지 변경
         storage = FirebaseStorage.getInstance();
 
         seller_business_image.setOnClickListener(new View.OnClickListener() {
@@ -196,27 +184,22 @@ public class SellerRegisterModifier extends AppCompatActivity {
             }
         });
 
-
+        //프로필 이미지 보이기
         storageRef = storage.getReferenceFromUrl("gs://internproject-2e699.appspot.com/seller/" + seller_ID + "/" + seller_ID + ".jpg");
         storageRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Uri> task) {
-                        if (task.isSuccessful()) {
-                            Glide.with(getApplicationContext())
-                                    .load(task.getResult())
-                                    .into(seller_business_image);
-                        }
-                        else
-                        {
-                            Log.d("SellerRM", "Glide Error");
-                        }
-                    }
-                });
-
-
-
-
-
+            @Override
+            public void onComplete(@NonNull Task<Uri> task) {
+                if (task.isSuccessful()) {
+                    Glide.with(getApplicationContext())
+                            .load(task.getResult())
+                            .into(seller_business_image);
+                }
+                else
+                {
+                    Log.d("SellerRM", "Glide Error");
+                }
+            }
+        });
 
 
 
@@ -268,7 +251,6 @@ public class SellerRegisterModifier extends AppCompatActivity {
 
 
 
-
         // 체크한 리스트 아이템 삭제버튼
         seller_del_thing=findViewById(R.id.seller_del_thing);
 
@@ -276,6 +258,7 @@ public class SellerRegisterModifier extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                loding();
                 storage = FirebaseStorage.getInstance();
                 for(int i=0;i<listData.size();i++)
                 {
@@ -286,8 +269,7 @@ public class SellerRegisterModifier extends AppCompatActivity {
                         things.document(listData.get(i).name).delete();
                     }
                 }
-
-                loding();
+                delay();
 
             }
         });
@@ -312,25 +294,21 @@ public class SellerRegisterModifier extends AppCompatActivity {
                         "전화번호",seller_business_contact_number.getText().toString(),
                         "카테고리",seller_business_category.getSelectedItem().toString(),
                         "휴무일",seller_business_explain.getText().toString()
-                );
+                ).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        finish();
+                    }
+                });
 
-                //이미지 저장
 
-                if(bitmap!=null) {
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                    byte[] byte_data = baos.toByteArray();
-
-                    UploadTask uploadTask = storageRef.putBytes(byte_data);
-                }
-                loding2();
 
             }
         });
 
     }
 
-    void loding()
+    void loding() // 로딩화면 비추기
     {
         l=new LoadingDialog(this);
         l.setLoadingText("로딩중")
@@ -338,33 +316,20 @@ public class SellerRegisterModifier extends AppCompatActivity {
                 .setInterceptBack(true)
                 .setLoadSpeed(LoadingDialog.Speed.SPEED_ONE)
                 .show();
-        Handler mHandler = new Handler();
-        mHandler.postDelayed(new Runnable()  {
-            public void run() {
-                l.close();// 시간 지난 후 실행할 코딩
-            }
-        }, 1700);
     }
 
-    void loding2()
+    void delay() // 딜레이 주기
     {
-        l=new LoadingDialog(this);
-        l.setLoadingText("로딩중")
-                .setSuccessText("완료")
-                .setInterceptBack(true)
-                .setLoadSpeed(LoadingDialog.Speed.SPEED_ONE)
-                .show();
         Handler mHandler = new Handler();
         mHandler.postDelayed(new Runnable()  {
             public void run() {
-                l.close();// 시간 지난 후 실행할 코딩
-                finish();
+                l.close();
             }
-        }, 1700);
+        }, 1500);
     }
 
 
-    // 아이템 추가 결과 받기
+    // 아이템 추가, 프로필 이미지 변경 결과
     @Override
     protected void onActivityResult(int requestCode,int resultCode,Intent data)
     {
@@ -374,27 +339,23 @@ public class SellerRegisterModifier extends AppCompatActivity {
         {
             if(resultCode==RESULT_OK)
             {
+                loding();
                 final String name=data.getStringExtra("상품이름");
                 final String count =data.getStringExtra("개수");
                 final String price= data.getStringExtra("가격");
-                l=new LoadingDialog(this);
-                l.setLoadingText("로딩중")
-                        .setSuccessText("완료")
-                        .setInterceptBack(true)
-                        .setLoadSpeed(LoadingDialog.Speed.SPEED_ONE)
-                        .show();
+
+                final Map<String,Object> item = new HashMap<>();
+                item.put("상품이름",name);
+                item.put("개수",count);
+                item.put("가격",price);
+
                 Handler mHandler = new Handler();
                 mHandler.postDelayed(new Runnable()  {
                     public void run() {
-                        final Map<String,Object> item = new HashMap<>();
-                        item.put("상품이름",name);
-                        item.put("개수",count);
-                        item.put("가격",price);
                         things.document(name).set(item);
-                        l.close();// 시간 지난 후 실행할 코딩
+                        l.close();
                     }
-                }, 1700);
-
+                }, 2000);
 
             }
         }
@@ -403,14 +364,43 @@ public class SellerRegisterModifier extends AppCompatActivity {
             if(resultCode==RESULT_OK)
             {
                 try {
+                    loding();
                     InputStream in=getContentResolver().openInputStream(data.getData());
 
                     bitmap= BitmapFactory.decodeStream(in);
                     in.close();
-                    seller_business_image.setImageBitmap(bitmap);
+
 
                     seller_business_image.setDrawingCacheEnabled(true);
                     seller_business_image.buildDrawingCache();
+
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
+                    byte[] byte_data = baos.toByteArray();
+
+                    UploadTask uploadTask = (UploadTask) storageRef.putBytes(byte_data);
+
+                    Handler mHandler = new Handler();
+                    mHandler.postDelayed(new Runnable()  {
+                        public void run() {
+                            storageRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Uri> task) {
+                                    if (task.isSuccessful()) {
+                                        Glide.with(getApplicationContext())
+                                                .load(task.getResult())
+                                                .into(seller_business_image);
+                                        l.close();
+                                    }
+                                    else
+                                    {
+                                        Log.d("SellerRM", "Glide Error");
+                                    }
+                                }
+                            });
+                        }
+                    }, 2000);
+
 
                 }
                 catch (Exception e){

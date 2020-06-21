@@ -1,10 +1,14 @@
 package com.example.kyngpook.Seller;
 
 import com.example.kyngpook.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.xiasuhuei321.loadingdialog.view.LoadingDialog;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -32,6 +36,14 @@ public class SellerPlusItem extends AppCompatActivity {
     private StorageReference storageRef;
     private ImageView seller_add_image;
     private Bitmap bitmap;
+    LoadingDialog l;
+
+    TextView seller_add_name;
+    TextView seller_add_num;
+    TextView seller_add_price;
+    byte[] byte_data;
+    SharedPreferences pref;
+    String seller_ID;
    // int sw;
 
     @Override
@@ -39,16 +51,15 @@ public class SellerPlusItem extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seller_plus_item);
 
-        final TextView seller_add_name = findViewById(R.id.seller_add_name);
-        final TextView seller_add_num = findViewById(R.id.seller_add_num);
-        final TextView seller_add_price = findViewById(R.id.seller_add_price);
+        seller_add_name = findViewById(R.id.seller_add_name);
+        seller_add_num = findViewById(R.id.seller_add_num);
+        seller_add_price = findViewById(R.id.seller_add_price);
         seller_add_image = findViewById(R.id.seller_add_image);
 
         Button seller_add_ok = findViewById(R.id.seller_add_ok);
         Button seller_add_cancle = findViewById(R.id.seller_add_cancle);
 
         storage = FirebaseStorage.getInstance();
-
 
         seller_add_image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,24 +89,10 @@ public class SellerPlusItem extends AppCompatActivity {
                     intent.putExtra("개수", num);
                     intent.putExtra("가격", price);
 
-                    SharedPreferences pref = getSharedPreferences("seller", MODE_PRIVATE);
-
-                    final String seller_ID = pref.getString("id","");
-
-                    seller_add_image.setDrawingCacheEnabled(true);
-                    seller_add_image.buildDrawingCache();
-
-                    storageRef = storage.getReferenceFromUrl("gs://internproject-2e699.appspot.com/seller/" + seller_ID + "/" + name + ".jpg");
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                    byte[] byte_data = baos.toByteArray();
-
-                    UploadTask uploadTask=storageRef.putBytes(byte_data);
-
-
 
                     setResult(RESULT_OK, intent);
 
+                    UploadTask uploadTask= (UploadTask) storageRef.putBytes(byte_data);
                     finish();
 
                 } else {
@@ -127,11 +124,24 @@ public class SellerPlusItem extends AppCompatActivity {
             if(resultCode==RESULT_OK)
             {
                 try {
+
+                    String name = seller_add_name.getText().toString();
                     InputStream in=getContentResolver().openInputStream(data.getData());
 
                     bitmap= BitmapFactory.decodeStream(in);
                     in.close();
-                  //  sw=0;
+
+                    SharedPreferences pref = getSharedPreferences("seller", MODE_PRIVATE);
+                    final String seller_ID = pref.getString("id","");
+
+                    seller_add_image.setDrawingCacheEnabled(true);
+                    seller_add_image.buildDrawingCache();
+
+                    storageRef = storage.getReferenceFromUrl("gs://internproject-2e699.appspot.com/seller/" + seller_ID + "/" + name + ".jpg");
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
+                    byte_data = baos.toByteArray();
+
                     seller_add_image.setImageBitmap(bitmap);
                 }
                 catch (Exception e){
@@ -145,4 +155,7 @@ public class SellerPlusItem extends AppCompatActivity {
         }
 
     }
+
+
 }
+
