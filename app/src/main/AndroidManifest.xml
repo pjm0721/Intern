@@ -5,7 +5,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/conono"
+        android:icon="@mipmap/ic_launcher_round"
         android:label="conono"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
