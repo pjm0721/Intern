@@ -12,6 +12,7 @@
         android:layout_marginHorizontal="10dp"
         android:textSize="20dp"
         android:text="회 원 정 보"
+        android:fontFamily="@font/seoulnamsan_cb"
         android:gravity="center"
         android:layout_margin="10dp"
         android:textColor="#000"
@@ -34,6 +35,7 @@
         android:background="@drawable/border_below">
         <TextView
             android:text="       ID"
+            android:fontFamily="@font/seoulnamsan_cb"
             android:layout_weight="6"
             android:textStyle="bold"
             android:textColor="#000"
@@ -43,6 +45,7 @@
         <TextView
             android:id="@+id/Buyer_ModifyInfoActivity_idText"
             android:text="ID"
+            android:fontFamily="@font/seoulnamsan_cb"
             android:layout_weight="8"
             android:gravity="left|center"
             android:padding="10dp"
@@ -63,6 +66,7 @@
             android:layout_height="wrap_content"/>
         <TextView
             android:text=" 비밀번호 변경"
+            android:fontFamily="@font/seoulnamsan_cb"
             android:layout_weight="5"
             android:textStyle="bold"
             android:textColor="#000"
@@ -74,6 +78,7 @@
             android:id="@+id/Buyer_ModifyInfoActivity_pwEdit"
             android:hint="7자 이상 텍스트"
             android:layout_weight="8"
+            android:fontFamily="@font/seoulnamsan_cb"
             android:background="@drawable/textview_selector"
             android:gravity="left|center"
             android:enabled="false"
@@ -91,6 +96,7 @@
         android:background="@drawable/border_below">
         <TextView
             android:text="        이름"
+            android:fontFamily="@font/seoulnamsan_cb"
             android:layout_weight="6"
             android:textStyle="bold"
             android:textColor="#000"
@@ -102,6 +108,7 @@
         <EditText
             android:id="@+id/Buyer_ModifyInfoActivity_nameEdit"
             android:layout_width="0dp"
+            android:fontFamily="@font/seoulnamsan_cb"
             android:layout_height="40dp"
             android:layout_weight="8"
             android:background="@drawable/textview_selector"
@@ -120,6 +127,7 @@
         android:background="@drawable/border_below">
         <TextView
             android:text="        닉네임"
+            android:fontFamily="@font/seoulnamsan_cb"
             android:textStyle="bold"
             android:textColor="#000"
             android:layout_weight="6"
@@ -134,6 +142,7 @@
             android:layout_height="40dp"
             android:layout_weight="8"
             android:gravity="left|center"
+            android:fontFamily="@font/seoulnamsan_cb"
             android:textSize="15dp"
             android:padding="10dp"
             android:background="@drawable/textview_selector"
@@ -149,6 +158,7 @@
             android:text="        전화번호"
             android:layout_weight="6"
             android:gravity="left|center"
+            android:fontFamily="@font/seoulnamsan_cb"
             android:textStyle="bold"
             android:textColor="#000"
             android:layout_gravity="center"
@@ -157,6 +167,7 @@
         <EditText
             android:id="@+id/Buyer_ModifyInfoActivity_callEdit"
             android:hint="'-' 기호는 생락하세요"
+            android:fontFamily="@font/seoulnamsan_cb"
             android:layout_weight="8"
             android:background="@drawable/textview_selector"
             android:gravity="left|center"
@@ -171,6 +182,7 @@
         android:layout_width="70dp"
         android:layout_height="20dp"
         android:layout_gravity="right"
+        android:fontFamily="@font/seoulnamsan_cb"
         android:textColor="#777777"
         android:background="@null"
         android:text="로그아웃"
@@ -183,6 +195,7 @@
         android:layout_marginVertical="20dp"
         android:layout_gravity="center"
         android:textColor="#fff"
+        android:fontFamily="@font/seoulnamsan_cb"
         android:text="완  료"
         android:layout_width="328dp"
         android:layout_height="37dp"/>

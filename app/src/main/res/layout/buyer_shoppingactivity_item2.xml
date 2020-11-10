@@ -13,6 +13,7 @@
         android:layout_weight="3"
         android:gravity="center"
         android:text="드라이버"
+        android:fontFamily="@font/seoulnamsan_cb"
         android:textSize="17dp" />
 
     <Button
@@ -30,6 +31,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="5"
+        android:fontFamily="@font/seoulnamsan_cb"
 
         android:textSize="17dp" />
 
@@ -48,7 +50,7 @@
         android:layout_weight="2"
         android:gravity="center"
         android:text="5,000"
-
+        android:fontFamily="@font/seoulnamsan_cb"
         android:textSize="17dp" />
     <Button
         android:id="@+id/Buyer_Shopping_item2_removeBtn"

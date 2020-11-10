@@ -15,6 +15,7 @@
         android:layout_weight="2"
         android:gravity="left
 "
+        android:fontFamily="@font/seoulnamsan_cb"
         android:text="드라이버드라이버드라" />
 
     <TextView
@@ -25,6 +26,7 @@
         android:gravity="left"
         android:paddingRight="25dp"
         android:text="수량 : 5"
+        android:fontFamily="@font/seoulnamsan_cb"
         android:textSize="15dp" />
 
     <TextView
@@ -33,6 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="left"
+        android:fontFamily="@font/seoulnamsan_cb"
         android:text="5,000 원" />
 
 

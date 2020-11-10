@@ -13,6 +13,7 @@
         android:text="리뷰를 남겨주세요!"
         android:textStyle="bold"
         android:textColor="#000"
+        android:fontFamily="@font/seoulnamsan_cb"
         android:textSize="25dp" />
 
     <LinearLayout
@@ -79,6 +80,7 @@
         android:layout_width="match_parent"
         android:background="@null"
         android:hint="리뷰를 남겨주세요"
+        android:fontFamily="@font/seoulnamsan_cb"
         android:gravity="top"
         android:layout_height="200dp"
         android:textSize="18dp" />
@@ -90,6 +92,7 @@
         android:layout_width="340dp"
         android:layout_height="37dp"
         android:layout_marginBottom="5dp"
+        android:fontFamily="@font/seoulnamsan_cb"
         android:layout_gravity="center"
         android:textColor="#fff"
         android:textStyle="bold"

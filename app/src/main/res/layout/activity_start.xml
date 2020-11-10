@@ -30,6 +30,7 @@
         android:textColor="@android:color/holo_orange_light"
         android:textStyle="bold"
         android:textSize="15dp"
+        android:fontFamily="@font/seoulnamsan_cb"
         android:text="Developed by Mobile Engineering in KNU"
         android:layout_height="50dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

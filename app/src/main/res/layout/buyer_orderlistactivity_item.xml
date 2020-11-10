@@ -19,18 +19,21 @@
             android:layout_height="wrap_content"
             android:text="업소명입니다."
             android:layout_marginBottom="5dp"
+            android:fontFamily="@font/seoulnamsan_cb"
             android:textColor="#000"/>
 
         <TextView
             android:id="@+id/Buyer_OrderList_item_timeText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/seoulnamsan_cb"
             android:text="주문시간 : 2020년 05월 01일 18:36" />
 
         <TextView
             android:id="@+id/Buyer_OrderList_item_orderStateText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/seoulnamsan_cb"
             android:text="주문상태 : 배달 완료" />
 
 
@@ -39,6 +42,7 @@
             android:id="@+id/Buyer_OrderList_item_addressText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/seoulnamsan_cb"
             android:text="주문주소 : 대구광역시 수성구 당당동 당다라당당당다라아파트" />
 
 
@@ -53,6 +57,7 @@
             android:id="@+id/Buyer_OrderList_item_priceText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/seoulnamsan_cb"
             android:text="금액 : 50,000원" />
     </LinearLayout>
 
@@ -64,6 +69,7 @@
         android:layout_marginTop="10dp"
         android:layout_weight="1"
         android:textColor="#ffffff"
+        android:fontFamily="@font/seoulnamsan_cb"
         android:background="@drawable/login_focus_btn_selector"
         android:text="리뷰쓰기" />
 </LinearLayout>

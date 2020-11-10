@@ -21,6 +21,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:text="판매자 회원가입"
+                android:fontFamily="@font/seoulnamsan_cb"
                 android:textColor="#f000"
                 android:textSize="30sp"
                 android:textStyle="bold"
@@ -53,6 +54,7 @@
                         android:layout_height="45dp"
                         android:background="@null"
                         android:hint="아이디 (3~10자리)"
+                        android:fontFamily="@font/seoulnamsan_cb"
                         android:inputType="textPersonName"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -62,6 +64,7 @@
                 android:id="@+id/sellerSignUp_btn1"
                 android:layout_width="74dp"
                 android:layout_height="31dp"
+                android:fontFamily="@font/seoulnamsan_cb"
                 android:layout_gravity="right|center"
                 android:background="@drawable/buttonbackground"
                 android:onClick="on_seller_idchk"
@@ -94,6 +97,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:background="@null"
+                        android:fontFamily="@font/seoulnamsan_cb"
                         android:hint="비밀번호 (8~12자리, 특수문자 가능)"
                         android:inputType="textPassword"
                         android:textSize="15sp" />
@@ -122,6 +126,7 @@
                         android:layout_height="45dp"
                         android:background="@null"
                         android:hint="비밀번호 확인"
+                        android:fontFamily="@font/seoulnamsan_cb"
                         android:inputType="textPassword"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -149,6 +154,7 @@
                         android:layout_height="45dp"
                         android:background="@null"
                         android:hint="대표자명"
+                        android:fontFamily="@font/seoulnamsan_cb"
                         android:inputType="textPersonName"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -176,6 +182,7 @@
                         android:layout_height="45dp"
                         android:background="@null"
                         android:hint="업소명"
+                        android:fontFamily="@font/seoulnamsan_cb"
                         android:inputType="textPersonName"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -203,6 +210,7 @@
                         android:layout_height="45dp"
                         android:background="@null"
                         android:hint="사업자 번호 ( ' - ' 제외하고 10자리 )"
+                        android:fontFamily="@font/seoulnamsan_cb"
                         android:inputType="number"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -230,6 +238,7 @@
                         android:layout_height="45dp"
                         android:background="@null"
                         android:hint="전화번호 ( ' - ' 제외 )"
+                        android:fontFamily="@font/seoulnamsan_cb"
                         android:inputType="number"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -272,6 +281,7 @@
                         android:layout_height="45dp"
                         android:background="@null"
                         android:hint="답변"
+                        android:fontFamily="@font/seoulnamsan_cb"
                         android:inputType="textPersonName"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -285,6 +295,7 @@
                 android:background="@drawable/buttonbackground"
                 android:padding="10dp"
                 android:text="회원가입 완료"
+                android:fontFamily="@font/seoulnamsan_cb"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -315,6 +326,7 @@
                         android:layout_height="wrap_content"
                         android:text="도/시"
                         android:textColor="#000"
+                        android:fontFamily="@font/seoulnamsan_cb"
                         android:textSize="15dp"
                         android:textStyle="bold" />
 
@@ -342,6 +354,7 @@
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:text="시/구/군"
+                        android:fontFamily="@font/seoulnamsan_cb"
                         android:textColor="#000"
                         android:textSize="15dp"
                         android:textStyle="bold" />
@@ -375,6 +388,7 @@
                     android:layout_height="45dp"
                     android:background="@null"
                     android:hint="상세주소"
+                    android:fontFamily="@font/seoulnamsan_cb"
                     android:paddingLeft="10dp"
                     android:textSize="15sp" />
             </androidx.cardview.widget.CardView>

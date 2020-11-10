@@ -45,6 +45,7 @@
         android:layout_margin="10dp"
         android:background="@drawable/login_focus_btn_selector"
         android:textColor="#fff"
+        android:fontFamily="@font/seoulnamsan_cb"
         android:text="구매자에게 전화하기" />
 
     <Button
@@ -54,6 +55,7 @@
         android:layout_margin="10dp"
         android:background="@drawable/login_focus_btn_selector"
         android:textColor="#fff"
+        android:fontFamily="@font/seoulnamsan_cb"
         android:text="배달완료" />
 
 

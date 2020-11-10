@@ -63,6 +63,7 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="60dp"
         android:text="어떤 회원가입을"
+        android:fontFamily="@font/seoulnamsan_cb"
         android:textColor="#FFF"
         android:textSize="30sp"
         android:textStyle="bold|italic"
@@ -77,6 +78,7 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="100dp"
         android:text="원하세요?"
+        android:fontFamily="@font/seoulnamsan_cb"
         android:textColor="#FFF"
         android:textSize="30sp"
         android:textStyle="bold|italic"
@@ -100,6 +102,7 @@
         android:layout_height="29dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="50dp"
+        android:fontFamily="@font/seoulnamsan_cb"
         android:text="일반 회원"
         android:textColor="#000"
         android:textSize="22sp"
@@ -114,6 +117,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginTop="88dp"
         android:text="일반 회원 가입입니다."
+        android:fontFamily="@font/seoulnamsan_cb"
         android:textSize="10sp"
         android:textColor="#888888"
         app:layout_constraintStart_toStartOf="@+id/signup_buyerbtn"
@@ -126,6 +130,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginTop="50dp"
         android:text="판매자"
+        android:fontFamily="@font/seoulnamsan_cb"
         android:textColor="#000"
         android:textSize="22sp"
         android:textStyle="bold|italic"
@@ -140,6 +145,7 @@
         android:layout_marginTop="88dp"
         android:text="일반 회원 가입입니다."
         android:textSize="10sp"
+        android:fontFamily="@font/seoulnamsan_cb"
         android:textColor="#888888"
         app:layout_constraintStart_toStartOf="@+id/signup_sellerbtn"
         app:layout_constraintTop_toTopOf="@+id/signup_sellerbtn" />
@@ -154,6 +160,7 @@
         android:textColor="#000"
         android:textSize="22sp"
         android:textStyle="bold|italic"
+        android:fontFamily="@font/seoulnamsan_cb"
         app:layout_constraintStart_toStartOf="@+id/signup_deliverbtn"
         app:layout_constraintTop_toTopOf="@+id/signup_deliverbtn" />
 
@@ -165,6 +172,7 @@
         android:layout_marginTop="88dp"
         android:text="일반 회원 가입입니다."
         android:textSize="10sp"
+        android:fontFamily="@font/seoulnamsan_cb"
         android:textColor="#888888"
         app:layout_constraintStart_toStartOf="@+id/signup_deliverbtn"
         app:layout_constraintTop_toTopOf="@+id/signup_deliverbtn" />

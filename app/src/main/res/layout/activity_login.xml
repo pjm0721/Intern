@@ -19,6 +19,7 @@
 
     <EditText
         android:id="@+id/login_id"
+        android:fontFamily="@font/seoulnamsan_cb"
         android:layout_width="346dp"
         android:layout_height="45dp"
         android:layout_marginTop="8dp"
@@ -32,6 +33,7 @@
 
     <EditText
         android:id="@+id/login_password"
+        android:fontFamily="@font/seoulnamsan_cb"
         android:layout_width="344dp"
         android:layout_height="45dp"
         android:layout_marginTop="8dp"
@@ -51,6 +53,7 @@
         android:background="@drawable/login_focus_btn_selector"
         android:onClick="on_login"
         android:text="로그인"
+        android:fontFamily="@font/seoulnamsan_cb"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
@@ -77,6 +80,7 @@
             android:layout_weight="1"
             android:checked="true"
             android:text="일반 이용자"
+            android:fontFamily="@font/seoulnamsan_cb"
             android:textColor="#1C65EC"
             android:textSize="12sp"
             android:textStyle="bold" />
@@ -88,6 +92,7 @@
             android:layout_weight="1"
             android:text="판매자"
             android:textColor="#1C65EC"
+            android:fontFamily="@font/seoulnamsan_cb"
             android:textSize="12sp"
             android:textStyle="bold" />
 
@@ -97,6 +102,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="배달원"
+            android:fontFamily="@font/seoulnamsan_cb"
             android:textColor="#1C65EC"
             android:textSize="12sp"
             android:textStyle="bold" />
@@ -124,6 +130,7 @@
             android:gravity="right"
             android:paddingRight="8dp"
             android:text="아이디 찾기 "
+            android:fontFamily="@font/seoulnamsan_cb"
             android:textColor="#888888"
             android:textSize="10sp" />
 
@@ -144,6 +151,7 @@
             android:background="@null"
             android:gravity="left"
             android:text="   비밀번호 찾기"
+            android:fontFamily="@font/seoulnamsan_cb"
             android:textColor="#888888"
             android:textSize="10sp" />
     </LinearLayout>
@@ -153,6 +161,7 @@
         android:layout_width="85dp"
         android:layout_height="19dp"
         android:text="처음이시라면"
+        android:fontFamily="@font/seoulnamsan_cb"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/login_signup_btn"
         app:layout_constraintHorizontal_bias="1.0"
@@ -168,6 +177,7 @@
         android:background="@null"
         android:onClick="on_login_signup"
         android:text="회원가입"
+        android:fontFamily="@font/seoulnamsan_cb"
         android:textColor="#1C65EC"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -180,6 +190,7 @@
         android:layout_height="32dp"
         android:layout_margin="10dp"
         android:layout_weight="7"
+        android:fontFamily="@font/seoulnamsan_cb"
         android:text="자동 로그인"
         android:textColor="#888888"
         android:textSize="12sp"

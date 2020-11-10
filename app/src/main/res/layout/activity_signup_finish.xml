@@ -15,6 +15,7 @@
         android:layout_marginTop="168dp"
         android:text="회원가입이
         완료되었습니다"
+        android:fontFamily="@font/seoulnamsan_cb"
         android:textSize="40sp"
         android:textColor="#000"
         android:textStyle="bold|italic"
@@ -30,6 +31,7 @@
         android:background="@drawable/login_focus_btn_selector"
         android:onClick="on_signup_finish_btn"
         android:text="로그인하러 가기"
+        android:fontFamily="@font/seoulnamsan_cb"
         android:textColor="#ffffff"
         android:textSize="20sp"
         android:textStyle="bold"

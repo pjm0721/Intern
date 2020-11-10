@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:text="비밀번호 찾기"
+        android:fontFamily="@font/seoulnamsan_cb"
         android:textColor="#f000"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -40,6 +41,7 @@
             android:layout_weight="1"
             android:checked="true"
             android:text="일반 이용자"
+            android:fontFamily="@font/seoulnamsan_cb"
             android:textColor="#1C65EC"
             android:textSize="12sp"
             android:textStyle="bold" />
@@ -50,6 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="판매자"
+            android:fontFamily="@font/seoulnamsan_cb"
             android:textColor="#1C65EC"
             android:textSize="12sp"
             android:textStyle="bold" />
@@ -60,6 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="배달원"
+            android:fontFamily="@font/seoulnamsan_cb"
             android:textColor="#1C65EC"
             android:textSize="12sp"
             android:textStyle="bold" />
@@ -88,6 +92,7 @@
                 android:layout_marginTop="5dp"
                 android:background="@null"
                 android:hint="성명"
+                android:fontFamily="@font/seoulnamsan_cb"
                 android:inputType="textPersonName"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -116,6 +121,7 @@
                 android:layout_marginTop="5dp"
                 android:background="@null"
                 android:hint="아이디"
+                android:fontFamily="@font/seoulnamsan_cb"
                 android:inputType="textPersonName"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -145,6 +151,7 @@
                 android:layout_marginTop="5dp"
                 android:background="@null"
                 android:hint="전화번호 ( ' - ' 제외 )"
+                android:fontFamily="@font/seoulnamsan_cb"
                 android:inputType="number"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -161,6 +168,7 @@
         <Spinner
             android:id="@+id/findPw_spinner"
             android:layout_width="380dp"
+            android:fontFamily="@font/seoulnamsan_cb"
             android:layout_height="wrap_content" />
     </androidx.cardview.widget.CardView>
 
@@ -186,6 +194,7 @@
                 android:layout_height="45dp"
                 android:background="@null"
                 android:hint="답변"
+                android:fontFamily="@font/seoulnamsan_cb"
                 android:inputType="textPersonName"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -199,6 +208,7 @@
         android:background="@drawable/buttonbackground"
         android:padding="10dp"
         android:text="비밀번호 찾기"
+        android:fontFamily="@font/seoulnamsan_cb"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
