@@ -161,7 +161,7 @@ public class SignupBuyerActivity extends AppCompatActivity {
         });
     }
     private void userIdCheck(final String uid){
-        db.collection("USERS").document("Buyer").collection("Buyer")
+        db.collection("AUTH").document("Buyer").collection("Buyer")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

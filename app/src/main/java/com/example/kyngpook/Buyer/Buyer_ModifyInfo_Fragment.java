@@ -74,7 +74,7 @@ public class Buyer_ModifyInfo_Fragment  extends Fragment {
         final EditText pwEdit = rootView.findViewById(R.id.Buyer_ModifyInfoActivity_pwEdit);
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            public void onCheckedChanged(CompoundButton buttnView, boolean isChecked) {
                 if (isChecked) {
                     pwEdit.setFocusable(true);
                     pwEdit.setFocusableInTouchMode(true);
