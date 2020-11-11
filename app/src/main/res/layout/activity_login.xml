@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="#D80C18">
 
     <ImageView
         android:id="@+id/login_img"
         android:layout_width="158dp"
         android:layout_height="89dp"
         android:layout_marginTop="60dp"
-        android:src="@drawable/login_img"
+        android:src="@drawable/logo_tmp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +24,10 @@
         android:layout_height="45dp"
         android:layout_marginTop="8dp"
         android:ems="10"
+        android:textSize="15sp"
         android:hint="아이디"
+        android:padding="5dp"
+        android:background="#ffffff"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -37,7 +40,10 @@
         android:layout_width="344dp"
         android:layout_height="45dp"
         android:layout_marginTop="8dp"
+        android:textSize="15sp"
+        android:padding="5dp"
         android:ems="10"
+        android:background="#ffffff"
         android:hint="비밀번호"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +56,7 @@
         android:layout_width="328dp"
         android:layout_height="37dp"
         android:layout_marginTop="50dp"
-        android:background="@drawable/login_focus_btn_selector"
+        android:background="@android:color/holo_orange_light"
         android:onClick="on_login"
         android:text="로그인"
         android:fontFamily="@font/seoulnamsan_cb"
@@ -80,8 +86,9 @@
             android:layout_weight="1"
             android:checked="true"
             android:text="일반 이용자"
+            android:buttonTint="@android:color/holo_orange_light"
             android:fontFamily="@font/seoulnamsan_cb"
-            android:textColor="#1C65EC"
+            android:textColor="@android:color/holo_orange_light"
             android:textSize="12sp"
             android:textStyle="bold" />
 
@@ -90,8 +97,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:buttonTint="@android:color/holo_orange_light"
             android:text="판매자"
-            android:textColor="#1C65EC"
+            android:textColor="@android:color/holo_orange_light"
             android:fontFamily="@font/seoulnamsan_cb"
             android:textSize="12sp"
             android:textStyle="bold" />
@@ -102,8 +110,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="배달원"
+            android:buttonTint="@android:color/holo_orange_light"
             android:fontFamily="@font/seoulnamsan_cb"
-            android:textColor="#1C65EC"
+            android:textColor="@android:color/holo_orange_light"
             android:textSize="12sp"
             android:textStyle="bold" />
     </RadioGroup>
@@ -112,14 +121,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="110dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/login_txtviw2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_btn"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toBottomOf="@+id/login_btn">
 
         <Button
             android:id="@+id/login_find_id"
@@ -127,11 +133,11 @@
             android:layout_height="32dp"
             android:layout_weight="7"
             android:background="@null"
+            android:fontFamily="@font/seoulnamsan_cb"
             android:gravity="right"
             android:paddingRight="8dp"
             android:text="아이디 찾기 "
-            android:fontFamily="@font/seoulnamsan_cb"
-            android:textColor="#888888"
+            android:textColor="#ffffff"
             android:textSize="10sp" />
 
         <TextView
@@ -141,7 +147,7 @@
             android:layout_weight="0.5"
             android:gravity="center"
             android:text="|"
-            android:textColor="#888888" />
+            android:textColor="#ffffff" />
 
         <Button
             android:id="@+id/login_find_password"
@@ -149,10 +155,10 @@
             android:layout_height="32dp"
             android:layout_weight="7"
             android:background="@null"
+            android:fontFamily="@font/seoulnamsan_cb"
             android:gravity="left"
             android:text="   비밀번호 찾기"
-            android:fontFamily="@font/seoulnamsan_cb"
-            android:textColor="#888888"
+            android:textColor="#ffffff"
             android:textSize="10sp" />
     </LinearLayout>
 
@@ -161,6 +167,9 @@
         android:layout_width="85dp"
         android:layout_height="19dp"
         android:text="처음이시라면"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:textColor="#ffffff"
         android:fontFamily="@font/seoulnamsan_cb"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/login_signup_btn"
@@ -176,9 +185,10 @@
         android:layout_marginEnd="130dp"
         android:background="@null"
         android:onClick="on_login_signup"
+        android:textSize="15sp"
         android:text="회원가입"
         android:fontFamily="@font/seoulnamsan_cb"
-        android:textColor="#1C65EC"
+        android:textColor="@android:color/holo_orange_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -192,7 +202,8 @@
         android:layout_weight="7"
         android:fontFamily="@font/seoulnamsan_cb"
         android:text="자동 로그인"
-        android:textColor="#888888"
+        android:buttonTint="#ffffff"
+        android:textColor="#ffffff"
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/login_btn"
         app:layout_constraintEnd_toEndOf="parent"
