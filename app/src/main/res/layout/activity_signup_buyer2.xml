@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/signup_toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_below"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:id="@+id/signup_textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="일반 회원가입"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+    </androidx.appcompat.widget.Toolbar>
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_toolbar2">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            >
+
+            <EditText
+                android:id="@+id/userSignUp_ID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:inputType="textEmailAddress"
+                android:hint="아이디 (3~10자리)"
+                android:layout_weight="5"
+                android:padding="13dp"
+                android:textSize="17dp" />
+
+            <Button
+                android:id="@+id/userSignUpCheck_button1"
+                android:background="@drawable/border"
+                android:layout_marginLeft="15dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:text="중복확인" />
+        </LinearLayout><LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        >
+
+        <EditText
+            android:id="@+id/userSignUp_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border"
+            android:inputType="textEmailAddress"
+            android:hint="닉네임 (6~10자리)"
+            android:layout_weight="5"
+            android:padding="13dp"
+            android:textSize="17dp" />
+
+        <Button
+            android:id="@+id/userSignUpCheck_button2"
+            android:background="@drawable/border"
+            android:layout_marginLeft="15dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:layout_weight="1"
+            android:textColor="#000000"
+            android:text="중복확인" />
+    </LinearLayout>
+
+        <EditText
+            android:id="@+id/userSignUp_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/border"
+            android:hint="비밀번호 (8~12자리, 특수문자 가능)"
+            android:inputType="textPassword"
+            android:padding="13dp"
+            android:privateImeOptions="defaultInputmode=korean"
+            android:textSize="17dp" />
+        <EditText
+            android:id="@+id/userSignUp_pCheck"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/border"
+            android:inputType="textPassword"
+            android:hint="비밀번호 확인"
+            android:privateImeOptions="defaultInputmode=korean"
+            android:padding="13dp"
+            android:textSize="17dp" />
+        <EditText
+            android:id="@+id/userSignUp_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/border"
+            android:inputType="textPersonName"
+            android:hint="전화번호 ( ' - ' 제외 )"
+            android:privateImeOptions="defaultInputmode=korean"
+            android:padding="13dp"
+            android:textSize="17dp" />
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/majorspinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/border"
+            android:entries="@array/question"
+            android:padding="13dp"
+            android:spinnerMode="dialog"
+            android:theme="@style/SpinnerTheme" />
+        <EditText
+            android:id="@+id/userSignUp_answer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/border"
+            android:inputType="textPersonName"
+            android:hint="답변"
+            android:privateImeOptions="defaultInputmode=korean"
+            android:padding="13dp"
+            android:textSize="17dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/signup_finish_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/border"
+        android:fontFamily="@font/maplestorylight"
+        android:text="완료  ▶"
+        android:layout_marginTop="50dp"
+        android:textSize="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

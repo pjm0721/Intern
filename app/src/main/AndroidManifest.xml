@@ -3,6 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.kyngpook">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_round"
@@ -11,59 +18,86 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:label">
-        <activity android:name=".Seller.SellerReviewManage"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".Buyer.Buyer_PayCompleteActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Buyer.Buyer_PaymentActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Buyer.Buyer_ReviewActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Buyer.Buyer_ShoppingActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Buyer.Buyer_AddressRegistActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Buyer.Buyer_MainActivity"
-            android:screenOrientation="portrait"/>
+        <activity android:name=".Login_Signup.SignupBuyerActivity2"></activity>
+        <activity
+            android:name=".Seller.SellerReviewManage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Buyer.Buyer_PayCompleteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Buyer.Buyer_PaymentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Buyer.Buyer_ReviewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Buyer.Buyer_ShoppingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Buyer.Buyer_AddressRegistActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Buyer.Buyer_MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Seller.SellerPlusItem"
-            android:theme="@style/MyAlertDialogStyle_seller"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/MyAlertDialogStyle_seller" />
         <activity
             android:name=".Seller.SellerOrderCheckAlert"
-            android:theme="@style/MyAlertDialogStyle_seller"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Seller.SellerOrderManagement"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Seller.SellerRegisterModifier"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Seller.SellerMainActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Deliver.Deliver_Item_Information"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Deliver.Deliver_MainActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Login_Signup.Find_Id_Activity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Login_Signup.Find_Pw_Activity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Login_Signup.Find_Id_Complete"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Login_Signup.Find_Pw_Complete"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Login_Signup.SignupDeliverActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Login_Signup.SignupFinishActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Login_Signup.SignupSellerActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Login_Signup.SignupBuyerActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Login_Signup.SignupStartActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Login_Signup.LogInActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Login_Signup.StartActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyAlertDialogStyle_seller" />
+        <activity
+            android:name=".Seller.SellerOrderManagement"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Seller.SellerRegisterModifier"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Seller.SellerMainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Deliver.Deliver_Item_Information"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Deliver.Deliver_MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Login_Signup.Find_Id_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Login_Signup.Find_Pw_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Login_Signup.Find_Id_Complete"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Login_Signup.Find_Pw_Complete"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Login_Signup.SignupDeliverActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Login_Signup.SignupFinishActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Login_Signup.SignupSellerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Login_Signup.SignupBuyerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Login_Signup.SignupBuyerActivity1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Login_Signup.SignupStartActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Login_Signup.LogInActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Login_Signup.StartActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -72,12 +106,5 @@
             </intent-filter>
         </activity>
     </application>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>

@@ -25,7 +25,7 @@ public class SignupStartActivity extends AppCompatActivity {
         signup_deliver=(ImageView)findViewById(R.id.signup_deliverbtn);
     }
     public void on_signup_start_buyer(View v){
-        Intent intent=new Intent(getApplicationContext(),SignupBuyerActivity.class);
+        Intent intent=new Intent(getApplicationContext(),SignupBuyerActivity1.class);
         startActivity(intent);
         customType(this, "left-to-right");
     }

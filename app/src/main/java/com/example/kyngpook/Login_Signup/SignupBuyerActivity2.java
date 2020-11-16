@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -31,12 +32,11 @@ import java.util.Map;
 
 import static maes.tech.intentanim.CustomIntent.customType;
 
-public class SignupBuyerActivity extends AppCompatActivity {
+public class SignupBuyerActivity2 extends AppCompatActivity {
 
     private Button button1;
     private Button button2;
     private Button button3;
-    private EditText editText;
     private EditText editText1;
     private EditText editText2;
     private EditText editText3;
@@ -55,17 +55,16 @@ public class SignupBuyerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup_buyer);
-        toolbar = findViewById(R.id.signup_toolbar);
+        setContentView(R.layout.activity_signup_buyer2);
+        toolbar = findViewById(R.id.signup_toolbar2);
         setSupportActionBar(toolbar);
         actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayShowTitleEnabled(false);//기본 제목을 없애줍니다.
         actionBar.setDisplayHomeAsUpEnabled(true);
-        button1 = findViewById(R.id.userSignUp_button);
-        button2 = findViewById(R.id.userSignUpCheck_button1);
-        button3 = findViewById(R.id.userSignUpCheck_button2);
-        editText = findViewById(R.id.userSignUp_realname);
+        button1 = findViewById(R.id.userSignUpCheck_button1);
+        button2 = findViewById(R.id.userSignUpCheck_button2);
+        button3 = findViewById(R.id.signup_finish_btn);
         editText1 = findViewById(R.id.userSignUp_ID);
         editText2 = findViewById(R.id.userSignUp_name);
         editText3 = findViewById(R.id.userSignUp_password);
@@ -73,27 +72,20 @@ public class SignupBuyerActivity extends AppCompatActivity {
         editText5 = findViewById(R.id.userSignUp_phone);
         editText6 = findViewById(R.id.userSignUp_answer);
         spinner = findViewById(R.id.userSignUp_spinner);
-        editText.setText(null);
-        button1.setOnClickListener(new View.OnClickListener() {
+        button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String uID = editText1.getText().toString();
                 String uNick = editText2.getText().toString();
-                String uRName = editText.getText().toString();
                 String uPassword = editText3.getText().toString();
                 String uPasswordC = editText4.getText().toString();
                 String uPhone = editText5.getText().toString();
+                Intent gintent=getIntent();
+                String rName=gintent.getStringExtra(null);
+                String uEmail=gintent.getStringExtra(null);
                 if(ufid == null || !ufid.equals(uID)) state = 1;
                 if(ufname == null || !ufname.equals(uNick)) stateN = 1;
-
-                int checking = nameCheck(uRName);
-                if(checking==0)
-                    Toast.makeText(getApplicationContext(), "이름은 한글이나 영어 하나로만 구성되어야 합니다", Toast.LENGTH_SHORT).show();
-                else if(checking==2)
-                    Toast.makeText(getApplicationContext(), "한글 성명은 2자 이상 17자 이하로 입력해주세요", Toast.LENGTH_SHORT).show();
-                else if(checking==3)
-                    Toast.makeText(getApplicationContext(), "이름을 입력해주세요", Toast.LENGTH_SHORT).show();
-                else if(state == 1 )
+                if(state == 1 )
                     Toast.makeText(getApplicationContext(), "ID 중복확인을 부탁드립니다", Toast.LENGTH_SHORT).show();
                 else if(stateN == 1)
                     Toast.makeText(getApplicationContext(), "닉네임 중복확인을 부탁드립니다", Toast.LENGTH_SHORT).show();
@@ -106,7 +98,8 @@ public class SignupBuyerActivity extends AppCompatActivity {
                 else if(queryCheck()==false)
                     Toast.makeText(getApplicationContext(), "질문을 선택하고 답변을 입력해주세요", Toast.LENGTH_SHORT).show();
                 else{
-                    user.put("이름",editText.getText().toString());
+                    user.put("이름",rName);
+                    user.put("이메일",uEmail);
                     user.put("ID", editText1.getText().toString());
                     user.put("PASSWORD", editText3.getText().toString());
                     user.put("닉네임", editText2.getText().toString());
@@ -115,16 +108,16 @@ public class SignupBuyerActivity extends AppCompatActivity {
                     user.put("답변",editText6.getText().toString());
                     db.collection("USERS").document("Buyer").collection("Buyer").document(editText1.getText().toString()).set(user);
                     Toast.makeText(getApplicationContext(), "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show();
-                    ActivityCompat.finishAffinity(SignupBuyerActivity.this);
+                    ActivityCompat.finishAffinity(SignupBuyerActivity2.this);
                     Intent intent = new Intent(getApplicationContext(),SignupFinishActivity.class);
                     intent.putExtra("ID",editText1.getText().toString());
                     startActivity(intent);
-                    customType(SignupBuyerActivity.this, "left-to-right");
+                    customType(SignupBuyerActivity2.this, "left-to-right");
                     finish();
                 }
             }
         });
-        button2.setOnClickListener(new View.OnClickListener() {
+        button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String id = editText1.getText().toString();
@@ -143,7 +136,7 @@ public class SignupBuyerActivity extends AppCompatActivity {
                 }
             }
         });
-        button3.setOnClickListener(new View.OnClickListener() {
+        button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String name = editText2.getText().toString();
@@ -165,7 +158,7 @@ public class SignupBuyerActivity extends AppCompatActivity {
         });
     }
     private void userIdCheck(final String uid){
-        db.collection("AUTH").document("Buyer").collection("Buyer")
+        db.collection("USERS").document("Buyer").collection("Buyer")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -312,24 +305,16 @@ public class SignupBuyerActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
-    private int nameCheck(String r_name){
-        int check = 0;
-        if(r_name == null||r_name.equals("")) return 3;
-        for(int i=0;i<r_name.length();i++) {
-            if ('가' <= r_name.charAt(i) && r_name.charAt(i) <= '힣')
-                continue;
-            else check = 1;
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                //select back button
+                finish();
+                customType(SignupBuyerActivity2.this, "right-to-left");
+                break;
         }
-        if(check == 0 && (r_name.length()<2||r_name.length()>17)) return 2;
-        else if(check == 0) return 1;
-        check = 0;
-        for(int i=0;i<r_name.length();i++) {
-            if (('a' <= r_name.charAt(i) && r_name.charAt(i) <= 'z')||('A' <= r_name.charAt(i) && r_name.charAt(i) <= 'Z'))
-                continue;
-            else check = 1;
-        }
-        if(check == 0) return 1;
-        return 0;
+        return super.onOptionsItemSelected(item);
     }
     private boolean queryCheck()
     {
@@ -340,6 +325,6 @@ public class SignupBuyerActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        customType(SignupBuyerActivity.this, "right-to-left");
+        customType(SignupBuyerActivity2.this, "right-to-left");
     }
 }

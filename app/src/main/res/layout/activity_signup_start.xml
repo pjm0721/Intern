@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#233CF9">
+    android:background="#fff">
 
     <ImageView
         android:id="@+id/signup_buyerbtn"
@@ -13,7 +13,7 @@
         android:layout_marginTop="212dp"
         android:clickable="true"
         android:onClick="on_signup_start_buyer"
-        android:background="@drawable/signup_focus_btn_selector"
+        android:background="@drawable/signup_start_circular_rec"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
         android:layout_marginTop="12dp"
         android:clickable="true"
         android:onClick="on_signup_start_seller"
-        android:background="@drawable/signup_focus_btn_selector"
+        android:background="@drawable/signup_start_circular_rec"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,22 +39,11 @@
         android:layout_marginTop="12dp"
         android:clickable="true"
         android:onClick="on_signup_start_deliver"
-        android:background="@drawable/signup_focus_btn_selector"
+        android:background="@drawable/signup_start_circular_rec"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_sellerbtn" />
-
-    <ImageView
-        android:id="@+id/signup_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="144dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.88"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/signup_img" />
 
     <TextView
         android:id="@+id/signup_1"
@@ -64,7 +53,7 @@
         android:layout_marginTop="60dp"
         android:text="어떤 회원가입을"
         android:fontFamily="@font/seoulnamsan_cb"
-        android:textColor="#FFF"
+        android:textColor="#000"
         android:textSize="30sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/signup_2"
@@ -79,29 +68,18 @@
         android:layout_marginTop="100dp"
         android:text="원하세요?"
         android:fontFamily="@font/seoulnamsan_cb"
-        android:textColor="#FFF"
+        android:textColor="#000"
         android:textSize="30sp"
         android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/signup_b_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
-        android:visibility="visible"
-        app:layout_constraintStart_toStartOf="@+id/signup_buyerbtn"
-        app:layout_constraintTop_toTopOf="@+id/signup_buyerbtn"
-        app:srcCompat="@drawable/signup_b_icon" />
 
     <TextView
         android:id="@+id/signup_b_text_1"
         android:layout_width="110dp"
         android:layout_height="29dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/seoulnamsan_cb"
         android:text="일반 회원"
         android:textColor="#000"
@@ -116,7 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="88dp"
-        android:text="일반 회원 가입입니다."
+        android:text="물품을 구매할 수 있는 일바회원입니다."
         android:fontFamily="@font/seoulnamsan_cb"
         android:textSize="10sp"
         android:textColor="#888888"
@@ -128,7 +106,7 @@
         android:layout_width="110dp"
         android:layout_height="30dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:text="판매자"
         android:fontFamily="@font/seoulnamsan_cb"
         android:textColor="#000"
@@ -143,7 +121,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="88dp"
-        android:text="일반 회원 가입입니다."
+        android:text="물품을 판매할 수 있는 판매자 회원입니다."
         android:textSize="10sp"
         android:fontFamily="@font/seoulnamsan_cb"
         android:textColor="#888888"
@@ -155,7 +133,7 @@
         android:layout_width="100dp"
         android:layout_height="31dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:text="배달원"
         android:textColor="#000"
         android:textSize="22sp"
@@ -170,32 +148,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="88dp"
-        android:text="일반 회원 가입입니다."
+        android:text="물품을 배달하는 배달자 회원입니다."
         android:textSize="10sp"
         android:fontFamily="@font/seoulnamsan_cb"
         android:textColor="#888888"
         app:layout_constraintStart_toStartOf="@+id/signup_deliverbtn"
         app:layout_constraintTop_toTopOf="@+id/signup_deliverbtn" />
-
-    <ImageView
-        android:id="@+id/signup_d_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="@+id/signup_deliverbtn"
-        app:layout_constraintTop_toTopOf="@+id/signup_deliverbtn"
-        app:srcCompat="@drawable/signup_d_icon" />
-
-    <ImageView
-        android:id="@+id/signup_s_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="@+id/signup_sellerbtn"
-        app:layout_constraintTop_toTopOf="@+id/signup_sellerbtn"
-        app:srcCompat="@drawable/signup_s_icon" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
