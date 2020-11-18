@@ -1,14 +1,17 @@
 package com.example.kyngpook.Login_Signup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -46,7 +49,7 @@ public class SignupDeliverActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup__deliver);
+        setContentView(R.layout.activity_signup_deliver1);
         button1 = findViewById(R.id.deliverSignUp_button);
         button2 = findViewById(R.id.deliverSignUp_check_button);
         editText = findViewById(R.id.deliverSignUp_realname);
@@ -56,16 +59,12 @@ public class SignupDeliverActivity extends AppCompatActivity {
         editText4 = findViewById(R.id.deliverSignUp_phone);
         editText5 = findViewById(R.id.deliverSignUp_answer);
         spinner = findViewById(R.id.deliverSignUp_spinner);
-
-        final String[] qr=new String[]{"질문을 선택해주세요.","나의 보물 1호는?","어머니 성함은?","아버지 성함은?",
-                "나의 어릴적 별명은?","출신 초등학교 이름은?","내가 태어난 지역은?","첫 사랑 이름은?"};
-
-        ArrayAdapter<String> sp_adapter=new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item, qr);
-
-        spinner.setAdapter(sp_adapter);
-
-
-
+        Toolbar toolbar = findViewById(R.id.deliver_signup_toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(false);//기본 제목을 없애줍니다.
+        actionBar.setDisplayHomeAsUpEnabled(true);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -234,5 +233,16 @@ public class SignupDeliverActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         customType(SignupDeliverActivity.this, "right-to-left");
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                //select back button
+                finish();
+                customType(SignupDeliverActivity.this, "right-to-left");
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

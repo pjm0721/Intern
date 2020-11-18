@@ -294,4 +294,23 @@ public class SignupBuyerActivity1 extends AppCompatActivity implements  View.OnC
         super.onBackPressed();
         customType(SignupBuyerActivity1.this, "right-to-left");
     }
+/*    private int nameCheck(String r_name){
+        int check = 0;
+        if(r_name == null||r_name.equals("")) return 3;
+        for(int i=0;i<r_name.length();i++) {
+            if ('가' <= r_name.charAt(i) && r_name.charAt(i) <= '힣')
+                continue;
+            else check = 1;
+        }
+        if(check == 0 && (r_name.length()<2||r_name.length()>17)) return 2;
+        else if(check == 0) return 1;
+        check = 0;
+        for(int i=0;i<r_name.length();i++) {
+            if (('a' <= r_name.charAt(i) && r_name.charAt(i) <= 'z')||('A' <= r_name.charAt(i) && r_name.charAt(i) <= 'Z'))
+                continue;
+            else check = 1;
+        }
+        if(check == 0) return 1;
+        return 0;
+    }*/
 }

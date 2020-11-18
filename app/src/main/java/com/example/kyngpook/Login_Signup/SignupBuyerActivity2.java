@@ -71,7 +71,7 @@ public class SignupBuyerActivity2 extends AppCompatActivity {
         editText4 = findViewById(R.id.userSignUp_pCheck);
         editText5 = findViewById(R.id.userSignUp_phone);
         editText6 = findViewById(R.id.userSignUp_answer);
-        spinner = findViewById(R.id.userSignUp_spinner);
+        spinner = findViewById(R.id.question_spinner);
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,8 +81,10 @@ public class SignupBuyerActivity2 extends AppCompatActivity {
                 String uPasswordC = editText4.getText().toString();
                 String uPhone = editText5.getText().toString();
                 Intent gintent=getIntent();
-                String rName=gintent.getStringExtra(null);
-                String uEmail=gintent.getStringExtra(null);
+                String rName=gintent.getStringExtra("name");
+                String uEmail=gintent.getStringExtra("email");
+                String Major=gintent.getStringExtra("major");
+                String Year=gintent.getStringExtra("year");
                 if(ufid == null || !ufid.equals(uID)) state = 1;
                 if(ufname == null || !ufname.equals(uNick)) stateN = 1;
                 if(state == 1 )
@@ -98,6 +100,8 @@ public class SignupBuyerActivity2 extends AppCompatActivity {
                 else if(queryCheck()==false)
                     Toast.makeText(getApplicationContext(), "질문을 선택하고 답변을 입력해주세요", Toast.LENGTH_SHORT).show();
                 else{
+                    user.put("입학년도",Year);
+                    user.put("학과",Major);
                     user.put("이름",rName);
                     user.put("이메일",uEmail);
                     user.put("ID", editText1.getText().toString());
@@ -318,7 +322,7 @@ public class SignupBuyerActivity2 extends AppCompatActivity {
     }
     private boolean queryCheck()
     {
-        if(spinner.getSelectedItem().toString().equals("질문선텍")) return false;
+        if(spinner.getSelectedItem().toString().equals("질문선택")) return false;
         if(editText6.getText().toString().equals("")) return false;
         return true;
     }
