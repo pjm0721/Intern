@@ -122,7 +122,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:fontFamily="@font/maplestorylight"
-                android:background="@drawable/login_focus_btn_selector"
+                android:background="@drawable/border_red"
                 android:text="완 료"
                 android:textColor="#fff"
                 android:textSize="20dp" />

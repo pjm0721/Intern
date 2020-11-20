@@ -108,7 +108,7 @@
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_weight="1"
-            android:background="@drawable/login_focus_btn_selector"
+            android:background="@drawable/border_red"
             android:text="요청 수락"
             android:fontFamily="@font/maplestorylight"
             android:textColor="#fff" />

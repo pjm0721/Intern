@@ -76,7 +76,7 @@
         android:id="@+id/find_pw_complete_btn"
         android:layout_width="160dp"
         android:layout_height="46dp"
-        android:background="@drawable/login_focus_btn_selector"
+        android:background="@drawable/border_red"
         android:text="변경 완료"
         android:fontFamily="@font/maplestorylight"
         android:textColor="#ffffff"

@@ -87,9 +87,9 @@
     </LinearLayout>
     <Button
         android:id="@+id/Buyer_OrderList_dialog_okBtn"
-        android:background="@drawable/login_focus_btn_selector"
+        android:background="@drawable/border_red"
         android:layout_marginTop="30dp"
-        android:layout_width="340dp"
+        android:layout_width="match_parent"
         android:layout_height="37dp"
         android:layout_marginBottom="5dp"
         android:fontFamily="@font/maplestorylight"

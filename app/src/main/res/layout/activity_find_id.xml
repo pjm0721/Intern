@@ -40,7 +40,8 @@
             android:text="일반 이용자"
             android:fontFamily="@font/maplestorylight"
             android:checked="true"
-            android:textColor="#1C65EC"
+            android:buttonTint="#D80C18"
+            android:textColor="#000"
             android:textSize="12sp"
             android:textStyle="bold" />
 
@@ -51,7 +52,8 @@
             android:layout_weight="1"
             android:text="판매자"
             android:fontFamily="@font/maplestorylight"
-            android:textColor="#1C65EC"
+            android:buttonTint="#D80C18"
+            android:textColor="#000"
             android:textSize="12sp"
             android:textStyle="bold" />
 
@@ -62,7 +64,8 @@
             android:layout_weight="1"
             android:text="배달원"
             android:fontFamily="@font/maplestorylight"
-            android:textColor="#1C65EC"
+            android:buttonTint="#D80C18"
+            android:textColor="#000"
             android:textSize="12sp"
             android:textStyle="bold" />
     </RadioGroup>
@@ -130,7 +133,7 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
-        android:background="@drawable/buttonbackground"
+        android:background="@drawable/border_red"
         android:text="아이디 찾기"
         android:fontFamily="@font/maplestorylight"
         android:padding="10dp"

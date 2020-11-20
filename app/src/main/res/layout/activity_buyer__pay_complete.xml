@@ -31,7 +31,7 @@
         android:layout_marginHorizontal="15dp"
         android:layout_marginTop="200dp"
         android:fontFamily="@font/maplestorylight"
-        android:background="@drawable/login_focus_btn_selector"
+        android:background="@drawable/border_red"
         android:id="@+id/Buyer_PayCompleteActivity_mainBtn"
         android:textSize="20dp"
         android:textColor="#fff"

@@ -130,7 +130,7 @@
             android:layout_height="40dp"
             android:layout_margin="20dp"
             android:layout_weight="1"
-            android:background="@drawable/login_focus_btn_selector"
+            android:background="@drawable/border_red"
             android:text=" 등록 "
             android:fontFamily="@font/maplestorylight"
             android:textColor="#fff" />

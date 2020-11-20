@@ -21,7 +21,7 @@
     <TextView
         android:id="@+id/seller_modify_list_name"
         android:layout_width="0dp"
-        android:layout_weight="4"
+        android:layout_weight="3"
         android:layout_marginLeft="10dp"
         android:layout_height="wrap_content"
         android:textSize="13dp"
@@ -35,7 +35,7 @@
     <TextView
         android:id="@+id/seller_modify_list_num"
         android:layout_width="0dp"
-        android:layout_weight="2.5"
+        android:layout_weight="2.3"
         android:layout_height="wrap_content"
         android:fontFamily="@font/maplestorylight"
         android:textSize="13dp"

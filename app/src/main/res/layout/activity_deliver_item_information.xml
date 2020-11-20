@@ -40,20 +40,20 @@
 
     <Button
         android:id="@+id/adii_call_button"
-        android:layout_width="340dp"
+        android:layout_width="match_parent"
         android:layout_height="37dp"
         android:layout_margin="10dp"
-        android:background="@drawable/login_focus_btn_selector"
+        android:background="@drawable/border_red"
         android:textColor="#fff"
         android:fontFamily="@font/maplestorylight"
         android:text="구매자에게 전화하기" />
 
     <Button
         android:id="@+id/adii_complete_button"
-        android:layout_width="340dp"
+        android:layout_width="match_parent"
         android:layout_height="37dp"
         android:layout_margin="10dp"
-        android:background="@drawable/login_focus_btn_selector"
+        android:background="@drawable/border_red"
         android:textColor="#fff"
         android:fontFamily="@font/maplestorylight"
         android:text="배달완료" />

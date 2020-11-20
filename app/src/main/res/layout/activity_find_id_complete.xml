@@ -27,7 +27,7 @@
         android:layout_width="160dp"
         android:layout_height="46dp"
         android:fontFamily="@font/maplestorylight"
-        android:background="@drawable/login_focus_btn_selector"
+        android:background="@drawable/border_red"
         android:text="로그인하러 가기"
         android:textColor="#ffffff"
         android:textSize="20sp"

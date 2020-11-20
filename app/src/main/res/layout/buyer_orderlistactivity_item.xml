@@ -71,6 +71,6 @@
         android:layout_weight="1"
         android:textColor="#ffffff"
         android:fontFamily="@font/maplestorylight"
-        android:background="@drawable/login_focus_btn_selector"
+        android:background="@drawable/border_red"
         android:text="리뷰쓰기" />
 </LinearLayout>
