@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:textSize="13dp"
         android:ellipsize="marquee"
-        android:fontFamily="@font/seoulnamsan_cb"
+        android:fontFamily="@font/maplestorylight"
         android:singleLine="true"
         android:text="물건 이름 : 방망이"
 
@@ -37,7 +37,7 @@
         android:layout_width="0dp"
         android:layout_weight="2.5"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/seoulnamsan_cb"
+        android:fontFamily="@font/maplestorylight"
         android:textSize="13dp"
         android:text="수량 : 100 개"/>
 
@@ -46,7 +46,7 @@
         android:layout_width="0dp"
         android:layout_weight="3"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/seoulnamsan_cb"
+        android:fontFamily="@font/maplestorylight"
         android:textSize="13dp"
         android:paddingLeft="10dp"
         android:text="가격 : 10000"/>

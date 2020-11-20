@@ -8,7 +8,7 @@
     android:layout_height="match_parent">
     <TextView
         android:text="주 문 내 역"
-        android:fontFamily="@font/seoulnamsan_cb"
+        android:fontFamily="@font/maplestorylight"
         android:textSize="20dp"
         android:layout_margin="10dp"
         android:textColor="#000"

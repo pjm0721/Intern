@@ -15,7 +15,7 @@
         android:textColor="#000000"
         android:textSize="17sp"
         android:layout_marginLeft="15dp"
-        android:fontFamily="@font/seoulnamsan_cb"
+        android:fontFamily="@font/maplestorylight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

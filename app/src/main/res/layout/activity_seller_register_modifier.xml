@@ -38,7 +38,7 @@
                             android:layout_height="wrap_content"
                             android:text="업소명"
                             android:textColor="#000"
-                            android:fontFamily="@font/seoulnamsan_cb"
+                            android:fontFamily="@font/maplestorylight"
                             android:textSize="15dp"
                             android:textStyle="bold" />
 
@@ -47,7 +47,7 @@
                             android:layout_width="0dp"
                             android:layout_height="40dp"
                             android:layout_marginLeft="10dp"
-                            android:fontFamily="@font/seoulnamsan_cb"
+                            android:fontFamily="@font/maplestorylight"
                             android:layout_weight="4"
                             android:background="@drawable/textview_selector"
                             android:padding="10dp"
@@ -66,7 +66,7 @@
                             android:text="대표자"
                             android:textColor="#000"
                             android:textSize="15dp"
-                            android:fontFamily="@font/seoulnamsan_cb"
+                            android:fontFamily="@font/maplestorylight"
                             android:textStyle="bold"
 
                             />
@@ -77,7 +77,7 @@
                             android:layout_height="40dp"
                             android:layout_marginLeft="10dp"
                             android:layout_weight="4"
-                            android:fontFamily="@font/seoulnamsan_cb"
+                            android:fontFamily="@font/maplestorylight"
                             android:background="@drawable/textview_selector"
                             android:padding="10dp"
                             android:textSize="15dp" />
@@ -111,7 +111,7 @@
                     android:text="주소"
                     android:textColor="#000"
                     android:textSize="15dp"
-                    android:fontFamily="@font/seoulnamsan_cb"
+                    android:fontFamily="@font/maplestorylight"
                     android:textStyle="bold"
 
                     />
@@ -121,7 +121,7 @@
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="10dp"
-                    android:fontFamily="@font/seoulnamsan_cb"
+                    android:fontFamily="@font/maplestorylight"
                     android:layout_weight="4"
                     android:background="#FFFFFF"
                     android:padding="10dp"
@@ -141,7 +141,7 @@
                     android:text="영업시간"
                     android:textColor="#000"
                     android:textSize="15dp"
-                    android:fontFamily="@font/seoulnamsan_cb"
+                    android:fontFamily="@font/maplestorylight"
                     android:textStyle="bold"
 
                     />
@@ -153,7 +153,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="4"
                     android:background="@drawable/textview_selector"
-                    android:fontFamily="@font/seoulnamsan_cb"
+                    android:fontFamily="@font/maplestorylight"
                     android:padding="10dp"
                     android:textSize="15dp" />
             </LinearLayout>
@@ -168,7 +168,7 @@
                     android:layout_width="60dp"
                     android:layout_height="wrap_content"
                     android:text="전화번호"
-                    android:fontFamily="@font/seoulnamsan_cb"
+                    android:fontFamily="@font/maplestorylight"
                     android:textColor="#000"
                     android:textSize="15dp"
                     android:textStyle="bold"
@@ -180,7 +180,7 @@
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="10dp"
-                    android:fontFamily="@font/seoulnamsan_cb"
+                    android:fontFamily="@font/maplestorylight"
                     android:layout_weight="4"
                     android:background="@drawable/textview_selector"
                     android:padding="10dp"
@@ -198,7 +198,7 @@
                     android:layout_height="wrap_content"
                     android:text="카테고리"
                     android:textColor="#000"
-                    android:fontFamily="@font/seoulnamsan_cb"
+                    android:fontFamily="@font/maplestorylight"
                     android:textSize="15dp"
                     android:textStyle="bold"
 
@@ -207,7 +207,7 @@
                 <Spinner
                     android:id="@+id/seller_business_category"
                     android:layout_width="0dp"
-                    android:fontFamily="@font/seoulnamsan_cb"
+                    android:fontFamily="@font/maplestorylight"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="4" />
@@ -225,7 +225,7 @@
                     android:text="휴무일"
                     android:textColor="#000"
                     android:textSize="15dp"
-                    android:fontFamily="@font/seoulnamsan_cb"
+                    android:fontFamily="@font/maplestorylight"
                     android:textStyle="bold"
 
                     />
@@ -236,7 +236,7 @@
                     android:layout_height="40dp"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="5"
-                    android:fontFamily="@font/seoulnamsan_cb"
+                    android:fontFamily="@font/maplestorylight"
                     android:background="@drawable/textview_selector"
                     android:padding="10dp"
                     android:textSize="15dp" />
@@ -253,7 +253,7 @@
                     android:text="제휴 할인"
                     android:textColor="#000"
                     android:textSize="15dp"
-                    android:fontFamily="@font/seoulnamsan_cb"
+                    android:fontFamily="@font/maplestorylight"
                     android:textStyle="bold"
 
                     />
@@ -265,7 +265,7 @@
                     android:layout_weight="2"
                     android:text="구매금액의 "
                     android:gravity="center"
-                    android:fontFamily="@font/seoulnamsan_cb"
+                    android:fontFamily="@font/maplestorylight"
                     android:padding="10dp"
                     android:textSize="15dp"
                     />
@@ -277,7 +277,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="0.8"
                     android:text="0"
-                    android:fontFamily="@font/seoulnamsan_cb"
+                    android:fontFamily="@font/maplestorylight"
                     android:background="@drawable/textview_selector"
                     android:inputType="number"
                     android:padding="10dp"
@@ -288,7 +288,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="2"
                     android:text="% 할인"
-                    android:fontFamily="@font/seoulnamsan_cb"
+                    android:fontFamily="@font/maplestorylight"
                     android:padding="10dp"
                     android:textSize="15dp"
                     android:layout_marginRight="50dp"/>
@@ -308,7 +308,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="left"
             android:layout_marginLeft="10dp"
-            android:fontFamily="@font/seoulnamsan_cb"
+            android:fontFamily="@font/maplestorylight"
             android:gravity="left"
             android:text="메뉴 관리 "
             android:textColor="#000"
@@ -343,7 +343,7 @@
         android:layout_height="40dp"
         android:layout_gravity="center"
         android:layout_marginLeft="20dp"
-        android:fontFamily="@font/seoulnamsan_cb"
+        android:fontFamily="@font/maplestorylight"
         android:layout_marginTop="15dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/login_focus_btn_selector"

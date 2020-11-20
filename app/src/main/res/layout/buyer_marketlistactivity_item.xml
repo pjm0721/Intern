@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#000"
-            android:fontFamily="@font/seoulnamsan_cb"
+            android:fontFamily="@font/maplestorylight"
             android:text="업소명입니다."/>
 
         <TextView
@@ -30,7 +30,7 @@
             android:id="@+id/Buyer_MArketList_item_TimeTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/seoulnamsan_cb"
+            android:fontFamily="@font/maplestorylight"
             android:text="평일 09:00 ~ 19:00 연중무휴"/>
 
     </LinearLayout>

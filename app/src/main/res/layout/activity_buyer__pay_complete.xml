@@ -10,7 +10,7 @@
     <TextView
         android:layout_marginTop="120dp"
         android:text="결 제 완 료"
-        android:fontFamily="@font/seoulnamsan_cb"
+        android:fontFamily="@font/maplestorylight"
         android:gravity="center"
         android:textSize="50dp"
         android:textStyle="bold|italic"
@@ -20,7 +20,7 @@
     <TextView
         android:layout_marginTop="25dp"
         android:text="판매자에게 연락을 보냈습니다."
-        android:fontFamily="@font/seoulnamsan_cb"
+        android:fontFamily="@font/maplestorylight"
         android:gravity="center"
         android:textSize="25dp"
         android:layout_width="match_parent"
@@ -30,7 +30,7 @@
     <Button
         android:layout_marginHorizontal="15dp"
         android:layout_marginTop="200dp"
-        android:fontFamily="@font/seoulnamsan_cb"
+        android:fontFamily="@font/maplestorylight"
         android:background="@drawable/login_focus_btn_selector"
         android:id="@+id/Buyer_PayCompleteActivity_mainBtn"
         android:textSize="20dp"

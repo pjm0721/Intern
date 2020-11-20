@@ -19,6 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="학교 이메일 인증"
+            android:fontFamily="@font/maplestorylight"
             android:textColor="#000000"
             android:textSize="20sp" />
     </androidx.appcompat.widget.Toolbar>
@@ -38,6 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:background="@drawable/border"
+            android:fontFamily="@font/maplestorylight"
             android:entries="@array/knu_major"
             android:padding="13dp"
             android:spinnerMode="dialog"
@@ -46,6 +48,7 @@
         <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/yearspinner"
             android:layout_width="match_parent"
+            android:fontFamily="@font/maplestorylight"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:background="@drawable/border"
@@ -61,6 +64,7 @@
             android:layout_margin="5dp"
             android:background="@drawable/border"
             android:inputType="textPersonName"
+            android:fontFamily="@font/maplestorylight"
             android:hint="성명"
             android:privateImeOptions="defaultInputmode=korean"
             android:padding="13dp"
@@ -77,6 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/border"
+                android:fontFamily="@font/maplestorylight"
                 android:inputType="textEmailAddress"
                 android:hint="학교 이메일 ex) 000@knu.ac.kr"
                 android:layout_weight="5"
@@ -88,6 +93,7 @@
                 android:background="@drawable/border"
                 android:layout_marginLeft="15dp"
                 android:layout_width="50dp"
+                android:fontFamily="@font/maplestorylight"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:padding="14dp"

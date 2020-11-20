@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="업소명입니다."
-                android:fontFamily="@font/seoulnamsan_cb"
+                android:fontFamily="@font/maplestorylight"
                 android:textColor="#000"
                 android:textSize="19dp"
                 android:textStyle="bold" />
@@ -33,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="영업시간: 00:00~11:00"
-                android:fontFamily="@font/seoulnamsan_cb"
+                android:fontFamily="@font/maplestorylight"
                 android:textSize="15dp" />
 
             <TextView
@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="휴무일 : 연중무휴"
-                android:fontFamily="@font/seoulnamsan_cb"
+                android:fontFamily="@font/maplestorylight"
                 android:textSize="15dp" />
 
             <TextView
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="전화번호 : 010-1234-1234"
-                android:fontFamily="@font/seoulnamsan_cb"
+                android:fontFamily="@font/maplestorylight"
                 android:textSize="15dp" />
 
             <TextView
@@ -60,7 +60,7 @@
                 android:layout_weight="1"
                 android:gravity="left"
                 android:text="대표자명 : 김철수"
-                android:fontFamily="@font/seoulnamsan_cb"
+                android:fontFamily="@font/maplestorylight"
                 android:textSize="15dp" />
 
         </LinearLayout>
@@ -79,7 +79,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="15dp"
         android:text="최근 리뷰   0 개"
-        android:fontFamily="@font/seoulnamsan_cb"
+        android:fontFamily="@font/maplestorylight"
         android:textColor="#000"
         android:textSize="18dp" />
 
@@ -91,7 +91,7 @@
         android:layout_marginTop="7dp"
         android:layout_marginBottom="10dp"
         android:text="평점 평균 : 0.0 / 5.0"
-        android:fontFamily="@font/seoulnamsan_cb"
+        android:fontFamily="@font/maplestorylight"
         android:textSize="18dp" />
 
     <androidx.cardview.widget.CardView

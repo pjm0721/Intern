@@ -26,7 +26,7 @@
             android:layout_height="60dp"
             android:gravity="center"
             android:layout_gravity="center"
-            android:fontFamily="@font/seoulnamsan_cb"
+            android:fontFamily="@font/maplestorylight"
             android:text="지역을 입력해주세요"
             android:textColor="#000"
             android:textSize="15sp"
@@ -58,13 +58,14 @@
             android:layout_width="wrap_content"
             android:gravity="center"
             android:textSize="15dp"
-            android:fontFamily="@font/seoulnamsan_cb"
+            android:fontFamily="@font/maplestorylight"
             android:layout_height="match_parent"/>
 
         <Spinner
             android:layout_marginLeft="20dp"
             android:id="@+id/Buyer_MarketListAcvitity_Spinner"
-            android:fontFamily="@font/seoulnamsan_cb"
+
+            android:fontFamily="@font/maplestorylight"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </LinearLayout>

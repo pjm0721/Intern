@@ -23,6 +23,6 @@
     android:layout_width="match_parent"
     android:layout_height="30dp"
     android:ellipsize="marquee"
-    android:fontFamily="@font/seoulnamsan_cb"
+    android:fontFamily="@font/maplestorylight"
     android:textAlignment="inherit"/>
 

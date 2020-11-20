@@ -7,7 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="20dp"
+        android:layout_marginVertical="10dp"
         android:orientation="horizontal">
 
         <Button
@@ -17,7 +17,8 @@
             android:layout_margin="2dp"
             android:layout_weight="1"
             android:background="@drawable/buyer_button_shape"
-            android:fontFamily="@font/seoulnamsan_cb"
+
+            android:fontFamily="@font/maplestorylight"
             android:text="남구" />
 
         <Button
@@ -26,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
             android:layout_weight="1"
-            android:fontFamily="@font/seoulnamsan_cb"
+            android:fontFamily="@font/maplestorylight"
             android:background="@drawable/buyer_button_shape"
             android:text="달서구" />
 
@@ -36,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
             android:layout_weight="1"
-            android:fontFamily="@font/seoulnamsan_cb"
+            android:fontFamily="@font/maplestorylight"
             android:background="@drawable/buyer_button_shape"
             android:text="동구" />
 
@@ -44,7 +45,7 @@
             android:id="@+id/Buyer_AddressFragmentDaegu_mBtn4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/seoulnamsan_cb"
+            android:fontFamily="@font/maplestorylight"
             android:layout_margin="2dp"
             android:layout_weight="1"
             android:background="@drawable/buyer_button_shape"
@@ -54,7 +55,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal">
 
         <Button
@@ -62,7 +63,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
-            android:fontFamily="@font/seoulnamsan_cb"
+            android:fontFamily="@font/maplestorylight"
             android:layout_weight="1"
             android:background="@drawable/buyer_button_shape"
             android:text="서구" />
@@ -71,7 +72,7 @@
             android:id="@+id/Buyer_AddressFragmentDaegu_mBtn6"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/seoulnamsan_cb"
+            android:fontFamily="@font/maplestorylight"
             android:layout_margin="2dp"
             android:layout_weight="1"
             android:background="@drawable/buyer_button_shape"
@@ -82,7 +83,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
-            android:fontFamily="@font/seoulnamsan_cb"
+            android:fontFamily="@font/maplestorylight"
             android:layout_weight="1"
             android:background="@drawable/buyer_button_shape"
             android:text="중구" />

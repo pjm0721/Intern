@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:gravity="left"
-            android:fontFamily="@font/seoulnamsan_cb"
+            android:fontFamily="@font/maplestorylight"
             android:text="드라이버드라이버드라"
             android:textColor="#000"
             android:textSize="17dp"
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:gravity="left"
             android:text="5,000 원"
-            android:fontFamily="@font/seoulnamsan_cb"
+            android:fontFamily="@font/maplestorylight"
             android:textColor="#000"
             android:textSize="17dp" />
 
@@ -51,7 +51,7 @@
         android:paddingRight="25dp"
         android:gravity="center"
         android:text="수량 : 5"
-        android:fontFamily="@font/seoulnamsan_cb"
+        android:fontFamily="@font/maplestorylight"
         android:background="@android:color/transparent"
         android:textSize="15dp" />
 

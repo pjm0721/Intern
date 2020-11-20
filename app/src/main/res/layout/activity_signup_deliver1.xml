@@ -19,6 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="배달원 회원가입"
+            android:fontFamily="@font/maplestorylight"
             android:textColor="#000000"
             android:textSize="20sp" />
     </androidx.appcompat.widget.Toolbar>
@@ -42,6 +43,7 @@
             android:inputType="textPassword"
             android:padding="13dp"
             android:privateImeOptions="defaultInputmode=korean"
+            android:fontFamily="@font/maplestorylight"
             android:textSize="17dp" />
         <LinearLayout
             android:layout_width="match_parent"
@@ -56,6 +58,7 @@
                 android:background="@drawable/border"
                 android:inputType="textEmailAddress"
                 android:hint="아이디 (3~10자리)"
+                android:fontFamily="@font/maplestorylight"
                 android:layout_weight="5"
                 android:padding="13dp"
                 android:textSize="17dp" />
@@ -67,6 +70,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
+                android:fontFamily="@font/maplestorylight"
                 android:padding="10dp"
                 android:layout_weight="1"
                 android:textColor="#000000"
@@ -79,6 +83,7 @@
             android:layout_margin="5dp"
             android:background="@drawable/border"
             android:hint="비밀번호 (8~12자리, 특수문자 가능)"
+            android:fontFamily="@font/maplestorylight"
             android:inputType="textPassword"
             android:padding="13dp"
             android:privateImeOptions="defaultInputmode=korean"
@@ -89,6 +94,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:background="@drawable/border"
+            android:fontFamily="@font/maplestorylight"
             android:inputType="textPassword"
             android:hint="비밀번호 확인"
             android:privateImeOptions="defaultInputmode=korean"
@@ -100,6 +106,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:background="@drawable/border"
+            android:fontFamily="@font/maplestorylight"
             android:inputType="textPersonName"
             android:hint="전화번호 ( ' - ' 제외 )"
             android:privateImeOptions="defaultInputmode=korean"
@@ -111,6 +118,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:background="@drawable/border"
+            android:fontFamily="@font/maplestorylight"
             android:entries="@array/question"
             android:padding="13dp"
             android:spinnerMode="dialog"
@@ -122,6 +130,7 @@
             android:layout_margin="5dp"
             android:background="@drawable/border"
             android:inputType="textPersonName"
+            android:fontFamily="@font/maplestorylight"
             android:hint="답변"
             android:privateImeOptions="defaultInputmode=korean"
             android:padding="13dp"

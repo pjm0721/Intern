@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="#000"
-            android:fontFamily="@font/seoulnamsan_cb"
+            android:fontFamily="@font/maplestorylight"
             android:text="금액 : 30000원"/>
 
         <TextView
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="#000"
-            android:fontFamily="@font/seoulnamsan_cb"
+            android:fontFamily="@font/maplestorylight"
             android:text="주문상태 : 주문 대기"/>
     </LinearLayout>
 
@@ -37,7 +37,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginBottom="15dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/seoulnamsan_cb"
+        android:fontFamily="@font/maplestorylight"
         android:textColor="#000"
         android:text="구매자 주소 : 대구광역시 북구 대학로 80 첨성관 1233호"/>
 

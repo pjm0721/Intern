@@ -12,7 +12,7 @@
         android:layout_margin="10dp"
         android:background="@drawable/border"
         android:hint="[주소, 업체명] 으로 원하는 배달 검색하세요!"
-        android:fontFamily="@font/seoulnamsan_cb"
+        android:fontFamily="@font/maplestorylight"
         android:padding="7dp">
 
     </EditText>
@@ -28,7 +28,7 @@
             android:text="배정되지 않은 모든 배달 건수 : "
             android:textStyle="bold"
             android:textColor="#000000"
-            android:fontFamily="@font/seoulnamsan_cb"
+            android:fontFamily="@font/maplestorylight"
             android:layout_marginTop="10dp"
             android:textSize="17sp"
             android:layout_marginBottom="10dp"
@@ -44,7 +44,7 @@
             android:textColor="#000000"
             android:textSize="17sp"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/seoulnamsan_cb"
+            android:fontFamily="@font/maplestorylight"
             android:layout_marginBottom="10dp"/>
 
         <Button
@@ -85,7 +85,7 @@
         android:layout_marginTop="10dp"
         android:background="@null"
         android:layout_gravity="right"
-        android:fontFamily="@font/seoulnamsan_cb"
+        android:fontFamily="@font/maplestorylight"
         android:onClick="on_deliver_logout"
         android:text="로그아웃"
         android:textColor="#888888" />

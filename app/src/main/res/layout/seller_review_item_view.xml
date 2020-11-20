@@ -16,23 +16,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="닉네임"
-            android:fontFamily="@font/seoulnamsan_cb"
+            android:textSize="15sp"
+            android:fontFamily="@font/maplestorylight"
             android:textColor="#000" />
 
         <TextView
             android:id="@+id/sriv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="7dp"
+            android:layout_marginVertical="3dp"
             android:text="2020년 05월 10일"
-            android:fontFamily="@font/seoulnamsan_cb"
-            android:textSize="15dp" />
+            android:fontFamily="@font/maplestorylight"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/sriv_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/seoulnamsan_cb"
+            android:textSize="15sp"
+            android:fontFamily="@font/maplestorylight"
             android:text="평점 : 0.0 / 5.0" />
 
         <TextView
@@ -40,7 +42,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/seoulnamsan_cb"
+            android:textSize="15sp"
+            android:fontFamily="@font/maplestorylight"
             android:text="내용내용내용내용" />
     </LinearLayout>
 
