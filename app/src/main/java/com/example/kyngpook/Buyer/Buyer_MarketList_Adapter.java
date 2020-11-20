@@ -59,6 +59,7 @@ public class Buyer_MarketList_Adapter extends RecyclerView.Adapter<Buyer_MarketL
                 intent.putExtra("업소명", listData.get(position).StoreName);
                 intent.putExtra("영업시간", listData.get(position).OnTime);
                 intent.putExtra("휴무일",listData.get(position).Holiday);
+                intent.putExtra("제휴할인", listData.get(position).sale);
                 context.startActivity(intent);
             }
         });

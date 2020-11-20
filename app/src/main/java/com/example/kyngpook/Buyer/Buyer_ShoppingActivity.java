@@ -30,6 +30,7 @@ public class Buyer_ShoppingActivity extends AppCompatActivity {
     private Buyer_Shopping_Adapter2 adapter2;
 
     private TextView totalPriceText;
+    private int sale = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class Buyer_ShoppingActivity extends AppCompatActivity {
         final String time = intent.getStringExtra("영업시간");
         final String StoreAddress = intent.getStringExtra("판매자주소");
         final String holiday=intent.getStringExtra("휴무일");
+        sale = intent.getIntExtra("제휴할인", 0);
 
         totalPriceText = (TextView) findViewById(R.id.Buyer_Shopping_totalPriceText);
         totalPriceText.setText("총 상품금액 : 0 원");
@@ -65,8 +67,10 @@ public class Buyer_ShoppingActivity extends AppCompatActivity {
 
         TextView pText = (TextView)findViewById(R.id.Buyer_Shopping_PresentativeText);
         pText.setText("대표자명 : " +  name);
-        //리뷰 버튼 구현
 
+        TextView sText = (TextView) findViewById(R.id.Buyer_Shopping_SaleText);
+        sText.setText("제휴할인 : 총 금액의 " + sale +"% 할인");
+        //리뷰 버튼 구현
         findViewById(R.id.Buyer_Shopping_ReviewBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +82,7 @@ public class Buyer_ShoppingActivity extends AppCompatActivity {
                 intent1.putExtra("영업시간", time);
                 intent1.putExtra("리뷰", review);
                 intent1.putExtra("휴무일",holiday);
+                intent1.putExtra("제휴할인", sale);
                 startActivity(intent1);
             }
         });
@@ -141,7 +146,7 @@ public class Buyer_ShoppingActivity extends AppCompatActivity {
         for(int i = 0; i < l.size(); i++) {
             total += l.get(i).nownum * Integer.valueOf(l.get(i).price);
         }
-        return total;
+        return (int) (total * (100 - sale) * 0.01);
     }
     public void addTotalPrice() {
         DecimalFormat formatter = new DecimalFormat("###,###");

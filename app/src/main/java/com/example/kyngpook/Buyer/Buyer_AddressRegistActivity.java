@@ -81,27 +81,29 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
         fragment2 = new Buyer_Address_Busan_Fragment();
         fragmentManager.beginTransaction().add(R.id.Buyer_AddressRegistActivity_Container, fragment1).hide(fragment1).commit();
         fragmentManager.beginTransaction().add(R.id.Buyer_AddressRegistActivity_Container, fragment2).hide(fragment2).commit();
-        busan = (Button) findViewById(R.id.Buyer_AddressRegistActivity_BusanBtn);
+        //busan = (Button) findViewById(R.id.Buyer_AddressRegistActivity_BusanBtn);
         daegu = (Button) findViewById(R.id.Buyer_AddressRegistActivity_DaeguBtn);
 
-        daegu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fragmentManager.beginTransaction().hide(fragment2).commit();
-                fragmentManager.beginTransaction().show(fragment1).commit();
-                daegu.setBackgroundResource(R.drawable.buyer_button_shape3);
-                busan.setBackgroundResource(R.drawable.buyer_button_shape);
-            }
-        });
-        busan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fragmentManager.beginTransaction().hide(fragment1).commit();
-                fragmentManager.beginTransaction().show(fragment2).commit();
-                daegu.setBackgroundResource(R.drawable.buyer_button_shape);
-                busan.setBackgroundResource(R.drawable.buyer_button_shape3);
-            }
-        });
+        fragmentManager.beginTransaction().show(fragment1).commit();
+
+//        daegu.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                fragmentManager.beginTransaction().hide(fragment2).commit();
+//                fragmentManager.beginTransaction().show(fragment1).commit();
+//                daegu.setBackgroundResource(R.drawable.buyer_button_shape3);
+//                busan.setBackgroundResource(R.drawable.buyer_button_shape);
+//            }
+//        });
+//        busan.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                fragmentManager.beginTransaction().hide(fragment1).commit();
+//                fragmentManager.beginTransaction().show(fragment2).commit();
+//                daegu.setBackgroundResource(R.drawable.buyer_button_shape);
+//                busan.setBackgroundResource(R.drawable.buyer_button_shape3);
+//            }
+//        });
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -350,8 +352,8 @@ public class Buyer_AddressRegistActivity extends AppCompatActivity {
         if(t1.equals("대구광역시")) {
             fragmentManager.beginTransaction().hide(fragment2).commit();
             fragmentManager.beginTransaction().show(fragment1).commit();
-            daegu.setBackgroundResource(R.drawable.buyer_button_shape3);
-            busan.setBackgroundResource(R.drawable.buyer_button_shape);
+            //daegu.setBackgroundResource(R.drawable.buyer_button_shape3);
+            //busan.setBackgroundResource(R.drawable.buyer_button_shape);
             address1 = "대구광역시";
 
             switch(t2) {

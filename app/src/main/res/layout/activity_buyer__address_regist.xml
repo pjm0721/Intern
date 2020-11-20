@@ -71,18 +71,19 @@
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
             android:fontFamily="@font/seoulnamsan_cb"
+            android:clickable="false"
             android:layout_weight="1"
             android:background="@drawable/buyer_button_shape"
             android:text="대구광역시" />
-        <Button
-            android:id="@+id/Buyer_AddressRegistActivity_BusanBtn"
-            android:layout_width="0dp"
-            android:fontFamily="@font/seoulnamsan_cb"
-            android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:background="@drawable/buyer_button_shape"
-            android:text="부산광역시" />
+<!--        <Button-->
+<!--            android:id="@+id/Buyer_AddressRegistActivity_BusanBtn"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:fontFamily="@font/seoulnamsan_cb"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="2dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/buyer_button_shape"-->
+<!--            android:text="부산광역시" />-->
     </LinearLayout>
 
     <FrameLayout

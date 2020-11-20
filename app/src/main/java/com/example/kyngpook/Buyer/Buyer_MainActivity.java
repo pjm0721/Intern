@@ -187,11 +187,12 @@ class Buyer_Seller {
     String Holiday;
     String Address1, Address2, CallNum;
     int ReviewNum;
+    int sale;
 
     boolean checked = false;
 
     public Buyer_Seller(String ID, String StoreName, String storeAddress, String img, String Ontime, String Holiday, String a1, String a2,
-                        String RepresentativeName, String CallNum, int Review) {
+                        String RepresentativeName, String CallNum, int Review, int sale) {
         this.ID = ID;
         this.Holiday = Holiday;
         this.img = img;
@@ -203,6 +204,7 @@ class Buyer_Seller {
         this.RepresentativeName = RepresentativeName;
         this.CallNum = CallNum;
         this.ReviewNum = Review;
+        this.sale = sale;
     }
 }
 

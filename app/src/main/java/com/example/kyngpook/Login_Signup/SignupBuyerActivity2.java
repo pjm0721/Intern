@@ -110,6 +110,7 @@ public class SignupBuyerActivity2 extends AppCompatActivity {
                     user.put("전화번호", editText5.getText().toString());
                     user.put("질문",spinner.getSelectedItem().toString());
                     user.put("답변",editText6.getText().toString());
+                    user.put("제휴할인", 0);
                     db.collection("USERS").document("Buyer").collection("Buyer").document(editText1.getText().toString()).set(user);
                     Toast.makeText(getApplicationContext(), "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show();
                     ActivityCompat.finishAffinity(SignupBuyerActivity2.this);

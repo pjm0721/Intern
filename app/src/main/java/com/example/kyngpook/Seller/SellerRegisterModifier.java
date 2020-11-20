@@ -98,7 +98,7 @@ public class SellerRegisterModifier extends AppCompatActivity {
 
     private ArrayList<SellerRMListData> listData=new ArrayList<SellerRMListData>();
 
-
+    private EditText saleEditText;
     @Override
     protected void onStart() {
         super.onStart();
@@ -146,6 +146,7 @@ public class SellerRegisterModifier extends AppCompatActivity {
 
         seller_business_explain=findViewById(R.id.seller_business_explain);
 
+        saleEditText = findViewById(R.id.seller_business_sale);
         recyclerView=(RecyclerView)findViewById(R.id.seller_sell_list) ;
         linearLayoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -282,8 +283,10 @@ public class SellerRegisterModifier extends AppCompatActivity {
         seller_complete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
+                int sale = 0;
+                if(saleEditText.getText().length() > 0) {
+                    sale = Integer.valueOf(saleEditText.getText().toString());
+                }
                 // 텍스트 변경 저장
                 docRef.update(
                         "업소명",seller_business_name.getText().toString()
@@ -293,7 +296,8 @@ public class SellerRegisterModifier extends AppCompatActivity {
                         "영업시간",seller_business_time.getText().toString(),
                         "전화번호",seller_business_contact_number.getText().toString(),
                         "카테고리",seller_business_category.getSelectedItem().toString(),
-                        "휴무일",seller_business_explain.getText().toString()
+                        "휴무일",seller_business_explain.getText().toString(),
+                        "제휴할인", sale
                 ).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {

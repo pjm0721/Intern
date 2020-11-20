@@ -125,8 +125,9 @@ public class Buyer_MarketList_Fragment extends Fragment {
                                                     String name = (String) document.getData().get("대표자명");
                                                     String call = (String) document.getData().get("전화번호");
                                                     int review = Integer.valueOf(document.getData().get("리뷰고유값").toString());
+                                                    int sale = Integer.valueOf(document.getData().get("제휴할인").toString());
                                                     Buyer_Seller bs = new Buyer_Seller(ID, store, storeaddress, ID + ".jpg", ot, h, address1, address2
-                                                            , name, call, review);
+                                                            , name, call, review, sale);
                                                     RVadapter.addItem(bs);
                                                     RVadapter.notifyDataSetChanged();
                                                 }
@@ -183,9 +184,9 @@ public class Buyer_MarketList_Fragment extends Fragment {
                                         String name = (String) document.getData().get("대표자명");
                                         String call = (String) document.getData().get("전화번호");
                                         int review = Integer.valueOf(document.getData().get("리뷰고유값").toString());
-
+                                        int sale= Integer.valueOf(document.getData().get("제휴할인").toString());
                                         Buyer_Seller bs = new Buyer_Seller(ID, store, storeaddress, ID + ".jpg", ot, h, address1, address2
-                                                , name, call, review);
+                                                , name, call, review, sale);
                                         RVadapter.addItem(bs);
                                         RVadapter.notifyDataSetChanged();
                                     }
