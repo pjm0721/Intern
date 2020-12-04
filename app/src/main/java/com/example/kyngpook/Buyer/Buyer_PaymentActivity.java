@@ -81,6 +81,7 @@ public class Buyer_PaymentActivity extends AppCompatActivity {
         final String storeName = intent.getStringExtra("업소명");
         final String sellerID = intent.getStringExtra("판매자아이디");
         final String SellerCall = intent.getStringExtra("판매자번호");
+        final int sale = intent.getIntExtra("제휴할인", 0);
 
         final ArrayList<ITEM> list = (ArrayList<ITEM>) intent.getSerializableExtra("장바구니");
 
@@ -93,12 +94,13 @@ public class Buyer_PaymentActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
 
         TextView textView = (TextView) findViewById(R.id.Buyer_PaymentActivity_totText);
-        int total = 1000;
+        int total = 0;
         for (int i = 0; i < list.size(); i++) {
             total += list.get(i).nownum * Integer.valueOf(list.get(i).price);
         }
+        total = (int) (total * (100 - sale) * 0.01);
         DecimalFormat formatter = new DecimalFormat("###,###");
-        textView.setText("총 결제금액 : "+formatter.format(total) + " 원");
+        textView.setText("총 결제금액 : "+formatter.format(total + 1000) + " 원");
 
         //결제 방식
         String[] items = new String[]{"만나서 카드 결제", "만나서 현금 결제","카드 결제", "카카오페이", "네이버 페이", "휴대폰 결제", "삼성 페이"};

@@ -220,7 +220,7 @@ public class SellerRegisterModifier extends AppCompatActivity {
                     seller_business_address.setText(document.getData().get("주소").toString());
                     seller_business_time.setText(document.getData().get("영업시간").toString());
                     seller_business_contact_number.setText(document.getData().get("전화번호").toString());
-
+                    saleEditText.setText(document.getData().get("제휴할인").toString());
                     category=document.getData().get("카테고리").toString();
                     for(int i=0;i<items.length;i++)
                     {

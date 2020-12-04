@@ -132,6 +132,7 @@ public class Buyer_ShoppingActivity extends AppCompatActivity {
                     intent.putExtra("판매자주소", StoreAddress);
                     intent.putExtra("업소명", storename);
                     intent.putExtra("판매자아이디", ID);
+                    intent.putExtra("제휴할인", sale);
                     startActivity(intent);
                 }
                 else
