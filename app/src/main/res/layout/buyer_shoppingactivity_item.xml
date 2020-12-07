@@ -27,7 +27,7 @@
             android:fontFamily="@font/maplestorylight"
             android:text="드라이버드라이버드라"
             android:textColor="#000"
-            android:textSize="17dp"
+            android:textSize="15dp"
             android:textStyle="bold" />
 
 
@@ -39,7 +39,7 @@
             android:text="5,000 원"
             android:fontFamily="@font/maplestorylight"
             android:textColor="#000"
-            android:textSize="17dp" />
+            android:textSize="15dp" />
 
     </LinearLayout>
 

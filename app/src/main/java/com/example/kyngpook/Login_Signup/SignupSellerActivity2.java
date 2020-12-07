@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -44,17 +45,17 @@ public class SignupSellerActivity2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_signup_seller2);
         Toolbar toolbar = findViewById(R.id.seller_signup_toolbar2);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayShowTitleEnabled(false);//기본 제목을 없애줍니다.
         actionBar.setDisplayHomeAsUpEnabled(true);
-        setContentView(R.layout.activity_signup_seller2);
         id = (EditText) findViewById(R.id.sellerSignUp_id);
         password = (EditText) findViewById(R.id.sellerSignUp_pwd);
         passwordchk = (EditText) findViewById(R.id.sellerSignUp_pwdck);
-        spinner = findViewById(R.id.sellerSignUp_spinner);
+        spinner = findViewById(R.id.seller_question_spinner);
         answer=(EditText)findViewById(R.id.sellerSignUp_answer);
         check_button=(Button)findViewById(R.id.seller_signup_check_btn);
         fininsh_button=(Button)findViewById(R.id.signup_seller_finish_btn);
@@ -99,6 +100,30 @@ public class SignupSellerActivity2 extends AppCompatActivity {
                     user.put("리뷰고유값", 0);
                     user.put("질문", spinner.getSelectedItem().toString());
                     user.put("답변", answer.getText().toString());
+                    user.put("주소","대구광역시 "+gintent.getStringExtra("주소"));
+                    db.collection("USERS").document("Seller").collection("Seller").document(ID).set(user);
+                    final Map<String,Object> item = new HashMap<>();
+                    item.put("상품이름","예시");
+                    item.put("개수","1");
+                    item.put("가격","1000");
+
+
+//                    new Handler().postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+                    db.collection("PRODUCT").document(gintent.getStringExtra("대구광역시")).collection(gintent.getStringExtra("city_first")).
+                            document(ID).collection("판매상품").document("예시").set(item);
+//
+//                        }
+//                    }, 1000);
+
+
+                    ActivityCompat.finishAffinity(SignupSellerActivity2.this);
+                    Intent intent=new Intent(getApplicationContext(),SignupFinishActivity.class);
+                    intent.putExtra("ID",ID);
+                    startActivity(intent);
+                    customType(SignupSellerActivity2.this,"left-to-right");
+                    finish();
                     /*  user.put("주소",city_first.getSelectedItem().toString()+" "+city_second.getSelectedItem().toString()+" "+city_third.getText().toString());*/
                 }
             }
@@ -223,52 +248,4 @@ public class SignupSellerActivity2 extends AppCompatActivity {
 
     }
 }
-/*
-*/
-/*
-else {
-        Map<String, Object> user = new HashMap<>();
-        user.put("ID", ID);
-        user.put("PASSWORD", PASSWORD);
-        user.put("대표자명", NAME);
-        user.put("업소명", STORE_NAME);
-        user.put("사업자번호", STORE_NUM);
-        user.put("전화번호", PHONE);
-        user.put("영업시간", "");
-        user.put("주소", "");
-        user.put("카테고리", "");
-        user.put("휴무일", "");
-        user.put("권한", 0);
-        user.put("리뷰고유값", 0);
-        user.put("질문",spinner.getSelectedItem().toString());
-        user.put("답변",editText.getText().toString());
-        user.put("주소",city_first.getSelectedItem().toString()+" "+city_second.getSelectedItem().toString()+" "+city_third.getText().toString());
 
-        db.collection("USERS").document("Seller").collection("Seller").document(ID).set(user);
-
-final Map<String,Object> item = new HashMap<>();
-        item.put("상품이름","예시");
-        item.put("개수","1");
-        item.put("가격","1000");
-
-        Log.d("123123123", city_first.getSelectedItem().toString());
-        Log.d("123123123", city_second.getSelectedItem().toString());
-        Log.d("123123123", city_first.getSelectedItem().toString());
-
-//                    new Handler().postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-        db.collection("PRODUCT").document(city_first.getSelectedItem().toString()).collection(city_second.getSelectedItem().toString()).
-        document(ID).collection("판매상품").document("예시").set(item);
-//
-//                        }
-//                    }, 1000);
-
-
-        ActivityCompat.finishAffinity(SignupSellerActivity.this);
-        Intent intent = new Intent(getApplicationContext(), SignupFinishActivity.class);
-        intent.putExtra("ID", ID);
-        customType(SignupSellerActivity.this, "left-to-right");
-        startActivity(intent);
-        finish();
-        }*/

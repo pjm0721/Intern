@@ -56,11 +56,12 @@
                 <Button
                     android:id="@+id/seller_signup_check_btn"
                     android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_marginLeft="15dp"
                     android:fontFamily="@font/maplestorylight"
                     android:layout_weight="1"
+                    android:onClick="on_seller_idchk"
                     android:background="@drawable/border"
                     android:padding="10dp"
                     android:text="중복확인"

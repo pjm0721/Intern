@@ -112,4 +112,121 @@
         <item>내가 태어난 지역은?</item>
         <item>첫 사랑 이름은?</item>
     </string-array>
+    <string-array name="city1">
+        <item>구/군 선택</item>
+        <item>중구</item>
+        <item>동구</item>
+        <item>서구</item>
+        <item>남구</item>
+        <item>북구</item>
+        <item>수성구</item>
+        <item>달서구</item>
+        <item>달성군</item>
+    </string-array>
+    <string-array name="구군선택">
+        <item>동/읍/면 선택</item>
+    </string-array>
+    <string-array name="중구">
+        <item>동/읍/면 선택</item>
+        <item>동인동</item>
+        <item>삼덕동</item>
+        <item>성내동</item>
+        <item>대신동</item>
+        <item>남산동</item>
+        <item>대봉동</item>
+    </string-array>
+    <string-array name="동구">
+        <item>동/읍/면 선택</item>
+        <item>신암동</item>
+        <item>신천동</item>
+        <item>효목동</item>
+        <item>도평동</item>
+        <item>불로봉무동</item>
+        <item>지저동</item>
+        <item>동촌동</item>
+        <item>방촌동</item>
+        <item>해안동</item>
+        <item>안심동</item>
+        <item>공산동</item>
+    </string-array>
+    <string-array name="서구">
+        <item>동/읍/면 선택</item>
+        <item>내당동</item>
+        <item>비산동</item>
+        <item>평리동</item>
+        <item>상중이동</item>
+        <item>원대동</item>
+    </string-array>
+    <string-array name="남구">
+        <item>동/읍/면 선택</item>
+        <item>이천동</item>
+        <item>봉덕동</item>
+        <item>대명동</item>
+    </string-array>
+    <string-array name="북구">
+        <item>동/읍/면 선택</item>
+        <item>고성동</item>
+        <item>칠성동</item>
+        <item>침산동</item>
+        <item>노원동</item>
+        <item>산격동</item>
+        <item>복현동</item>
+        <item>대현동</item>
+        <item>검단동</item>
+        <item>무태조야동</item>
+        <item>관문동</item>
+        <item>태전동</item>
+        <item>구암동</item>
+        <item>관음동</item>
+        <item>읍내동</item>
+        <item>동천동</item>
+        <item>국우동</item>
+    </string-array>
+    <string-array name="수성구">
+        <item>동/읍/면 선택</item>
+        <item>범어동</item>
+        <item>만촌동</item>
+        <item>수성1가동</item>
+        <item>수성2가동</item>
+        <item>수성3가동</item>
+        <item>수성4가동</item>
+        <item>황금동</item>
+        <item>중동</item>
+        <item>상동</item>
+        <item>파동</item>
+        <item>두산동</item>
+        <item>지산동</item>
+        <item>범불동</item>
+        <item>고산동</item>
+    </string-array>
+    <string-array name="달서구">
+        <item>동/읍/면 선택</item>
+        <item>성당동</item>
+        <item>두류동</item>
+        <item>본리동</item>
+        <item>감삼동</item>
+        <item>죽전동</item>
+        <item>장기동</item>
+        <item>용산동</item>
+        <item>이곡동</item>
+        <item>신당동</item>
+        <item>월성동</item>
+        <item>진천동</item>
+        <item>상인동</item>
+        <item>도원동</item>
+        <item>송현동</item>
+        <item>본동</item>
+    </string-array>
+    <string-array name="달성군">
+        <item>동/읍/면 선택</item>
+        <item>화원읍</item>
+        <item>논공읍</item>
+        <item>다사읍</item>
+        <item>유가읍</item>
+        <item>옥포읍</item>
+        <item>현풍읍</item>
+        <item>가창면</item>
+        <item>하빈면</item>
+        <item>구지면</item>
+    </string-array>
 </resources>

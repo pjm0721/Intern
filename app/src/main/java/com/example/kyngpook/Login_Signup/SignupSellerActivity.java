@@ -51,8 +51,9 @@ public class SignupSellerActivity extends AppCompatActivity {
     private EditText city_third;
     private Button seller_next_btn;
     private Button seller_address_btn;
+    private FirebaseFirestore db= FirebaseFirestore.getInstance();
     private static final int SEARCH_ADDRESS_ACTIVITY = 10000;
-
+    ArrayAdapter<CharSequence> adspin;
     private TextView et_address;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,15 +65,46 @@ public class SignupSellerActivity extends AppCompatActivity {
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayShowTitleEnabled(false);//기본 제목을 없애줍니다.
         actionBar.setDisplayHomeAsUpEnabled(true);
-        seller_address_btn=(Button)findViewById(R.id.seller_address_btn);
-        seller_address_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(SignupSellerActivity.this, WebViewActivity.class);
-                startActivityForResult(i, SEARCH_ADDRESS_ACTIVITY);
-            }
-        });
-        et_address=(TextView)findViewById(R.id.seller_address);
+        CollectionReference area=db.collection("지역");
+/*        String[] arr1=new String[1]; arr1[0]="동/면/읍 선택";
+        ArrayAdapter<String> sp_adapter_city2=new ArrayAdapter<String>(getApplicationContext(), R.layout.spinner_layout, arr1);
+
+        city_second.setAdapter(sp_adapter_city2);*/
+
+        area.get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+
+                            String[] city_arr=new String[100];
+                            int a=0;
+                            for(QueryDocumentSnapshot doc : task.getResult()) {
+                                city_arr[++a]=doc.getId();
+                            }
+                            String[] arr=new String[++a];
+
+                            arr[0]="구/군 선택";
+                            for(int i=1;i<a;i++)
+                                arr[i]=city_arr[i];
+
+                            ArrayAdapter<String> sp_adapter_city=new ArrayAdapter<String>(getApplicationContext(), R.layout.spinner_layout, arr);
+
+                            city_first.setAdapter(sp_adapter_city);
+                            String[] arr2=new String[1];
+                            arr2[0]="동/면/읍 선택";
+                            ArrayAdapter<String> sp_adapter_city2=new ArrayAdapter<String>(getApplicationContext(), R.layout.spinner_layout, arr2);
+
+                            city_second.setAdapter(sp_adapter_city2);
+
+                        } else {
+                            Log.w("signUpSeller", "Error", task.getException());
+                        }
+                    }
+                });
+        city_first=(Spinner)findViewById(R.id.city_first);
+        city_second=(Spinner)findViewById(R.id.city_second);
+        city_third=(EditText)findViewById(R.id.seller_detail_address);
         phonenumber = (TextView) findViewById(R.id.sellerSignUp_phone);
         name = (TextView) findViewById(R.id.sellerSignUp_name);
         storename = (TextView) findViewById(R.id.sellerSignUp_store_name);
@@ -95,56 +127,29 @@ public class SignupSellerActivity extends AppCompatActivity {
                 } else if (PHONE.length() != 10 && PHONE.length() != 11) {
                     Toast.makeText(SignupSellerActivity.this, "전화번호를 제대로 입력해주세요", Toast.LENGTH_SHORT).show();
                 }
+                else if(city_first.getSelectedItem().toString().equals("구/군 선택") || city_second.getSelectedItem().toString().equals("동/면/읍 선택") || city_third.getText().toString().equals(""))
+                {
+                    Toast.makeText(getApplicationContext(), "주소를 정확히 입력해주세요", Toast.LENGTH_SHORT).show();
+                }
                 else {
                     Intent intent=new Intent(getApplicationContext(),SignupSellerActivity2.class);
-                    intent.putExtra("name",NAME);
-                    intent.putExtra("store_name",STORE_NAME);
-                    intent.putExtra("store_num",STORE_NUM);
-                    intent.putExtra("phone",PHONE);
-                    intent.putExtra("store_name",STORE_NAME);
+                    intent.putExtra("NAME",NAME);
+                    intent.putExtra("STORE_NAME",STORE_NAME);
+                    intent.putExtra("STORE_NUM",STORE_NUM);
+                    intent.putExtra("PHONE",PHONE);
+                    intent.putExtra("city_first",city_first.getSelectedItem().toString());
+                    intent.putExtra("city_second",city_second.getSelectedItem().toString());
+                    intent.putExtra("주소",city_first.getSelectedItem().toString()+" "+city_second.getSelectedItem().toString()+" "+city_third.getText().toString());
                     startActivity(intent);
+                    customType(SignupSellerActivity.this,"left-to-right");
                 }
             }
         });
-       /* city_first=findViewById(R.id.city_first);
-        city_second=findViewById(R.id.city_second);
-        city_third=findViewById(R.id.city_third);
-
-        CollectionReference area=db.collection("지역");
-
-        area.get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-
-                            String[] city_arr=new String[100];
-                            int a=0;
-                            for(QueryDocumentSnapshot doc : task.getResult()) {
-                                city_arr[++a]=doc.getId();
-                            }
-                            String[] arr=new String[++a];
-
-                            arr[0]="선택해주세요";
-                            for(int i=1;i<a;i++)
-                                arr[i]=city_arr[i];
-
-                            ArrayAdapter<String> sp_adapter_city=new ArrayAdapter<String>(getApplicationContext(), R.layout.spinner_layout, arr);
-
-                            city_first.setAdapter(sp_adapter_city);
-
-                        } else {
-                            Log.w("signUpSeller", "Error", task.getException());
-                        }
-                    }
-                });
-
-
         city_first.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String city=parent.getItemAtPosition(position).toString();
-                if(!city.equals("선택해주세요"))
+                if(!city.equals("구/군 선택"))
                     show_second_city(city);
             }
             @Override
@@ -152,10 +157,9 @@ public class SignupSellerActivity extends AppCompatActivity {
 
             }
         });
-*/
-    }
 
- /*   public void show_second_city(String city)
+    }
+    public void show_second_city(String city)
     {
         DocumentReference second_city=db.collection("지역").document(city);
 
@@ -168,7 +172,7 @@ public class SignupSellerActivity extends AppCompatActivity {
 
                     String[] arr = new String[++num];
 
-                    arr[0]="선택해주세요";
+                    arr[0]="동/면/읍 선택";
                     for (int i = 1; i < num; i++) {
                         arr[i] = task.getResult().get("" + i).toString();
                     }
@@ -180,7 +184,7 @@ public class SignupSellerActivity extends AppCompatActivity {
                 }
             }
         });
-    }*/
+    }
  public void onActivityResult(int requestCode, int resultCode, Intent intent)
  {
      super.onActivityResult(requestCode, resultCode, intent);
@@ -213,3 +217,4 @@ public class SignupSellerActivity extends AppCompatActivity {
 
     }
 }
+

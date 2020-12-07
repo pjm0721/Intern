@@ -2,6 +2,7 @@ package com.example.kyngpook.Buyer;
 
 import com.example.kyngpook.R;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,7 +37,9 @@ import com.xiasuhuei321.loadingdialog.view.LoadingDialog;
 public class Buyer_MarketList_Fragment extends Fragment {
     Buyer_MainActivity activity;
     ViewGroup rootView;
-
+    private LayoutInflater dialog;
+    private View dialogLayout;
+    private Dialog category_diaglog;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private LinearLayout AddressBtn;

@@ -18,7 +18,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:label">
-        <activity android:name=".Login_Signup.WebViewActivity"></activity>
         <activity android:name=".Login_Signup.SignupSellerActivity2" />
         <activity android:name=".Login_Signup.SignupBuyerActivity2" />
         <activity
