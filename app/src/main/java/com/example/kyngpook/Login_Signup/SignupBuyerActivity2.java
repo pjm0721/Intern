@@ -103,7 +103,7 @@ public class SignupBuyerActivity2 extends AppCompatActivity {
                     user.put("입학년도",Year);
                     user.put("학과",Major);
                     user.put("이름",rName);
-                    user.put("이메일",uEmail);
+                    user.put("email",uEmail);
                     user.put("ID", editText1.getText().toString());
                     user.put("PASSWORD", editText3.getText().toString());
                     user.put("닉네임", editText2.getText().toString());

@@ -11,7 +11,8 @@ import com.example.kyngpook.R;
 
 import static maes.tech.intentanim.CustomIntent.customType;
 
-public class SignupFinishActivity extends AppCompatActivity {
+public class
+SignupFinishActivity extends AppCompatActivity {
     private String ID;
     private TextView txt;
     @Override
