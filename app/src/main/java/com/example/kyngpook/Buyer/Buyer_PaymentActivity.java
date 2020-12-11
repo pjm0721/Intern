@@ -131,7 +131,7 @@ public class Buyer_PaymentActivity extends AppCompatActivity {
                         if(value.equals(password)) {
                             //문자 보내기
                             String phoneNumber = SellerCall;
-                            String smsBody1 = "<코노노> 주문입니다!\n";
+                            String smsBody1 = "<크누마켓> 주문입니다!\n";
                             smsBody1 += "구매자 : " + realName + "\n";
                             smsBody1 += "주소 : " + address1 + " " + address2 + "\n";
                             smsBody1 += "주문내역 : " + list.get(0).name + " 외 " + String.valueOf(list.size() - 1) + "건";
